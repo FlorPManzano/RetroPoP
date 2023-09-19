@@ -17,34 +17,35 @@ Este ejercicio consiste en crear una API que simule el funcionamiento de una apl
 
 ### User
 
-| Campo            | Tipo     | Descripción                                    |
-| ---------------  | -------- | ---------------------------------------------- |
-| id               | INT      | Identificador único del usuario.               |
-| email            | VARCHAR  | Dirección de correo electrónico.               |
-| username         | VARCHAR  | Nombre de usuario.                             |
-| password         | VARCHAR  | Contraseña del usuario.                        |
-| avatar           | VARCHAR  | Nombre del avatar del usuario.                 |
-| createdAt        | DATETIME | Fecha y hora de creación del usuario.          |
-| modifiedAt       | DATETIME | Fecha y hora de última modificación.           |
-| registrationCode | VARCHAR  | Código de validación del usuario.              |
-| isActive           | TINYINT  | Estado de la validación.                       |
+| Campo            | Tipo     | Descripción                           |
+| ---------------- | -------- | ------------------------------------- |
+| id               | INT      | Identificador único del usuario.      |
+| email            | VARCHAR  | Dirección de correo electrónico.      |
+| username         | VARCHAR  | Nombre de usuario.                    |
+| password         | VARCHAR  | Contraseña del usuario.               |
+| avatar           | VARCHAR  | Nombre del avatar del usuario.        |
+| bio              | VARCHAR  | Biografia del usuario.                |
+| createdAt        | DATETIME | Fecha y hora de creación del usuario. |
+| modifiedAt       | DATETIME | Fecha y hora de última modificación.  |
+| registrationCode | VARCHAR  | Código de validación del usuario.     |
+| isActive         | TINYINT  | Estado de la validación.              |
 
 ### Products
 
-| Campo            | Tipo     | Descripción                                    |
-| ---------------  | -------- | ---------------------------------------------- |
-| id               | INT      | Identificador único del producto.              |
-| userId           | INT      | Identificador del usuario que creó el producto.|
-| productName      | VARCHAR  | Nombre del producto.                           |
-| category         | ENUM     | Categoria a la que pertenece el producto.      |
-| state            | ENUM     | Estado del producto.                           |
-| description      | VARCHAR  | Descripción del producto.                      |
-| place            | VARCHAR  | Localidad de venta.                            |
-| price            | DECIMAL  | Precio del producto.                           |
-| image            | VARCHAR  | Imagen adjunta al producto                     |
-| createdAt        | DATETIME | Fecha y hora de creación del producto.         |
-| modifiedAt       | DATETIME | Fecha y hora de última modificación.           |
-| isSelled         | TINYINT  | Estado de compra.                              |
+| Campo       | Tipo     | Descripción                                     |
+| ----------- | -------- | ----------------------------------------------- |
+| id          | INT      | Identificador único del producto.               |
+| userId      | INT      | Identificador del usuario que creó el producto. |
+| productName | VARCHAR  | Nombre del producto.                            |
+| category    | ENUM     | Categoria a la que pertenece el producto.       |
+| state       | ENUM     | Estado del producto.                            |
+| description | VARCHAR  | Descripción del producto.                       |
+| place       | VARCHAR  | Localidad de venta.                             |
+| price       | DECIMAL  | Precio del producto.                            |
+| image       | VARCHAR  | Imagen adjunta al producto                      |
+| createdAt   | DATETIME | Fecha y hora de creación del producto.          |
+| modifiedAt  | DATETIME | Fecha y hora de última modificación.            |
+| isSelled    | TINYINT  | Estado de compra.                               |
 
 <!-- ### Product_image
 
@@ -58,23 +59,28 @@ Este ejercicio consiste en crear una API que simule el funcionamiento de una apl
 
 ### Orders
 
-| Campo            | Tipo     | Descripción                                    |
-| ---------------  | -------- | ---------------------------------------------- |
-| id               | INT      | Identificador único de la reserva.             |
-| userBuyerId      | INT      | Identificador del usuario comprador.           |
-| userSellerId     | INT      | Identificador del usuario vendedor.            |
-| deliveryPlace    | VARCHAR  | Lugar para la entrega.                         |
-| deliveryTime     | DATETIME | Fecha y hora para la entrega.                  |
-| createdAt        | DATETIME | Fecha y hora de creación del producto.         |
+| Campo         | Tipo     | Descripción                            |
+| ------------- | -------- | -------------------------------------- |
+| id            | INT      | Identificador único de la reserva.     |
+| userBuyerId   | INT      | Identificador del usuario comprador.   |
+| userSellerId  | INT      | Identificador del usuario vendedor.    |
+| productId     | INT      | Identificador del producto.            |
+| deliveryPlace | VARCHAR  | Lugar para la entrega.                 |
+| deliveryTime  | DATETIME | Fecha y hora para la entrega.          |
+| createdAt     | DATETIME | Fecha y hora de creación del producto. |
 
 ### Reviews
 
-| Campo     | Tipo     | Descripción                                           |
-| --------- | -------- | ----------------------------------------------------- |
-| id        | INT      | Identificador único de la valoración.                 |
-| userId    | INT      | Identificador del usuario que hizo la valoración.     |
-| tweetId   | INT      | Identificador del producto que recibió la valoración. |
-| createdAt | DATETIME | Fecha y hora de creación de la valoración.            |
+| Campo      | Tipo     | Descripción                                           |
+| ---------- | -------- | ----------------------------------------------------- |
+| id         | INT      | Identificador único de la valoración.                 |
+| userId     | INT      | Identificador del usuario que hizo la valoración.     |
+| tweetId    | INT      | Identificador del producto que recibió la valoración. |
+| titleRw    | VARCHAR  | Título de la valoración.                              |
+| textRw     | VARCHAR  | Texto explicativo de la valoración.                   |
+| starsRw    | ENUM     | Valoración en estrellas(1-5).                         |
+| createdAt  | DATETIME | Fecha y hora de creación de la valoración.            |
+| modifiedAt | DATETIME | Fecha y hora de modificación de la valoración.        |
 
 ## Endpoints
 
