@@ -1,6 +1,6 @@
 {
     "env": {
-        "commonjs": false,
+        "module": true,
         "es2021": true,
         "node": true
     },
@@ -9,5 +9,11 @@
     "parserOptions": {
         "ecmaVersion": "latest"
     },
-    "rules": {}
+    "rules": {
+        "trailingComma": "es5",
+        "useTabs": false,
+        "tabWidth": 4,
+        "semi": 1,
+        "singleQuote": true
+    }
 }
