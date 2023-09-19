@@ -1,0 +1,32 @@
+{
+  "name": "retropop",
+  "version": "1.0.0",
+  "description": "Este ejercicio consiste en crear una API que simule el funcionamiento de una aplicación de compra-venta de artículos retro.",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "initDb": "node ./src/db/initDb.js",
+    "start": "node --watch server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "express-fileupload": "^1.4.0",
+    "joi": "^17.10.2",
+    "jsonwebtoken": "^9.0.2",
+    "morgan": "^1.10.0",
+    "mysql2": "^3.6.1",
+    "node-mailjet": "^6.0.4",
+    "sharp": "^0.32.6",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "eslint": "^8.49.0",
+    "prettier": "^3.0.3"
+  }
+}
