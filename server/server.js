@@ -1,40 +1,39 @@
+// Importamos el módulo de express
 import express from 'express';
 
+// Importamos el módulo de cors
+import cors from 'cors';
+
+// Importamos el módulo de dotenv
+import 'dotenv/config';
+
+// Importamos el módulo de morgan
+import morgan from 'morgan';
+
+// Importamos Routes
+import userRoutes from './src/routes/users_routes.js';
+// import bookingsRoutes from './src/routes/bookings_routes.js';
+// import productsRoutes from './src/routes/products_routes.js';
+// import reviewsRoutes from './src/routes/reviews_routes.js';
+
+// Importamos el puerto y el host de config.js
+import { PORT } from './config.js';
+
+// Guardamos en una constante la función express
 const app = express();
 
-app.get('/', (req, res) => {
-    res.send('Bienvenid@ a mi servidor');
-});
+// Middlewares
+app.use(cors());
+app.use(express.json());
+app.use(morgan('common'));
 
-app.get('/nueva-ruta', (req, res) => {
-    res.send('Hola, te saludo desde una nueva ruta');
-});
+// Routes
+// app.use('/bookings', bookingsRoutes);
+// app.use('/products', productsRoutes);
+// app.use('/reviews', reviewsRoutes);
+app.use('/users', userRoutes);
 
-// GET para obtener datos
-app.get('/users', (req, res) => {
-    res.send('Recibimos tus datos por GET');
-});
-
-// PUT para actualizar datos
-app.put('/users', (req, res) => {
-    res.send('Recibimos tus datos por PUT');
-});
-
-// DELETE para eliminar datos
-app.delete('/users', (req, res) => {
-    res.send('Recibimos tus datos por DELETE');
-});
-
-// POST para crear datos
-app.post('/users', (req, res) => {
-    res.send('Recibimos tus datos por POST');
-});
-
-app.use((req, res) => {
-    res.status(404);
-    res.send('No se encontró la ruta');
-});
-
-app.listen(3000, () => {
+// Inicializamos el servidor en el puerto asignado en config.js
+app.listen(PORT, () => {
     console.log('El servidor está inicializado en http://localhost:3000');
 });
