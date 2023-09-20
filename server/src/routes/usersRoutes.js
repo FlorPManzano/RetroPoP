@@ -1,7 +1,7 @@
 import express from 'express';
 
 // Controllers
-import userController from '../controllers/user_controllers.js';
+import createUserController from '../controllers/users/createUserController';
 
 // Middlewares
 // import authUser from '../middlewares/auth_user.js';
@@ -12,7 +12,7 @@ const router = express.Router();
 
 // Routes
 // POST /users/
-router.post('/', userController.createUser);
+router.post('/', createUserController);
 
 // POST /users/validate/e20b73bc-ab27-4edc-823b-807fba206bec
 // router.post('/validate/:regCode', userController.validateUser);

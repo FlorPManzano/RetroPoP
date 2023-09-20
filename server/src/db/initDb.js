@@ -27,7 +27,7 @@ const main = async () => {
         console.log(FgLightYellow, 'Borrando tablas si existen...');
 
         await connection.query(
-            'DROP TABLE IF EXISTS orders, reviews, products, users'
+            'DROP TABLE IF EXISTS bookings, reviews, products, users'
         );
 
         console.log(FgLightBlue, 'Creando tablas si no existen...');
@@ -70,9 +70,9 @@ const main = async () => {
                 ON UPDATE CASCADE
             )
         `);
-        console.log(FgLightMagenta, '---Creando tabla orders---');
+        console.log(FgLightMagenta, '---Creando tabla bookings---');
         await connection.query(`
-            CREATE TABLE IF NOT EXISTS orders (
+            CREATE TABLE IF NOT EXISTS bookings (
               id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
               deliveryPlace VARCHAR(30) NULL,
               deliveryTime DATETIME NULL,	

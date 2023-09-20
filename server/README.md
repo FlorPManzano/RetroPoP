@@ -57,7 +57,7 @@ Este ejercicio consiste en crear una API que simule el funcionamiento de una apl
 | createdAt        | DATETIME | Fecha y hora de creación del producto.         |
 | modifiedAt       | DATETIME | Fecha y hora de última modificación.           | -->
 
-### Orders
+### Bookings
 
 | Campo         | Tipo     | Descripción                            |
 | ------------- | -------- | -------------------------------------- |
@@ -104,9 +104,9 @@ Este ejercicio consiste en crear una API que simule el funcionamiento de una apl
 
 ### Reservas:
 
--   POST `/orders/:productId` - Permite crear una reserva solo si no eres el propietario de producto.
--   GET `/orders/:orderId` - Permite crear un producto.
--   PUT `/orders/confirm/:productId` - Confirmación de la reserva del comprador.
+-   POST `/bookings/:productId` - Permite crear una reserva solo si no eres el propietario de producto.
+-   GET `/bookings/:orderId` - Permite crear un producto.
+-   PUT `/bookings/confirm/:productId` - Confirmación de la reserva del comprador.
 
 ### Valoraciones
 

@@ -11,7 +11,7 @@ import 'dotenv/config';
 import morgan from 'morgan';
 
 // Importamos Routes
-import userRoutes from './src/routes/users_routes.js';
+import userRoutes from './src/routes/usersRoutes';
 // import bookingsRoutes from './src/routes/bookings_routes.js';
 // import productsRoutes from './src/routes/products_routes.js';
 // import reviewsRoutes from './src/routes/reviews_routes.js';
@@ -35,5 +35,5 @@ app.use('/users', userRoutes);
 
 // Inicializamos el servidor en el puerto asignado en config.js
 app.listen(PORT, () => {
-    console.log('El servidor está inicializado en http://localhost:3000');
+    console.log(`El servidor está inicializado en http://localhost:${PORT}`);
 });

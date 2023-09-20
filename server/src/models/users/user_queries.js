@@ -1,4 +1,4 @@
-import getDb from '../getDb.js';
+import getDb from '../../db/getDb.js';
 
 async function newUser({ email, username, password, registrationCode }) {
     let connection;

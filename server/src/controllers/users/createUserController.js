@@ -1,7 +1,7 @@
 import crypto from 'node:crypto';
-import { newUser } from '../db/queries/user_queries.js';
+import { insertUserModel } from '../../models/users/insertUserModel';
 
-async function createUser(req, res, next) {
+async function createUserController(req, res, next) {
     try {
         const { email, username, password } = req.body;
 
@@ -23,7 +23,7 @@ async function createUser(req, res, next) {
 
         const registrationCode = crypto.randomUUID();
 
-        const user = await newUser({
+        const user = await insertUserModel({
             email,
             username,
             password,
@@ -40,6 +40,10 @@ async function createUser(req, res, next) {
         next(error);
     }
 }
+
+export default {
+    createUserController,
+};
 
 // async function createUser({ req, res, next }) {
 //     console.log('A ver que cojones llega aquí', req);
@@ -80,10 +84,6 @@ async function createUser(req, res, next) {
 //         next(err);
 //     }
 // }
-
-export default {
-    createUser,
-};
 
 // A partir de aquí es solo código de referencia del proyecto de Cristobal.
 
