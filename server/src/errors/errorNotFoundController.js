@@ -1,10 +1,9 @@
-// Función controladora final para el middleware de errores.
-const errorNotFoundController = (err, req, res, next) => {
-    console.error(err);
+// Importamos la funcion  de error.
+import notFoundError from './errorService.js';
 
-    res.status(err.httpStatus || 500).send({
-        status: 'error',
-        message: err.message,
-    });
+// Función controladora final que retorna un error 404.
+const errorNotFoundController = (req, res, next) => {
+    next(notFoundError('ruta'));
 };
+
 export default errorNotFoundController;
