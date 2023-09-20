@@ -1,5 +1,5 @@
 import crypto from 'node:crypto';
-import { insertUserModel } from '../../models/users/insertUserModel';
+import insertUserModel from '../../models/users/insertUserModel.js';
 
 async function createUserController(req, res, next) {
     try {
@@ -41,9 +41,7 @@ async function createUserController(req, res, next) {
     }
 }
 
-export default {
-    createUserController,
-};
+export default createUserController;
 
 // async function createUser({ req, res, next }) {
 //     console.log('A ver que cojones llega aquí', req);

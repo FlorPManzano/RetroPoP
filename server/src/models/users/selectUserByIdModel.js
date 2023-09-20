@@ -1,4 +1,4 @@
-import getDb from '../../db/getDb';
+import getDb from '../../db/getDb.js';
 
 async function selectUserByIdModel(obj) {
     const queryStr = Object.entries(obj)

@@ -11,7 +11,7 @@ import 'dotenv/config';
 import morgan from 'morgan';
 
 // Importamos Routes
-import userRoutes from './src/routes/usersRoutes';
+import userRoutes from './src/routes/usersRoutes.js';
 // import bookingsRoutes from './src/routes/bookings_routes.js';
 // import productsRoutes from './src/routes/products_routes.js';
 // import reviewsRoutes from './src/routes/reviews_routes.js';

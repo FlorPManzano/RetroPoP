@@ -1,7 +1,7 @@
 import express from 'express';
 
 // Controllers
-import createUserController from '../controllers/users/createUserController';
+import createUserController from '../controllers/users/createUserController.js';
 
 // Middlewares
 // import authUser from '../middlewares/auth_user.js';
