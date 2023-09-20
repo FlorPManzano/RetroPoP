@@ -1,4 +1,4 @@
-import auth_user from './auth_user';
-import users_exists from './users_exists';
+import authUser from './authUser';
+import usersExists from './usersExists';
 
-export { auth_user, users_exists };
+export { authUser, usersExists };
