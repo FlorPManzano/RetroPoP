@@ -25,7 +25,7 @@ const getDb = async () => {
                 host: MYSQL_HOST,
                 user: MYSQL_USER,
                 password: MYSQL_PASS,
-                timezone: 'Z',
+                timezone: 'local',
             });
 
             // Creamos la base de datos si no existe.
@@ -38,7 +38,7 @@ const getDb = async () => {
                 user: MYSQL_USER,
                 password: MYSQL_PASS,
                 database: MYSQL_DB,
-                timezone: 'Z',
+                timezone: 'local',
             });
         }
 

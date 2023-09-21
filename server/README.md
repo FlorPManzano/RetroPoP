@@ -97,18 +97,17 @@ Este ejercicio consiste en crear una API que simule el funcionamiento de una apl
 
 -   POST `/products` - Permite crear un producto.
 -   GET `/` - Lista todos los productos.
--   GET `/products/:productId` - Devuelve la infomación del producto.
+-   GET `/products/:productId` - Devuelve la infomación del producto y la info del vendedor con la media de valoraciones.
 -   GET `/products` - Devuelve la infomación de los productos filtrados.
--   PUT `/products/edit` - Editar producto.
+-   PUT `/products/edit/:id` - Editar producto.
 -   DELETE `/products/:productId` - Borra un producto solo si eres quien lo creó.
 
 ### Reservas:
 
 -   POST `/bookings/:productId` - Permite crear una reserva solo si no eres el propietario de producto.
--   GET `/bookings/:orderId` - Permite crear un producto.
--   PUT `/bookings/confirm/:productId` - Confirmación de la reserva del comprador.
+-   GET `/bookings/` - Permite ver el listado de bookings que recibe el usuario logeado.
+-   PUT `/bookings/confirm/:bookingId` - Confirmación de la reserva del comprador.
 
 ### Valoraciones
 
--   POST `/reviews/:orderId` - Permite añadir una valoración al vendedor.
--   GET `/reviews/:userId` - Lista las reviews de un usuario.
+-   POST `/reviews/:bookingId` - Permite añadir una valoración al vendedor.

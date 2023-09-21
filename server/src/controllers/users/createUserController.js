@@ -2,11 +2,11 @@ import insertUserModel from '../../models/users/insertUserModel.js';
 
 const createUserController = async (req, res, next) => {
     try {
-        // Importamos los datos del body.
-        const { username, email, password } = req.body;
-
         // Validamos los datos con Joi.
         // await validateSchema(newUserSchema, req.body);
+
+        // Importamos los datos del body.
+        const { username, email, password } = req.body;
 
         // Insertamos el usuario.
         await insertUserModel(username, email, password);

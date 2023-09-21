@@ -50,8 +50,8 @@ const insertUserModel = async (username, email, password) => {
         // Creamos el usuario.
 
         await connection.query(
-            'INSERT INTO users (email, username, password, registrationCode, createdAt) VALUES(?, ?, ?, ?, ?)',
-            [email, username, hashedPass, registrationCode, new Date()]
+            'INSERT INTO users (email, username, password, registrationCode) VALUES(?, ?, ?, ?)',
+            [email, username, hashedPass, registrationCode]
         );
         sendMail(username, email, registrationCode);
     } finally {
