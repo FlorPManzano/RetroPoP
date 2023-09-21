@@ -6,7 +6,7 @@
     "type": "module",
     "scripts": {
         "initDb": "node ./src/db/initDb.js",
-        "start": "node --watch server.js"
+        "start": "nodemon server.js"
     },
     "keywords": [],
     "author": "",
@@ -28,6 +28,7 @@
     },
     "devDependencies": {
         "eslint": "^8.49.0",
+        "nodemon": "^3.0.1",
         "prettier": "^3.0.3"
     }
 }

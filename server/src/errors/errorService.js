@@ -68,3 +68,16 @@ export function userAlreadyRegisteredError() {
         message: 'El nombre de usuario ya está registrado',
     };
 }
+
+export default {
+    deleteFileError,
+    emailAlreadyRegisteredError,
+    invalidCredentialsError,
+    invalidTokenError,
+    likeAlreadyExistsError,
+    notAuthenticatedError,
+    notFoundError,
+    saveFileError,
+    unauthorizedUserError,
+    userAlreadyRegisteredError,
+};

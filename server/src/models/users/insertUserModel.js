@@ -59,44 +59,4 @@ const insertUserModel = async (username, email, password) => {
     }
 };
 
-// async function insertUserModel({
-//     email,
-//     username,
-//     password,
-//     registrationCode,
-// }) {
-//     let connection;
-
-//     try {
-//         connection = await getDb();
-
-//         // Comprobamos si el email está repetido.
-//         let user = await selectUserByIdModel({ email });
-
-//         // Si el array de usuarios tiene más de 0 usuarios quiere decir que el email está repetido.
-//         if (user) {
-//             throw new Error('El email ya está registrado');
-//         }
-
-//         // Comprobamos si el nombre de usuario está repetido.
-//         user = await selectUserByIdModel({ username });
-
-//         // Si el array de usuarios tiene más de 0 usuarios quiere decir que el nombre de usuario está repetido.
-//         if (user) {
-//             throw new Error('El nombre de usuario ya está registrado');
-//         }
-
-//         // Insertamos el usuario en la base de datos.
-//         const [result] = await connection.query(
-//             'INSERT INTO users (email, username, password, registrationCode, createdAt) VALUES(?, ?, ?, ?, ?)',
-//             [email, username, password, registrationCode, new Date()]
-//         );
-//         return await selectUserByIdModel({ id: result.insertId });
-//     } catch (error) {
-//         return { error: error.message };
-//     } finally {
-//         if (connection) connection.release();
-//     }
-// }
-
 export default insertUserModel;

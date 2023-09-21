@@ -37,7 +37,7 @@ server.use(morgan('common'));
 // la propiedad "files" en el objeto "request".
 server.use(fileUpload());
 // Indica a Express cual es el directorio de ficheros estáticos.
-server.use(express.static(UPLOADS_DIR));
+// server.use(express.static(UPLOADS_DIR)); <<-- Esto no funciona da error
 
 // Routes
 server.use('/users', userRoutes);
