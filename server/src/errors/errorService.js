@@ -69,6 +69,14 @@ export function userAlreadyRegisteredError() {
     };
 }
 
+export function userNotActivatedError() {
+    throw {
+        httpStatus: 403,
+        code: 'USER_NOT_ACTIVATED',
+        message: 'El usuario no está activado',
+    };
+}
+
 export default {
     deleteFileError,
     emailAlreadyRegisteredError,
@@ -80,4 +88,5 @@ export default {
     saveFileError,
     unauthorizedUserError,
     userAlreadyRegisteredError,
+    userNotActivatedError,
 };

@@ -2,7 +2,7 @@
 import joi from 'joi';
 
 // Importamos el objeto con los mensajes de error personalizados.
-import joiErrorMessages from '../joiErrorMessages';
+import joiErrorMessages from '../joiErrorMessages.js';
 
 // Creamos el esquema de validación.
 const loginUserSchema = joi.object({
