@@ -1,14 +1,14 @@
-// Importamos el módulo de express
+// Importamos las dependencias
 import express from 'express';
-
-// Importamos el módulo de cors
 import cors from 'cors';
+import morgan from 'morgan';
+import fileUpload from 'express-fileupload';
 
-// Importamos el módulo de dotenv
+// Importamos las variables de entorno
 import 'dotenv/config';
 
-// Importamos el módulo de morgan
-import morgan from 'morgan';
+// Importamos la constante con el nombre de carpeta de la subida de archivos
+import { UPLOADS_DIR } from './src/utils/constants';
 
 // Importamos Routes
 import userRoutes from './src/routes/usersRoutes.js';
@@ -16,28 +16,41 @@ import userRoutes from './src/routes/usersRoutes.js';
 // import productsRoutes from './src/routes/productsRoutes.js';
 // import reviewsRoutes from './src/routes/reviewsRoutes.js';
 
-//errors
+//Importamos los controladores de errores
 import errorNotFoundController from './src/errors/errorNotFoundController.js';
 import errorController from './src/errors/errorController.js';
 
 // Importamos el puerto y el host de config.js
 import { PORT } from './config.js';
 
-// Guardamos en una constante la función express
-const app = express();
+// Creamos el servidor de express
+const server = express();
 
 // Middlewares
-app.use(cors());
-app.use(express.json());
-app.use(morgan('common'));
+// Deserializa un body en formato "raw" creando la propiedad "body" en el objeto "request".
+server.use(express.json());
+// Evita problemas con las CORS cuando intentamos conectar el cliente con el servidor
+server.use(cors());
+// Muestra por consola información de la petición entrante
+server.use(morgan('common'));
+// Middleware que deserializa un body en formato "form-data" creando la propiedad "body" y
+// la propiedad "files" en el objeto "request".
+server.use(fileUpload());
+// Indica a Express cual es el directorio de ficheros estáticos.
+server.use(express.static(UPLOADS_DIR));
 
 // Routes
-// app.use('/bookings', bookingsRoutes);
-// app.use('/products', productsRoutes);
-// app.use('/reviews', reviewsRoutes);
-app.use('/users', userRoutes);
+server.use('/users', userRoutes);
+// server.use('/bookings', bookingsRoutes);
+// server.use('/products', productsRoutes);
+// server.use('/reviews', reviewsRoutes);
+
+// Middelware de ruta no encontrada
+server.use(errorNotFoundController);
+// Middleware de error.
+server.use(errorController);
 
 // Inicializamos el servidor en el puerto asignado en config.js
-app.listen(PORT, () => {
+server.listen(PORT, () => {
     console.log(`El servidor está inicializado en http://localhost:${PORT}`);
 });
