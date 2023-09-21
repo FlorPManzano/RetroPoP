@@ -3,6 +3,7 @@ import express from 'express';
 // Controllers
 import createUserController from '../controllers/users/createUserController.js';
 import activateUserController from '../controllers/users/activateUserController.js';
+import loginUserController from '../controllers/users/loginUserController.js';
 
 // Middlewares
 // import authUser from '../middlewares/auth_user.js';
@@ -21,7 +22,7 @@ router.get('/validate/:regCode', activateUserController);
 // router.post('/validate/:regCode', userController.validateUser);
 
 // POST /users/login
-// router.post('/login', userController.loginUser);
+router.post('/login', loginUserController);
 
 // GET /users/1
 // router.get('/:id', (req, res) => {

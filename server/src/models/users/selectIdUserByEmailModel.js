@@ -5,7 +5,7 @@ import getDb from '../../db/getDb.js';
 import { invalidCredentialsError } from '../../errors/errorService.js';
 
 // Función que se conectará a la base de datos y devolverá los datos de un usuario.
-const selectUserByEmailModel = async (email) => {
+const selectIdUserByEmailModel = async (email) => {
     let connection;
 
     try {
@@ -13,7 +13,7 @@ const selectUserByEmailModel = async (email) => {
 
         // Localizamos al usuario con el email dado.
         const [users] = await connection.query(
-            `SELECT *  FROM users WHERE email = ?`,
+            `SELECT id, password FROM users WHERE email = ?`,
             [email]
         );
 
@@ -30,4 +30,4 @@ const selectUserByEmailModel = async (email) => {
     }
 };
 
-export default selectUserByEmailModel;
+export default selectIdUserByEmailModel;
