@@ -1,8 +1,11 @@
 // Importamos las dependencias.
 import bcrypt from 'bcrypt';
+import crypto from 'node:crypto';
 
 // Importamos la función que nos permite obtener una conexión libre con la base de datos.
 import getDb from '../../db/getDb.js';
+
+import sendMail from '../../services/sendMail.js';
 
 import {
     emailAlreadyRegisteredError,
@@ -10,7 +13,7 @@ import {
 } from '../../errors/errorService.js';
 
 // Función que se conectará a la base de datos y creará un usuario.
-const insertUserModel = async (username, email, password, registrationCode) => {
+const insertUserModel = async (username, email, password) => {
     let connection;
 
     try {
@@ -41,12 +44,16 @@ const insertUserModel = async (username, email, password, registrationCode) => {
         // Encriptamos la contraseña.
         const hashedPass = await bcrypt.hash(password, 10);
 
+        // Creamos un código de registro.
+        const registrationCode = crypto.randomUUID();
+
         // Creamos el usuario.
 
         await connection.query(
             'INSERT INTO users (email, username, password, registrationCode, createdAt) VALUES(?, ?, ?, ?, ?)',
             [email, username, hashedPass, registrationCode, new Date()]
         );
+        sendMail(username, email, registrationCode);
     } finally {
         if (connection) connection.release();
     }

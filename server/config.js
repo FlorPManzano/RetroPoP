@@ -13,6 +13,8 @@ const {
     SECRET,
     UPLOADS_DIR,
     NODE_ENV,
+    MJ_APIKEY_PUBLIC,
+    MJ_APIKEY_PRIVATE,
 } = process.env;
 
 const root = dirname(fileURLToPath(import.meta.url));
@@ -31,4 +33,6 @@ export {
     SENDGRID_KEY,
     SECRET,
     UPLOADS_DIR,
+    MJ_APIKEY_PUBLIC,
+    MJ_APIKEY_PRIVATE,
 };

@@ -1,4 +1,3 @@
-import e from 'express';
 import insertUserModel from '../../models/users/insertUserModel.js';
 
 const createUserController = async (req, res, next) => {
