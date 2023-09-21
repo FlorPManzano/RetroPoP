@@ -11,7 +11,7 @@ BACKEND
 [x] Middleware: parseo del body de la petición
 [] Middleware: recogida de ficheros
 [x] Endpoint: registro de usuarios
-[] Endpoint: login de usuarios
+[x] Endpoint: login de usuarios
 [] Middleware: verificación de autenticación de usuarios
 [] Endpoint: listado de artículos. Cada artículo deberá incluir
 información del vendedor como el nombre y la valoración media
@@ -31,8 +31,8 @@ hora y lugar de entrega escogidos por el vendedor
 [] Endpoint: valoración de compra. Una vez confirmada la compra y
 pasada la hora de entrega, el comprador puede valorar al vendedor
 [] Colección de Postman con todos los endpoints
-[] Creación de una breve documentación en un fichero
+[x] Creación de una breve documentación en un fichero
 README.md. Esta documentación debe incluir al menos una breve
 descripción de la app, los pasos para arrancar el proyecto y el listado
 de endpoints
-[] NOTAS: Validar el body de la petición con Joi en todos los endpoints
+[x] NOTAS: Validar el body de la petición con Joi en todos los endpoints

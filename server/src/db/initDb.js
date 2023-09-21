@@ -33,22 +33,22 @@ const main = async () => {
         console.log(FgLightBlue, 'Creando tablas si no existen...');
 
         console.log(FgLightMagenta, '---Creando tabla users---');
-        await connection.query(` 
+        await connection.query(`
             CREATE TABLE IF NOT EXISTS users (
               id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
               email VARCHAR(100) NOT NULL UNIQUE,
               username VARCHAR(30) NOT NULL UNIQUE,
               password VARCHAR(100) NOT NULL,
               avatar VARCHAR(100) NULL,
-              bio VARCHAR(200) NULL,                          
+              bio VARCHAR(200) NULL,
               createdAt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-              modifiedAt DATETIME NULL,
+              modifiedAt DATETIME NULL ON UPDATE CURRENT_TIMESTAMP,
               registrationCode VARCHAR(100) NULL,
               isActive TINYINT UNSIGNED NOT NULL DEFAULT 0
             )
         `);
 
-        // ON DELETE RESTRICT: Si se borra un usuario, se borran sus productos.
+        // ON DELETE CASCADE: Si se borra un usuario, se borran sus productos.
         // ON UPDATE CASCADE: Si se actualiza un usuario, se actualizan sus productos.
         console.log(FgLightMagenta, '---Creando tabla products---');
         await connection.query(`
@@ -56,17 +56,17 @@ const main = async () => {
               id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
               productName VARCHAR(150) NOT NULL,
               description VARCHAR(200) NULL,
-              category ENUM('Consolas', 'Videojuegos', 'Audio', 'Ordenadores', 'Video') NOT NULL,
+              category ENUM('Consolas', 'Videojuegos', 'Audio', 'Ordenadores', 'Video', 'Cámaras de fotos', 'Maquinas de escribir') NOT NULL,
               state ENUM('Sin abrir', 'Nuevo', 'Como nuevo', 'En buen estado', 'En condiciones aceptables') NOT NULL,
-              place VARCHAR(30) NULL, 
+              place VARCHAR(30) NULL,
               price DECIMAL(6,2) NULL,
               image VARCHAR(100),
               createdAt DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
-              modifiedAt DATETIME NULL,             
-              isSelled TINYINT UNSIGNED DEFAULT 1 NOT NULL,
+              modifiedAt DATETIME NULL ON UPDATE CURRENT_TIMESTAMP,
+              isSelled TINYINT UNSIGNED DEFAULT 0 NOT NULL,
               userId INT UNSIGNED NOT NULL,
               FOREIGN KEY (userId) REFERENCES users (id)
-                ON DELETE RESTRICT
+                ON DELETE CASCADE
                 ON UPDATE CASCADE
             )
         `);
@@ -75,20 +75,16 @@ const main = async () => {
             CREATE TABLE IF NOT EXISTS bookings (
               id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
               deliveryPlace VARCHAR(30) NULL,
-              deliveryTime DATETIME NULL,	
+              deliveryTime DATETIME NULL,
               createdAt DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
               userBuyerId INT UNSIGNED NOT NULL,
               FOREIGN KEY (userBuyerId) REFERENCES users (id)
-                 ON DELETE RESTRICT
-                 ON UPDATE CASCADE,
-              userSellerId INT UNSIGNED NOT NULL,
-              FOREIGN KEY (userSellerId) REFERENCES users (id)
-                 ON DELETE RESTRICT
-                 ON UPDATE CASCADE,
+                ON DELETE CASCADE
+                ON UPDATE CASCADE,
               productId INT UNSIGNED NOT NULL,
               FOREIGN KEY (productId) REFERENCES products (id)
-                 ON DELETE RESTRICT
-                 ON UPDATE CASCADE            
+                ON DELETE CASCADE
+                ON UPDATE CASCADE
             )
         `);
 
@@ -97,21 +93,17 @@ const main = async () => {
             CREATE TABLE IF NOT EXISTS reviews (
               id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
 		          titleRw VARCHAR(100) NOT NULL,
-		          textRw VARCHAR(200) NULL,  
+		          textRw VARCHAR(200) NULL,
               starsRw ENUM('1', '2', '3', '4', '5') NOT NULL,
               createdAt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-              modifiedAt DATETIME NULL,
-              productId INT UNSIGNED NOT NULL,
-              FOREIGN KEY (productId) REFERENCES products (id)
-                ON DELETE RESTRICT
-                ON UPDATE CASCADE,
+              modifiedAt DATETIME NULL ON UPDATE CURRENT_TIMESTAMP,
               userSellerId INT UNSIGNED NOT NULL,
               FOREIGN KEY (userSellerId) REFERENCES users (id)
-                ON DELETE RESTRICT
+                ON DELETE CASCADE
                 ON UPDATE CASCADE,
               userBuyerId INT UNSIGNED NOT NULL,
               FOREIGN KEY (userBuyerId) REFERENCES users (id)
-                ON DELETE RESTRICT
+                ON DELETE CASCADE
                 ON UPDATE CASCADE
             )
         `);
