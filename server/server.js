@@ -8,7 +8,7 @@ import fileUpload from 'express-fileupload';
 import 'dotenv/config';
 
 // Importamos la constante con el nombre de carpeta de la subida de archivos
-import { UPLOADS_DIR } from './src/utils/constants';
+import { UPLOADS_DIR } from './src/utils/constants.js';
 
 // Importamos Routes
 import userRoutes from './src/routes/usersRoutes.js';
