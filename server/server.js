@@ -12,9 +12,13 @@ import morgan from 'morgan';
 
 // Importamos Routes
 import userRoutes from './src/routes/usersRoutes.js';
-// import bookingsRoutes from './src/routes/bookings_routes.js';
-// import productsRoutes from './src/routes/products_routes.js';
-// import reviewsRoutes from './src/routes/reviews_routes.js';
+// import bookingsRoutes from './src/routes/bookingsRoutes.js';
+// import productsRoutes from './src/routes/productsRoutes.js';
+// import reviewsRoutes from './src/routes/reviewsRoutes.js';
+
+//errors
+import errorNotFoundController from './src/errors/errorNotFoundController.js';
+import errorController from './src/errors/errorController.js';
 
 // Importamos el puerto y el host de config.js
 import { PORT } from './config.js';
