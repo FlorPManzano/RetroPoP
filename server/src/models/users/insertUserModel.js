@@ -1,5 +1,5 @@
 // Importamos los helpers.
-import { hashPassword } from '../../helpers/helpers.js';
+import { hashPassword } from '../../helpers/encripters.js';
 
 // Importamos la función que nos permite obtener una conexión libre con la base de datos.
 import getDb from '../../db/getDb.js';

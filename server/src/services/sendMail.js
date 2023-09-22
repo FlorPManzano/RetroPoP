@@ -1,5 +1,5 @@
 import Mailjet from 'node-mailjet';
-import { MJ_APIKEY_PRIVATE, MJ_APIKEY_PUBLIC } from '../../config.js';
+import { MJ_USER, MJ_APIKEY_PRIVATE, MJ_APIKEY_PUBLIC } from '../../config.js';
 
 export default function sendMail(username, email, registrationCode) {
     const mailjet = new Mailjet({
@@ -10,7 +10,7 @@ export default function sendMail(username, email, registrationCode) {
         Messages: [
             {
                 From: {
-                    Email: 'atencion.retropop@gmail.com',
+                    Email: MJ_USER,
                     Name: 'RetroPoP	',
                 },
                 To: [

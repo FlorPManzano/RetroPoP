@@ -11,6 +11,7 @@ const {
     SECRET,
     UPLOADS_DIR,
     NODE_ENV,
+    MJ_USER,
     MJ_APIKEY_PUBLIC,
     MJ_APIKEY_PRIVATE,
 } = process.env;
@@ -29,6 +30,7 @@ export {
     MYSQL_DATABASE,
     SECRET,
     UPLOADS_DIR,
+    MJ_USER,
     MJ_APIKEY_PUBLIC,
     MJ_APIKEY_PRIVATE,
 };

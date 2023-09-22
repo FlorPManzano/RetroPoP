@@ -63,7 +63,6 @@ Este ejercicio consiste en crear una API que simule el funcionamiento de una apl
 | ------------- | -------- | -------------------------------------- |
 | id            | INT      | Identificador único de la reserva.     |
 | userBuyerId   | INT      | Identificador del usuario comprador.   |
-| userSellerId  | INT      | Identificador del usuario vendedor.    |
 | productId     | INT      | Identificador del producto.            |
 | deliveryPlace | VARCHAR  | Lugar para la entrega.                 |
 | deliveryTime  | DATETIME | Fecha y hora para la entrega.          |
@@ -76,7 +75,6 @@ Este ejercicio consiste en crear una API que simule el funcionamiento de una apl
 | id           | INT      | Identificador único de la valoración.                        |
 | userSellerId | INT      | Identificador del usuario que recibió la valoración.         |
 | userBuyerId  | INT      | Identificador del usuario que hizo la valoración.            |
-| productId    | INT      | Identificador del producto por el que se hizo la valoración. |
 | titleRw      | VARCHAR  | Título de la valoración.                                     |
 | textRw       | VARCHAR  | Texto explicativo de la valoración.                          |
 | starsRw      | ENUM     | Valoración en estrellas(1-5).                                |

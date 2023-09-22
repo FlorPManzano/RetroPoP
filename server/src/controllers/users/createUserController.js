@@ -1,14 +1,18 @@
-import { generateCode, hashPassword } from '../../helpers/helpers.js';
+// Importamos los helpers.
+import { generateCode, hashPassword } from '../../helpers/encripters.js';
+// Importamos los modelos.
 import insertUserModel from '../../models/users/insertUserModel.js';
+import validateSchema from '../../utils/validateSchema.js';
+import newUserSchema from '../../schemas/users/newUserSchema.js';
 import sendMail from '../../services/sendMail.js';
 
 const createUserController = async (req, res, next) => {
     try {
-        // Validamos los datos con Joi.
-        // await validateSchema(newUserSchema, req.body);
-
         // Importamos los datos del body.
         const { username, email, password } = req.body;
+
+        // Validamos los datos con Joi.
+        await validateSchema(newUserSchema, req.body);
 
         // Generamos un código de registro.
         const registrationCode = generateCode();
@@ -25,7 +29,8 @@ const createUserController = async (req, res, next) => {
         });
     } catch (err) {
         // Aquí hemos sustituido next(err) por res.send(err) porque no tenemos un middleware de errores.
-        res.send(err);
+        const msgErr = { message: err.details[0].message };
+        res.send(msgErr);
     }
 };
 

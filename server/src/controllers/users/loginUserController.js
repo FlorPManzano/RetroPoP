@@ -1,12 +1,11 @@
 // Importamos las dependencias
 import jwt from 'jsonwebtoken';
-import bcrypt from 'bcrypt';
 
 // Importamos la variable de entorno SECRET
 import { SECRET } from '../../../config.js';
 
 // Importamos los modelos.
-import selectIdUserByEmailModel from '../../models/users/selectIdUserByEmailModel.js';
+import selectUserModel from '../../models/users/selectUserModel.js';
 
 // Importamos la función que valida los esquemas.
 import validateSchema from '../../utils/validateSchema.js';
@@ -19,7 +18,7 @@ import {
     invalidCredentialsError,
     userNotActivatedError,
 } from '../../errors/errorService.js';
-import { userIsActive } from '../../helpers/helpers.js';
+import { comparePasswords } from '../../helpers/encripters.js';
 
 // Función controladora final que logea a un usuario.
 const loginUserController = async (req, res, next) => {
@@ -31,18 +30,14 @@ const loginUserController = async (req, res, next) => {
         await validateSchema(loginUserSchema, req.body);
 
         // Obtenemos los datos del usuario.
-        const user = await selectIdUserByEmailModel(email);
+        const user = await selectUserModel(email);
 
-        // Comprobamos si el usuario está activo.
-        // console.log(user);
-        // if (!user.active) {
-        //     userNotActivatedError();
-        // }
+        //Comprobamos si el usuario está activo.
 
-        if (userIsActive(email)) userNotActivatedError();
+        if (!user.isActive) userNotActivatedError();
 
         // Comprobamos si la contraseña que ha insertado el usuario es correcta.
-        const validPass = await bcrypt.compare(password, user.password);
+        const validPass = await comparePasswords(password, user.password);
 
         // Si la contraseña no coincide lanzamos un error.
         if (!validPass) {
@@ -56,7 +51,7 @@ const loginUserController = async (req, res, next) => {
         console.log(tokenInfo);
 
         // Generamos el token.
-        const token = jwt.sign(tokenInfo, process.env.SECRET, {
+        const token = jwt.sign(tokenInfo, SECRET, {
             expiresIn: '7d',
         });
 
