@@ -11,6 +11,8 @@ const newProductController = async (req, res, next) => {
     try {
         const { productName, description, category, state, place, price } =
             req.body;
+        console.log(req.userId);
+        console.log(req.body);
 
         // Validar los datos que llegan por el body con el esquema Joi
         await validateSchema(newProductSchema, {
@@ -23,7 +25,7 @@ const newProductController = async (req, res, next) => {
 
         // Si hay una imagen, la guardamos y obtemos su nombre
         if (req.files?.image) {
-            imageName = await savePhoto(req.files.image, 500, 'images');
+            imageName = await savePhoto(req.files.image, 'images');
         }
 
         // Creamos el producto en la BBDD

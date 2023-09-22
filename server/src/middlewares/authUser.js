@@ -1,14 +1,16 @@
-// importamos las dependencias
+// Importamos las dependencias
 import jwt from 'jsonwebtoken';
 
-// importamos las funciones de error
+// Importamos las configuraciones
+import { SECRET } from '../../config.js';
+
+// Importamos las funciones de error
 import {
     notAuthenticatedError,
     invalidTokenError,
 } from '../errors/errorService.js';
 
-// Función controladora intermedia que comprueba si el usuario está logueado y crea
-// la propiedad user en el objeto request.
+// Función controladora intermedia que comprueba si el usuario está logueado y crea la propiedad user en el objeto request.
 const authUser = async (req, res, next) => {
     try {
         // Obtenemos el token de la cabecera de la petición.
@@ -19,7 +21,7 @@ const authUser = async (req, res, next) => {
         }
         try {
             // Variable que almacenará la información del token una vez desencriptado.
-            const userInfoID = jwt.verify(authorization, process.env.SECRET).id;
+            const userInfoID = jwt.verify(authorization, SECRET).id;
 
             // Agregamos una nueva propiedad inventada por nosotros al objeto "request".
             req.user = userInfoID;
