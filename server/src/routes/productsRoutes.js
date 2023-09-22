@@ -12,11 +12,15 @@ import newProductController from '../controllers/products/newProductController.j
 
 // Middlewares
 import authUser from '../middlewares/authUser.js';
+import getListProducsController from '../controllers/products/getListProductsController.js';
 
 // Router
 const router = express.Router();
 
 // Routes
+// GET `/` - Lista todos los productos.
+router.get('/', getListProducsController);
+
 // POST `/` - Permite crear un producto.
 router.post('/', authUser, newProductController);
 

@@ -14,7 +14,7 @@ BACKEND
 [x] Middleware: recogida de ficheros
 [x] Middleware: verificación de autenticación de usuarios
 [x] Endpoint: creación de un artículo
-[] Endpoint: actualización del perfil de un usuario (Avatar y bio)
+[x] Endpoint: actualización del perfil de un usuario (Avatar y bio)
 [] Endpoint: listado de artículos. Cada artículo deberá incluir
 información del vendedor como el nombre y la valoración media
 [] Endpoint: visualización de un artículo. El artículo deberá incluir
