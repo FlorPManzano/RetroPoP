@@ -1,16 +1,13 @@
 import getDb from '../../db/getDb.js';
 
-async function selectUserByIdModel(obj) {
-    const queryStr = Object.entries(obj)
-        .map((arr) => `${arr[0]} = '${arr[1]}'`)
-        .join(', ');
+async function selectUserByIdModel(id) {
     let connection;
 
     try {
         connection = await getDb();
 
         const [user] = await connection.query(
-            `SELECT * FROM users WHERE ${queryStr}`
+            `SELECT * FROM users WHERE ${id}`
         );
 
         return user[0];
