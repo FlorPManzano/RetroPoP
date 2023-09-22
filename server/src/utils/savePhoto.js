@@ -3,7 +3,7 @@ import fs from 'fs/promises';
 import url from 'url';
 import path from 'path';
 import sharp from 'sharp';
-import uuid from 'uuid';
+import { v4 } from 'uuid';
 
 // Importamos la constante que contiene el nombre del directorio de subida de archivos.
 import { UPLOADS_DIR } from '../../config.js';
@@ -13,7 +13,8 @@ import { saveFileError } from '../errors/errorService.js';
 
 // Función que se encargará de guardar una imagen en el disco en la cuál recibe tres parametros.
 // 1. La imagen. 2. El ancho de la imagen. 3. El nombre de la carpeta en la que se guardará la imagen (Solo puede ser "avatars" para el avatar de los perfiles o "images" para las imágenes de los productos)
-const savePhoto = async (img, width, folder) => {
+const savePhoto = async (img, folder) => {
+    const resize = (folder = 'avatars') ? 100 : 600;
     const dirname = path.dirname(url.fileURLToPath(import.meta.url));
 
     try {
@@ -30,9 +31,9 @@ const savePhoto = async (img, width, folder) => {
         // Convertimos la imagen a un objeto tipo Sharp para poder redimensionarla.
         const sharpImg = sharp(img.data);
         // Redimensionamos la imagen. El parámetro "width" representa un ancho en píxeles.
-        sharpImg.resize(width);
+        sharpImg.resize(resize);
         // Generamos un nombre único para la imagen.
-        const imgName = `${uuid.v4()}.jpg`;
+        const imgName = `${v4()}.jpg`;
         // Generamos la ruta absoluta a la imagen.
         const imgPath = path.join(uploadsPath, imgName);
         // Guardamos la imagen en el disco.

@@ -1,7 +1,9 @@
 import express from 'express';
+import savePhoto from '../../utils/savePhoto.js';
 const app = express();
 app.use(express.json());
-const editAvatarUserController = async (req, res) => {
+
+const editUserAvatarController = async (req, res) => {
     // console.log('Esto llega desde editAvatar', req.user);
 
     try {
@@ -12,7 +14,7 @@ const editAvatarUserController = async (req, res) => {
             });
         } else {
             const { avatar } = req.files;
-            console.log('avatar?', avatar);
+            savePhoto(avatar, 'avatars');
 
             res.send({
                 status: 'ok',
@@ -24,4 +26,4 @@ const editAvatarUserController = async (req, res) => {
     }
 };
 
-export default editAvatarUserController;
+export default editUserAvatarController;
