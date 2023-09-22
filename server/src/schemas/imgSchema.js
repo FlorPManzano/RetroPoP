@@ -2,7 +2,7 @@
 import joi from 'joi';
 
 // Importamos el objeto con los mensajes de error personalizados.
-import joiErrorMessages from './joiErrorMessages';
+import joiErrorMessages from './joiErrorMessages.js';
 
 // Creamos un esquema para validar imágenes tanto del avatar del usuario como de los productos.
 const imgSchema = joi
