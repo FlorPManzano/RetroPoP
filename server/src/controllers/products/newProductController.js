@@ -11,8 +11,9 @@ const newProductController = async (req, res, next) => {
     try {
         const { productName, description, category, state, place, price } =
             req.body;
-        console.log(req.userId);
-        console.log(req.body);
+        // console.log(req.userId);
+        // console.log(req.body);
+        const userId = req.user;
 
         // Validar los datos que llegan por el body con el esquema Joi
         await validateSchema(newProductSchema, {
@@ -37,7 +38,7 @@ const newProductController = async (req, res, next) => {
             place,
             price,
             imageName,
-            req.userId
+            userId
         );
 
         res.send({
@@ -58,8 +59,8 @@ const newProductController = async (req, res, next) => {
         });
     } catch (err) {
         // next(err);
-        const msgErr = { message: err.details[0].message };
-        res.send(msgErr);
+        // const msgErr = { message: err.details[0].message };
+        res.send(err);
     }
 };
 
