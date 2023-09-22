@@ -5,6 +5,7 @@ import newProductSchema from '../../schemas/products/newProductSchema.js';
 // Importamos la función que valida esquemas y la función para guardar imagenes
 import validateSchema from '../../utils/validateSchema.js';
 import savePhoto from '../../utils/savePhoto.js';
+import { generatePhotoName } from '../../helpers/encripters.js';
 
 // Función para crear un nuevo artículo
 const newProductController = async (req, res, next) => {
@@ -26,7 +27,8 @@ const newProductController = async (req, res, next) => {
 
         // Si hay una imagen, la guardamos y obtemos su nombre
         if (req.files?.image) {
-            imageName = await savePhoto(req.files.image, 'images');
+            const namePhoto = generatePhotoName();
+            imageName = await savePhoto(req.files.image, namePhoto, 'images');
         }
 
         // Creamos el producto en la BBDD
@@ -58,8 +60,6 @@ const newProductController = async (req, res, next) => {
             },
         });
     } catch (err) {
-        // next(err);
-        // const msgErr = { message: err.details[0].message };
         res.send(err);
     }
 };

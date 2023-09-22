@@ -12,9 +12,9 @@ BACKEND
 [x] Endpoint: registro de usuarios
 [x] Endpoint: login de usuarios
 [x] Middleware: recogida de ficheros
-[] Endpoint: creación de un artículo
-[] Endpoint: actualización del perfil de un usuario
-[] Middleware: verificación de autenticación de usuarios
+[x] Middleware: verificación de autenticación de usuarios
+[x] Endpoint: creación de un artículo
+[] Endpoint: actualización del perfil de un usuario (Avatar y bio)
 [] Endpoint: listado de artículos. Cada artículo deberá incluir
 información del vendedor como el nombre y la valoración media
 [] Endpoint: visualización de un artículo. El artículo deberá incluir

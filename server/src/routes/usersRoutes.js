@@ -10,7 +10,7 @@ import express from 'express';
 import createUserController from '../controllers/users/createUserController.js';
 import activateUserController from '../controllers/users/activateUserController.js';
 import loginUserController from '../controllers/users/loginUserController.js';
-import editUserAvatarController from '../controllers/users/editAvatarUserController.js';
+import editUserController from '../controllers/users/editUserController.js';
 
 // Middlewares
 import authUser from '../middlewares/authUser.js';
@@ -32,7 +32,7 @@ router.get('/validate/:regCode', activateUserController);
 router.post('/login', loginUserController);
 
 // PUT /users/edit
-router.put('/edit', authUser, editUserAvatarController);
+router.put('/edit', authUser, editUserController);
 
 // PUT /users/recover-password
 // router.put('/recover-password', userController.sendRecoverPass);

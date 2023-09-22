@@ -13,8 +13,8 @@ import { saveFileError } from '../errors/errorService.js';
 
 // Función que se encargará de guardar una imagen en el disco en la cuál recibe tres parametros.
 // 1. La imagen. 2. El ancho de la imagen. 3. El nombre de la carpeta en la que se guardará la imagen (Solo puede ser "avatars" para el avatar de los perfiles o "images" para las imágenes de los productos)
-const savePhoto = async (img, folder) => {
-    const resize = (folder = 'avatars') ? 100 : 600;
+const savePhoto = async (img, name, folder) => {
+    const resize = folder === 'avatars' ? 100 : 800;
     const dirname = path.dirname(url.fileURLToPath(import.meta.url));
 
     try {
@@ -32,14 +32,13 @@ const savePhoto = async (img, folder) => {
         const sharpImg = sharp(img.data);
         // Redimensionamos la imagen. El parámetro "width" representa un ancho en píxeles.
         sharpImg.resize(resize);
-        // Generamos un nombre único para la imagen.
-        const imgName = `${v4()}.jpg`;
+
         // Generamos la ruta absoluta a la imagen.
-        const imgPath = path.join(uploadsPath, imgName);
+        const imgPath = path.join(uploadsPath, name);
         // Guardamos la imagen en el disco.
         await sharpImg.toFile(imgPath);
         // Retornamos el nombre que le hemos dado a la imagen.
-        return imgName;
+        return name;
     } catch (err) {
         console.error(err);
         saveFileError();
