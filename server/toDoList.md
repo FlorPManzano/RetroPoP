@@ -9,9 +9,11 @@ BACKEND
 [x] Middleware: 404 not found
 [x] Middleware: gestión de errores
 [x] Middleware: parseo del body de la petición
-[] Middleware: recogida de ficheros
 [x] Endpoint: registro de usuarios
 [x] Endpoint: login de usuarios
+[x] Middleware: recogida de ficheros
+[] Endpoint: creación de un artículo
+[] Endpoint: actualización del perfil de un usuario
 [] Middleware: verificación de autenticación de usuarios
 [] Endpoint: listado de artículos. Cada artículo deberá incluir
 información del vendedor como el nombre y la valoración media
@@ -20,8 +22,6 @@ información del vendedor como el nombre y la valoración media
 [] Añadir la posibilidad de mandar filtros por query params al
 endpoint de listado de artículos (nombre, categoría, localidad y
 precio)
-[] Endpoint: creación de un artículo
-[] Endpoint: actualización del perfil de un usuario
 [] Endpoint: propuesta de compra de un artículo. Le debe llegar un
 email al vendedor. Un usuario no debería de poder comprar un
 artículo propio
