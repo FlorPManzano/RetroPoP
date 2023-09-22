@@ -1,13 +1,20 @@
+// -   POST `/users` - Registro de usuario.
+// -   POST `/users/login` - Login de usuario (devuelve token).
+// -   POST `/users/validate/:regCode` - Permite validar un usuario.
+// -   GET `/users/:userId` - Devuelve información del usuario del token.
+// -   PUT `/users/edit` - Editar perfil.
+
 import express from 'express';
 
 // Controllers
 import createUserController from '../controllers/users/createUserController.js';
 import activateUserController from '../controllers/users/activateUserController.js';
 import loginUserController from '../controllers/users/loginUserController.js';
+import editAvatarUserController from '../controllers/users/editAvatarUserController.js';
 
 // Middlewares
-// import authUser from '../middlewares/auth_user.js';
-// import userExists from '../middlewares/user_exists.js';
+import authUser from '../middlewares/authUser.js';
+import userExists from '../middlewares/userExists.js';
 
 // Router
 const router = express.Router();
@@ -24,15 +31,8 @@ router.get('/validate/:regCode', activateUserController);
 // POST /users/login
 router.post('/login', loginUserController);
 
-// GET /users/1
-// router.get('/:id', (req, res) => {
-//     const data = req.params.id;
-//     res.send(`Esta es la info del usuario ${data}`);
-// });
-// router.get('/:userId', authUser, userExists, userController.getUser);
-
 // PUT /users/edit
-// router.put('/edit', authUser, userExists, userController.editUserAvatar);
+router.put('/edit', authUser, editAvatarUserController);
 
 // PUT /users/recover-password
 // router.put('/recover-password', userController.sendRecoverPass);

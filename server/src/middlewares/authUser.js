@@ -5,7 +5,7 @@ import jwt from 'jsonwebtoken';
 import {
     notAuthenticatedError,
     invalidTokenError,
-} from '../errors/errorService';
+} from '../errors/errorService.js';
 
 // Función controladora intermedia que comprueba si el usuario está logueado y crea
 // la propiedad user en el objeto request.
@@ -19,10 +19,10 @@ const authUser = async (req, res, next) => {
         }
         try {
             // Variable que almacenará la información del token una vez desencriptado.
-            const userInfo = jwt.verify(authorization, process.env.SECRET);
+            const userInfoID = jwt.verify(authorization, process.env.SECRET).id;
 
             // Agregamos una nueva propiedad inventada por nosotros al objeto "request".
-            req.user = userInfo;
+            req.user = userInfoID;
 
             // Pasamos el control a la siguiente función controladora.
             next();
