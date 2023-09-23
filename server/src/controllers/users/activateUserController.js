@@ -14,7 +14,7 @@ const activateUserController = async (req, res, next) => {
         });
     } catch (err) {
         // Aquí hemos sustituido next(err) por res.send(err) porque no tenemos un middleware de errores.
-        res.send(err);
+        next(err);
     }
 };
 

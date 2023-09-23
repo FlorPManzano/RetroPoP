@@ -1,6 +1,6 @@
 import getListProductsModel from '../../models/products/getListProductsModel.js';
 
-const getListProducsController = async (req, res) => {
+const getListProductsController = async (req, res, next) => {
     try {
         const products = await getListProductsModel();
 
@@ -9,11 +9,8 @@ const getListProducsController = async (req, res) => {
             data: products,
         });
     } catch (err) {
-        res.send({
-            status: 'error',
-            message: err.message,
-        });
+        next(err);
     }
 };
 
-export default getListProducsController;
+export default getListProductsController;

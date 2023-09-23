@@ -1,17 +1,20 @@
 import getDb from '../../db/getDb.js';
 
-const getListProductsModel = async () => {
+const getProductModel = async (id) => {
     let connection;
 
     try {
         connection = await getDb();
 
+        // Localizamos al usuario con el email dado.
         const products = await connection.query(
-            `SELECT P.id, P.productName, P.description, P.category, P.state, P.place, P.price, P.image, P.createdAt, U.id AS userId, U.username, U.avatar,
+            `SELECT P.productName, P.description, P.category, P.state, P.place, P.price, P.image, P.createdAt, U.username, U.avatar,
             (SELECT COUNT(userSellerId) FROM reviews WHERE userSellerId = U.id) AS totalReviews,
             (SELECT AVG(starsRw) FROM reviews WHERE userSellerId = U.id) AS mediaStars
             FROM products P
-            JOIN users U ON P.userId = U.id`
+            JOIN users U ON P.userId = U.id
+            WHERE P.id = ?`,
+            [id]
         );
 
         return products[0];
@@ -20,4 +23,4 @@ const getListProductsModel = async () => {
     }
 };
 
-export default getListProductsModel;
+export default getProductModel;

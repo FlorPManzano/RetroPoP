@@ -11,20 +11,10 @@ const createProductModel = async (
     image,
     userId
 ) => {
-    console.log('o aquí');
     let connection;
     try {
         connection = await getDb();
-        console.log(
-            productName,
-            description,
-            category,
-            state,
-            place,
-            price,
-            image,
-            userId
-        );
+
         const [product] = await connection.query(
             `INSERT INTO products (productName, description, category, state, place, price, image, userId) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
             [

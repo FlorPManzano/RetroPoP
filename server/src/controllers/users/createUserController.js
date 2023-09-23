@@ -29,8 +29,7 @@ const createUserController = async (req, res, next) => {
         });
     } catch (err) {
         // Aquí hemos sustituido next(err) por res.send(err) porque no tenemos un middleware de errores.
-        const msgErr = { message: err.details[0].message };
-        res.send(msgErr);
+        next(err);
     }
 };
 
