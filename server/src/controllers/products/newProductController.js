@@ -60,7 +60,7 @@ const newProductController = async (req, res, next) => {
             },
         });
     } catch (err) {
-        res.send(err);
+        next(err);
     }
 };
 

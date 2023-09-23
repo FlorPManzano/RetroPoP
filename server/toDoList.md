@@ -15,9 +15,9 @@ BACKEND
 [x] Middleware: verificación de autenticación de usuarios
 [x] Endpoint: creación de un artículo
 [x] Endpoint: actualización del perfil de un usuario (Avatar y bio)
-[] Endpoint: listado de artículos. Cada artículo deberá incluir
+[x] Endpoint: listado de artículos. Cada artículo deberá incluir
 información del vendedor como el nombre y la valoración media
-[] Endpoint: visualización de un artículo. El artículo deberá incluir
+[x] Endpoint: visualización de un artículo. El artículo deberá incluir
 información del vendedor como el nombre y la valoración media
 [] Añadir la posibilidad de mandar filtros por query params al
 endpoint de listado de artículos (nombre, categoría, localidad y

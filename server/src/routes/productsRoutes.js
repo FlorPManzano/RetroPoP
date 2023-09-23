@@ -11,6 +11,7 @@ import express from 'express';
 import newProductController from '../controllers/products/newProductController.js';
 import getListProductsController from '../controllers/products/getListProductsController.js';
 import getProductController from '../controllers/products/getProductController.js';
+import getListProductsFilterController from '../controllers/products/getListProductsFilterController.js';
 
 // Middlewares
 import authUser from '../middlewares/authUser.js';
@@ -19,6 +20,10 @@ import authUser from '../middlewares/authUser.js';
 const router = express.Router();
 
 // Routes
+
+// -   GET `/?param` - Devuelve la infomación de los productos filtrados.
+router.get('/?', getListProductsFilterController);
+
 // -   GET `/:productId` - Devuelve la infomación del producto.
 router.get('/:productId', getProductController);
 
