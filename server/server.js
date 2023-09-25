@@ -13,7 +13,7 @@ import { UPLOADS_DIR } from './config.js';
 // Importamos Routes
 import userRoutes from './src/routes/usersRoutes.js';
 import productsRoutes from './src/routes/productsRoutes.js';
-// import bookingsRoutes from './src/routes/bookingsRoutes.js';
+import bookingsRoutes from './src/routes/bookingsRoutes.js';
 // import reviewsRoutes from './src/routes/reviewsRoutes.js';
 
 //Importamos los controladores de errores
@@ -42,7 +42,7 @@ server.use(express.static(UPLOADS_DIR));
 // Routes
 server.use('/users', userRoutes);
 server.use('/products', productsRoutes);
-// server.use('/bookings', bookingsRoutes);
+server.use('/bookings', bookingsRoutes);
 // server.use('/reviews', reviewsRoutes);
 
 // Middelware de ruta no encontrada

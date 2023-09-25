@@ -77,6 +77,14 @@ export function userNotActivatedError() {
     };
 }
 
+export function userIsASameBuyerError() {
+    throw {
+        httpStatus: 403,
+        code: 'USER_IS_A_SAME_BUYER',
+        message: 'No puedes comprar tu propio producto',
+    };
+}
+
 export default {
     deleteFileError,
     emailAlreadyRegisteredError,
@@ -89,4 +97,5 @@ export default {
     unauthorizedUserError,
     userAlreadyRegisteredError,
     userNotActivatedError,
+    userIsASameBuyerError,
 };

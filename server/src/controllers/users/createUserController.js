@@ -4,7 +4,7 @@ import { generateCode, hashPassword } from '../../helpers/encripters.js';
 import insertUserModel from '../../models/users/insertUserModel.js';
 import validateSchema from '../../utils/validateSchema.js';
 import newUserSchema from '../../schemas/users/newUserSchema.js';
-import sendMail from '../../services/sendMail.js';
+import sendActivateMail from '../../services/sendActivateMail.js';
 
 const createUserController = async (req, res, next) => {
     try {
@@ -21,7 +21,7 @@ const createUserController = async (req, res, next) => {
         await insertUserModel(username, email, password, registrationCode);
 
         // Enviamos el email de activación.
-        sendMail(username, email, registrationCode);
+        sendActivateMail(username, email, registrationCode);
 
         res.send({
             status: 'ok',
