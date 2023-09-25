@@ -10,9 +10,18 @@ import checkSameUser from '../middlewares/checkSameUser.js';
 // Controllers
 import newBookingController from '../controllers/bookings/newBookingController.js';
 import checkRepeatBooking from '../middlewares/checkRepeatBooking.js';
+import confirmBookingController from '../controllers/bookings/confirmBookingController.js';
+import checkBookingExist from '../middlewares/checkBookingExist.js';
 
 // Router
 const router = express.Router();
+
+router.post(
+    '/confirm/:uuid',
+    authUser,
+    checkBookingExist,
+    confirmBookingController
+);
 
 router.post(
     '/:productId',

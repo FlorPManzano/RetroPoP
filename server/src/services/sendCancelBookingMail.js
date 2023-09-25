@@ -1,7 +1,7 @@
 import Mailjet from 'node-mailjet';
 import { MJ_USER, MJ_APIKEY_PRIVATE, MJ_APIKEY_PUBLIC } from '../../config.js';
 
-export default function sendMail(dataSeller, dataBuyer, resno) {
+export default function sendConfirmBookingMail(dataBooking) {
     const mailjet = new Mailjet({
         apiKey: MJ_APIKEY_PUBLIC,
         apiSecret: MJ_APIKEY_PRIVATE,
@@ -15,18 +15,16 @@ export default function sendMail(dataSeller, dataBuyer, resno) {
                 },
                 To: [
                     {
-                        Email: dataSeller.email,
-                        Name: dataSeller.username,
+                        Email: dataBooking[0].buyerEmail,
+                        Name: dataBooking[0].buyerName,
                     },
                 ],
-                Subject: 'Tienes una nueva reserva en RetroPoP!!!',
+                Subject: 'El vendedor ha rechazado tu reserva :(',
                 TextPart:
                     'Dear passenger 1, welcome to Mailjet! May the delivery force be with you!',
-                HTMLPart: `<h3>Tienes una RetrOferta!!!</a>!</h3><br />Hola ${dataSeller.username}, el usuario ${dataBuyer} ha realizado una reserva de tu producto ${dataSeller.productName} por un importe de ${dataSeller.price}€.
+                HTMLPart: `<h3>La reserva ha sido rechazada 💔</a>!</h3><br />Hola ${dataBooking[0].buyerName}, lamentamos comunicarte que el usuario ${dataBooking[0].sellerName} ha rechazado tu reserva del producto ${dataBooking[0].productName} por un importe de ${dataBooking[0].price}€.
 
-                Para confirmar tu reserva entra en tu perfil y acepta o rechaza la reserva.
-
-                También puedes acceder a la oferta a través del siguiente enlace http://localhost:3000/booking/confirm/${resno}`,
+                Desde RetroPop te recomendamos que sigas buscando, seguro que encuentras algo que te guste!`,
             },
         ],
     });
@@ -35,7 +33,7 @@ export default function sendMail(dataSeller, dataBuyer, resno) {
             console.log(result.body);
         })
         .catch((err) => {
-            next(err);
+            throw err.statusCode;
             console.log(err.statusCode);
         });
 }

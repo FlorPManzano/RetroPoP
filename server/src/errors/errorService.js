@@ -94,6 +94,14 @@ export function bookingDuplicatedError() {
     };
 }
 
+export function bookingNotFoundError() {
+    throw {
+        httpStatus: 404,
+        code: 'BOOKING_NOT_FOUND',
+        message: 'No se ha encontrado la reserva',
+    };
+}
+
 export default {
     deleteFileError,
     emailAlreadyRegisteredError,
@@ -108,4 +116,5 @@ export default {
     userNotActivatedError,
     userIsASameBuyerError,
     bookingDuplicatedError,
+    bookingNotFoundError,
 };
