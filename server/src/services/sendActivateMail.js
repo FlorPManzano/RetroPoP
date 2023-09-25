@@ -1,7 +1,7 @@
 import Mailjet from 'node-mailjet';
 import { MJ_USER, MJ_APIKEY_PRIVATE, MJ_APIKEY_PUBLIC } from '../../config.js';
 
-export default function sendMail(username, email, registrationCode) {
+export default function sendActivateMail(username, email, registrationCode) {
     const mailjet = new Mailjet({
         apiKey: MJ_APIKEY_PUBLIC,
         apiSecret: MJ_APIKEY_PRIVATE,

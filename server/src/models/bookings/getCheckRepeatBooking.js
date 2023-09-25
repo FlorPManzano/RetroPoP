@@ -1,14 +1,14 @@
 // Importamos la conexión a la BBDD
 import getDb from '../../db/getDb.js';
 
-const newBookingModel = async (idBuyer, idSeller, idProduct, resno) => {
+const getCheckRepeatBooking = async (idBuyer, idProduct, idSeller) => {
     let connection;
     try {
         connection = await getDb();
 
         const [booking] = await connection.query(
-            `INSERT INTO bookings (userBuyerId,userSellerId, productId, resno) VALUES (?, ?, ?, ?)`,
-            [idBuyer, idSeller, idProduct, resno]
+            `SELECT * FROM bookings WHERE userBuyerId = ? AND productId = ? AND userSellerId = ?`,
+            [idBuyer, idProduct, idSeller]
         );
 
         // Devolvemos el producto
@@ -18,4 +18,4 @@ const newBookingModel = async (idBuyer, idSeller, idProduct, resno) => {
     }
 };
 
-export default newBookingModel;
+export default getCheckRepeatBooking;

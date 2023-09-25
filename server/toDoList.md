@@ -22,7 +22,7 @@ información del vendedor como el nombre y la valoración media
 [x] Añadir la posibilidad de mandar filtros por query params al
 endpoint de listado de artículos (nombre, categoría, localidad y
 precio)
-[] Endpoint: propuesta de compra de un artículo. Le debe llegar un
+[x] Endpoint: propuesta de compra de un artículo. Le debe llegar un
 email al vendedor. Un usuario no debería de poder comprar un
 artículo propio
 [] Endpoint: confirmación de compra. Solo puede confirmar la

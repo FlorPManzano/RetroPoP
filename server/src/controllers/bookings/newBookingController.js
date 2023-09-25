@@ -19,9 +19,14 @@ const newBookingController = async (req, res) => {
 
         const dataBuyer = await selectUserByIdModel(idBuyer);
 
-        const bookingModel = await newBookingModel(idBuyer, idProduct, resno);
+        const bookingModel = await newBookingModel(
+            idBuyer,
+            dataProduct[0].userId,
+            idProduct,
+            resno
+        );
 
-        sendBookingEmail(dataSeller, dataBuyer.username, resno);
+        sendBookingEmail(dataSeller, await dataBuyer.username, resno);
 
         res.send({
             status: 'ok',

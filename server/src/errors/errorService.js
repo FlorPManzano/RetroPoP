@@ -85,6 +85,15 @@ export function userIsASameBuyerError() {
     };
 }
 
+export function bookingDuplicatedError() {
+    throw {
+        httpStatus: 403,
+        code: 'BOOKING_DUPLICATED',
+        message:
+            'Ya has hecho una reserva de este producto, espera a que el vendedor la confirme',
+    };
+}
+
 export default {
     deleteFileError,
     emailAlreadyRegisteredError,
@@ -98,4 +107,5 @@ export default {
     userAlreadyRegisteredError,
     userNotActivatedError,
     userIsASameBuyerError,
+    bookingDuplicatedError,
 };
