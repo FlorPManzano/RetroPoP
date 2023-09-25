@@ -12,8 +12,14 @@ const getListProductsFilterModel = async (params) => {
             (SELECT AVG(starsRw) FROM reviews WHERE userSellerId = U.id) AS mediaStars
             FROM products P
             JOIN users U ON P.userId = U.id
-            WHERE P.productName LIKE '%${params.name}%' AND P.category LIKE '%${params.category}%' AND P.place LIKE '%${params.place}%' AND P.price >= ${params.minPrice} AND P.price <= ${params.maxPrice}
-            `
+            WHERE P.productName LIKE ? AND P.category LIKE ? AND P.place LIKE ? AND P.price >= ? AND P.price <= ?`,
+            [
+                params.name,
+                params.category,
+                params.place,
+                params.minPrice,
+                params.maxPrice,
+            ]
         );
 
         return products[0];
