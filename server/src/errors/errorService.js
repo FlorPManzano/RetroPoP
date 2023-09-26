@@ -118,6 +118,14 @@ export function reviewExistsError() {
     };
 }
 
+export function userNotFoundError() {
+    throw {
+        httpStatus: 404,
+        code: 'USER_NOT_FOUND',
+        message: 'El usuario no existe',
+    };
+}
+
 export default {
     deleteFileError,
     emailAlreadyRegisteredError,
@@ -135,4 +143,5 @@ export default {
     bookingNotFoundError,
     productDoesNotExistError,
     reviewExistsError,
+    userNotFoundError,
 };

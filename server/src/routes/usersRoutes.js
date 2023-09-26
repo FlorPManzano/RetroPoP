@@ -12,6 +12,7 @@ import activateUserController from '../controllers/users/activateUserController.
 import loginUserController from '../controllers/users/loginUserController.js';
 import editUserController from '../controllers/users/editUserController.js';
 import getProfileController from '../controllers/users/getProfileController.js';
+import deleteUserController from '../controllers/users/deleteUserController.js';
 
 // Middlewares
 import authUser from '../middlewares/authUser.js';
@@ -27,6 +28,8 @@ router.post('/', createUserController);
 router.get('/profile/', authUser, getProfileController);
 
 router.get('/validate/:regCode', activateUserController);
+
+router.post('/delete', authUser, userExists, deleteUserController);
 
 // POST /users/validate/e20b73bc-ab27-4edc-823b-807fba206bec
 // router.post('/validate/:regCode', userController.validateUser);
