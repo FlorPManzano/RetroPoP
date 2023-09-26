@@ -98,7 +98,7 @@ const main = async () => {
               starsRw ENUM('1', '2', '3', '4', '5') NOT NULL,
               createdAt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
               modifiedAt DATETIME NULL ON UPDATE CURRENT_TIMESTAMP,
-              bookingId VARCHAR(200) UNSIGNED NOT NULL,
+              bookingId INT UNSIGNED NOT NULL,
               FOREIGN KEY (bookingId) REFERENCES bookings (id)
                 ON DELETE CASCADE
                 ON UPDATE CASCADE,
