@@ -25,12 +25,12 @@ precio)
 [x] Endpoint: propuesta de compra de un artículo. Le debe llegar un
 email al vendedor. Un usuario no debería de poder comprar un
 artículo propio
-[] Endpoint: confirmación de compra. Solo puede confirmar la
+[x] Endpoint: confirmación de compra. Solo puede confirmar la
 compra el vendedor. Le debe llegar un email al comprador con la
 hora y lugar de entrega escogidos por el vendedor
-[] Endpoint: valoración de compra. Una vez confirmada la compra y
+[x] Endpoint: valoración de compra. Una vez confirmada la compra y
 pasada la hora de entrega, el comprador puede valorar al vendedor
-[] Colección de Postman con todos los endpoints
+[x] Colección de Postman con todos los endpoints
 [x] Creación de una breve documentación en un fichero
 README.md. Esta documentación debe incluir al menos una breve
 descripción de la app, los pasos para arrancar el proyecto y el listado
