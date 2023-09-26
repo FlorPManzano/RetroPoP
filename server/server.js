@@ -14,7 +14,7 @@ import { UPLOADS_DIR } from './config.js';
 import userRoutes from './src/routes/usersRoutes.js';
 import productsRoutes from './src/routes/productsRoutes.js';
 import bookingsRoutes from './src/routes/bookingsRoutes.js';
-// import reviewsRoutes from './src/routes/reviewsRoutes.js';
+import reviewsRoutes from './src/routes/reviewsRoutes.js';
 
 //Importamos los controladores de errores
 import errorNotFoundController from './src/errors/errorNotFoundController.js';
@@ -43,7 +43,7 @@ server.use(express.static(UPLOADS_DIR));
 server.use('/users', userRoutes);
 server.use('/products', productsRoutes);
 server.use('/bookings', bookingsRoutes);
-// server.use('/reviews', reviewsRoutes);
+server.use('/reviews', reviewsRoutes);
 
 // Middelware de ruta no encontrada
 server.use(errorNotFoundController);

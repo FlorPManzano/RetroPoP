@@ -110,6 +110,14 @@ export function productDoesNotExistError() {
     };
 }
 
+export function reviewExistsError() {
+    throw {
+        httpStatus: 403,
+        code: 'REVIEW_EXISTS',
+        message: 'Ya has hecho una review de este producto',
+    };
+}
+
 export default {
     deleteFileError,
     emailAlreadyRegisteredError,
@@ -126,4 +134,5 @@ export default {
     bookingDuplicatedError,
     bookingNotFoundError,
     productDoesNotExistError,
+    reviewExistsError,
 };

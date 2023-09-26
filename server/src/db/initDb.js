@@ -55,7 +55,7 @@ const main = async () => {
             CREATE TABLE IF NOT EXISTS products (
               id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
               productName VARCHAR(150) NOT NULL,
-              description VARCHAR(200) NULL,
+              description VARCHAR(200) NOT NULL,
               category ENUM('Consolas', 'Videojuegos', 'Audio', 'Ordenadores', 'Televisores', 'Video', 'Cámaras de fotos', 'Máquinas de escribir', 'Teléfonos') NOT NULL,
               state ENUM('Sin abrir', 'Nuevo', 'Como nuevo', 'En buen estado', 'En condiciones aceptables') NOT NULL,
               place VARCHAR(30) NULL,
@@ -98,7 +98,7 @@ const main = async () => {
               starsRw ENUM('1', '2', '3', '4', '5') NOT NULL,
               createdAt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
               modifiedAt DATETIME NULL ON UPDATE CURRENT_TIMESTAMP,
-              bookingId INT UNSIGNED NOT NULL,
+              bookingId VARCHAR(200) UNSIGNED NOT NULL,
               FOREIGN KEY (bookingId) REFERENCES bookings (id)
                 ON DELETE CASCADE
                 ON UPDATE CASCADE,
