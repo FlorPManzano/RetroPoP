@@ -36,3 +36,12 @@ README.md. Esta documentación debe incluir al menos una breve
 descripción de la app, los pasos para arrancar el proyecto y el listado
 de endpoints
 [x] NOTAS: Validar el body de la petición con Joi en todos los endpoints
+
+---------------------- FUTURIBLES -------------------
+
+[✅] Eliminar usuario
+[] Añadir auth-2-factor-mobile
+[] Añadir change-password/forgot password
+[] Añadir favoritos
+[] Poder ver perfil de otro user con sus productos activos
+[] Cuando cambies de foto de perfil, que borre la anterior
