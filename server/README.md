@@ -70,16 +70,16 @@ Este ejercicio consiste en crear una API que simule el funcionamiento de una apl
 
 ### Reviews
 
-| Campo        | Tipo     | Descripción                                                  |
-| ------------ | -------- | ------------------------------------------------------------ |
-| id           | INT      | Identificador único de la valoración.                        |
-| userSellerId | INT      | Identificador del usuario que recibió la valoración.         |
-| userBuyerId  | INT      | Identificador del usuario que hizo la valoración.            |
-| titleRw      | VARCHAR  | Título de la valoración.                                     |
-| textRw       | VARCHAR  | Texto explicativo de la valoración.                          |
-| starsRw      | ENUM     | Valoración en estrellas(1-5).                                |
-| createdAt    | DATETIME | Fecha y hora de creación de la valoración.                   |
-| modifiedAt   | DATETIME | Fecha y hora de modificación de la valoración.               |
+| Campo        | Tipo     | Descripción                                          |
+| ------------ | -------- | ---------------------------------------------------- |
+| id           | INT      | Identificador único de la valoración.                |
+| userSellerId | INT      | Identificador del usuario que recibió la valoración. |
+| userBuyerId  | INT      | Identificador del usuario que hizo la valoración.    |
+| titleRw      | VARCHAR  | Título de la valoración.                             |
+| textRw       | VARCHAR  | Texto explicativo de la valoración.                  |
+| starsRw      | ENUM     | Valoración en estrellas(1-5).                        |
+| createdAt    | DATETIME | Fecha y hora de creación de la valoración.           |
+| modifiedAt   | DATETIME | Fecha y hora de modificación de la valoración.       |
 
 ## Endpoints
 
@@ -88,7 +88,7 @@ Este ejercicio consiste en crear una API que simule el funcionamiento de una apl
 -   POST `/users` - Registro de usuario.
 -   POST `/users/login` - Login de usuario (devuelve token).
 -   POST `/users/validate/:regCode` - Permite validar un usuario.
--   GET `/users/:userId` - Devuelve información del usuario del token.
+-   GET `/users/profile` - Devuelve información del usuario del token.
 -   PUT `/users/edit` - Editar perfil.
 
 ### Productos:
@@ -96,14 +96,14 @@ Este ejercicio consiste en crear una API que simule el funcionamiento de una apl
 -   POST `/products` - Permite crear un producto.
 -   GET `/` - Lista todos los productos.
 -   GET `/products/:productId` - Devuelve la infomación del producto y la info del vendedor con la media de valoraciones.
--   GET `/products` - Devuelve la infomación de los productos filtrados.
--   PUT `/products/edit/:id` - Editar producto.
--   DELETE `/products/:productId` - Borra un producto solo si eres quien lo creó.
+-   GET `/products/?` - Devuelve la infomación de los productos filtrados.
+-   PUT `/products/edit/:id` - Editar producto. (FUTURIBLE)
+-   DELETE `/products/:productId` - Borra un producto solo si eres quien lo creó. (FUTURIBLE)
 
 ### Reservas:
 
 -   POST `/bookings/:productId` - Permite crear una reserva solo si no eres el propietario de producto.
--   GET `/bookings/` - Permite ver el listado de bookings que recibe el usuario logeado.
+-   GET `/bookings/` - Permite ver el listado de bookings que recibe el usuario logeado. (FUTURIBLE)
 -   PUT `/bookings/confirm/:bookingId` - Confirmación de la reserva del comprador.
 
 ### Valoraciones

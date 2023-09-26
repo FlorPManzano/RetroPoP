@@ -7,7 +7,8 @@ async function selectUserByIdModel(id) {
         connection = await getDb();
 
         const [user] = await connection.query(
-            `SELECT * FROM users WHERE ${id}`
+            `SELECT * FROM users WHERE id = ?`,
+            [id]
         );
 
         return user[0];

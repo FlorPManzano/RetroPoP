@@ -15,6 +15,10 @@ const joiErrorMessages = {
     'string.empty': 'El campo "{#key}" no debe estar vacío',
     'string.max': 'El campo "{#key}" no debe exceder los {#limit} caracteres',
     'string.min': 'El campo "{#key}" debe tener al menos {#limit} caracteres',
+
+    'boolean.base': 'El campo "{#key}" debe ser un booleano',
+    'date.greater': 'La fecha de entrega debe ser posterior a la actual',
+    'entity.parse.failed': 'El campo "{#key}" debe ser un JSON válido',
     'string.pattern.base':
         'La contraseña debe contener al menos una mayúscula, una minúscula, un número y un símbolo de puntuación para "{#key}"',
 };

@@ -15,16 +15,14 @@ const newBookingController = async (req, res) => {
             price: dataProduct[0].price,
             productName: dataProduct[0].productName,
         };
+        console.log('Que llega aquí?????', dataProduct[0]);
         const resno = generateCode();
 
         const dataBuyer = await selectUserByIdModel(idBuyer);
 
-        const bookingModel = await newBookingModel(
-            idBuyer,
-            dataProduct[0].userId,
-            idProduct,
-            resno
-        );
+        console.log('Que llega aquí?????', dataProduct[0].userId);
+
+        const bookingModel = await newBookingModel(idBuyer, idProduct, resno);
 
         sendBookingEmail(dataSeller, await dataBuyer.username, resno);
 

@@ -11,6 +11,7 @@ import createUserController from '../controllers/users/createUserController.js';
 import activateUserController from '../controllers/users/activateUserController.js';
 import loginUserController from '../controllers/users/loginUserController.js';
 import editUserController from '../controllers/users/editUserController.js';
+import getProfileController from '../controllers/users/getProfileController.js';
 
 // Middlewares
 import authUser from '../middlewares/authUser.js';
@@ -22,6 +23,8 @@ const router = express.Router();
 // Routes
 // POST /users/
 router.post('/', createUserController);
+
+router.get('/profile/', authUser, getProfileController);
 
 router.get('/validate/:regCode', activateUserController);
 

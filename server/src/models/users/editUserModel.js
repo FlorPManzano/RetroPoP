@@ -2,10 +2,11 @@ import getDb from '../../db/getDb.js';
 
 //Aquí va el code del model para editar el avatar del usuario
 const editUserModel = async (userId, bio = null, photoName = null) => {
-    console.log('Esto llega desde editUserModel', bio, photoName, userId);
+    // Declaramos la conexión fuera del try/catch para poder usarla en el finally
     let connection;
 
     try {
+        // Obtenemos la conexión a la base de datos.
         connection = await getDb();
 
         // Actualizamos el avatar del usaurio con su fecha de modificación.

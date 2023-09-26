@@ -6,8 +6,9 @@ import joiErrorMessages from '../joiErrorMessages.js';
 
 // Creamos el esquema de validación.
 const newBookingSchema = joi.object({
+    confirm: joi.boolean().required().messages(joiErrorMessages),
     deliveryPlace: joi.string().required().messages(joiErrorMessages),
-    deliverytime: joi
+    deliveryTime: joi
         .date()
         .greater('now')
         .required()

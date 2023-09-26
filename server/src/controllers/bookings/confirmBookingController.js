@@ -3,12 +3,24 @@ import cancelBookingModel from '../../models/bookings/cancelBookingModel.js';
 import getDataBookingModel from '../../models/bookings/getDataBookingModel.js';
 import sendConfirmBookingMail from '../../services/sendConfirmBookingMail.js';
 import sendCancelBookingMail from '../../services/sendCancelBookingMail.js';
+import validateSchema from '../../utils/validateSchema.js';
+import newBookingSchema from '../../schemas/bookings/newBookingSchema.js';
+import productSelledModel from '../../models/products/productSelledModel.js';
 
 const confirmBookingController = async (req, res, next) => {
     try {
+        // Variable que almacenará el resno de la reserva
         const resno = req.params.uuid;
+
+        // Variable que almacenará los datos de la reserva
         const { confirm, deliveryTime, deliveryPlace } = req.body;
+
+        // Variable que almacenará los datos de la reserva
         const dataBooking = await getDataBookingModel(resno);
+
+        await validateSchema(newBookingSchema, req.body);
+
+        // Si el usuario confirma la reserva, actualizamos el campo de deliveryTime y deliveryPlace en la tabla bookings
 
         if (confirm === true) {
             const booking = await confirmBookingModel(
@@ -16,6 +28,10 @@ const confirmBookingController = async (req, res, next) => {
                 deliveryTime,
                 deliveryPlace
             );
+            // Una vez confirmada la reserva, actualizamos el campo isSelled a 1 en el producto
+            productSelledModel(resno);
+
+            // Enviamos un email al comprador
             sendConfirmBookingMail(dataBooking);
             res.send({
                 status: 'ok',
@@ -23,6 +39,7 @@ const confirmBookingController = async (req, res, next) => {
                 data: booking,
             });
         } else {
+            // Si el usuario rechaza la reserva, enviaremos un email al comprador
             const booking = await cancelBookingModel(resno);
             sendCancelBookingMail(dataBooking);
             res.send({

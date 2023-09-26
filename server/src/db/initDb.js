@@ -56,7 +56,7 @@ const main = async () => {
               id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
               productName VARCHAR(150) NOT NULL,
               description VARCHAR(200) NULL,
-              category ENUM('Consolas', 'Videojuegos', 'Audio', 'Ordenadores', 'Video', 'Cámaras de fotos', 'Televisores', 'Máquinas de escribir, Teléfonos') NOT NULL,
+              category ENUM('Consolas', 'Videojuegos', 'Audio', 'Ordenadores', 'Televisores', 'Video', 'Cámaras de fotos', 'Máquinas de escribir', 'Teléfonos') NOT NULL,
               state ENUM('Sin abrir', 'Nuevo', 'Como nuevo', 'En buen estado', 'En condiciones aceptables') NOT NULL,
               place VARCHAR(30) NULL,
               price DECIMAL(6,2) NULL,

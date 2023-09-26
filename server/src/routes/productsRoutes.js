@@ -22,13 +22,12 @@ const router = express.Router();
 // Routes
 
 // -   GET `/?param` - Devuelve la infomación de los productos filtrados.
-router.get('/?', getListProductsFilterController);
+router.get('/filters/?', getListProductsFilterController);
+// GET `/` - Lista todos los productos.
+router.get('/', getListProductsController);
 
 // -   GET `/:productId` - Devuelve la infomación del producto.
 router.get('/:productId', getProductController);
-
-// GET `/` - Lista todos los productos.
-router.get('/', getListProductsController);
 
 // POST `/` - Permite crear un producto.
 router.post('/', authUser, newProductController);

@@ -1,14 +1,14 @@
 // Importamos la conexión a la BBDD
 import getDb from '../../db/getDb.js';
 
-const newBookingModel = async (idBuyer, idSeller, idProduct, resno) => {
+const newBookingModel = async (idBuyer, idProduct, resno) => {
     let connection;
     try {
         connection = await getDb();
 
         const [booking] = await connection.query(
-            `INSERT INTO bookings (userBuyerId,userSellerId, productId, resno) VALUES (?, ?, ?, ?)`,
-            [idBuyer, idSeller, idProduct, resno]
+            `INSERT INTO bookings (userBuyerId, productId, resno) VALUES (?, ?, ?)`,
+            [idBuyer, idProduct, resno]
         );
 
         // Devolvemos el producto

@@ -102,6 +102,14 @@ export function bookingNotFoundError() {
     };
 }
 
+export function productDoesNotExistError() {
+    throw {
+        httpStatus: 403,
+        code: 'PRODUCT_NOT_EXISTS',
+        message: 'El producto no existe',
+    };
+}
+
 export default {
     deleteFileError,
     emailAlreadyRegisteredError,
@@ -117,4 +125,5 @@ export default {
     userIsASameBuyerError,
     bookingDuplicatedError,
     bookingNotFoundError,
+    productDoesNotExistError,
 };

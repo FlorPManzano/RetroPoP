@@ -12,11 +12,12 @@ import newBookingController from '../controllers/bookings/newBookingController.j
 import checkRepeatBooking from '../middlewares/checkRepeatBooking.js';
 import confirmBookingController from '../controllers/bookings/confirmBookingController.js';
 import checkBookingExist from '../middlewares/checkBookingExist.js';
+import productExists from '../middlewares/productExists.js';
 
 // Router
 const router = express.Router();
 
-router.post(
+router.put(
     '/confirm/:uuid',
     authUser,
     checkBookingExist,
@@ -26,6 +27,7 @@ router.post(
 router.post(
     '/:productId',
     authUser,
+    productExists,
     checkSameUser,
     checkRepeatBooking,
     newBookingController
