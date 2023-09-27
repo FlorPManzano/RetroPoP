@@ -7,17 +7,14 @@ import selectUserByIdModel from '../../models/users/selectUserByIdModel.js';
 import deletePhoto from '../../utils/deletePhoto.js';
 
 const editUserController = async (req, res, next) => {
-    const obj = {
+    console.log('Esto entra?????');
+    const validate = {
         bio: req.body.bio,
-        avatar: {
-            name: req.files?.avatar?.name,
-            mimetype: req.files?.avatar?.mimetype,
-            size: req.files?.avatar?.size,
-        },
+        avatar: req.files?.avatar,
     };
 
     try {
-        await validateSchema(editUserSchema, obj);
+        await validateSchema(editUserSchema, validate);
         try {
             const hashedName = generatePhotoName();
             await savePhoto(req.files.avatar, hashedName, 'avatars');

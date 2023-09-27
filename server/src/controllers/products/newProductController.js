@@ -47,16 +47,13 @@ const newProductController = async (req, res, next) => {
             status: 'ok',
             message: 'Producto creado con éxito',
             data: {
-                product: {
-                    id: productId,
-                    userId: req.user.id,
-                    description,
-                    category,
-                    state,
-                    place,
-                    price,
-                    image: imageName || null,
-                },
+                userId: req.user,
+                description,
+                category,
+                state,
+                place,
+                price,
+                image: imageName || null,
             },
         });
     } catch (err) {

@@ -29,18 +29,6 @@ const createProductModel = async (
             ]
         );
 
-        console.log(
-            'QUE COJONES VIENE POR AQUI',
-            productName,
-            description,
-            category,
-            state,
-            place,
-            price,
-            image,
-            userId
-        );
-
         // Devolvemos el producto insertado, el id
         return product;
     } finally {

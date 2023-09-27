@@ -6,7 +6,13 @@ const getProductsUserController = async (req, res, next) => {
         const id = req.params.id;
 
         const products = await getProductsByUserModel(id);
-        const user = await selectUserByIdModel(id);
+        const userData = await selectUserByIdModel(id);
+        const user = {
+            name: userData.username,
+            avatar: userData.avatar,
+            bio: userData.bio,
+            createdAt: userData.createdAt,
+        };
 
         res.send({
             status: 'ok',
