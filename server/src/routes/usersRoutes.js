@@ -17,6 +17,7 @@ import deleteUserController from '../controllers/users/deleteUserController.js';
 // Middlewares
 import authUser from '../middlewares/authUser.js';
 import userExists from '../middlewares/userExists.js';
+import getProductsUserController from '../controllers/users/getProductsUserController.js';
 
 // Router
 const router = express.Router();
@@ -24,6 +25,8 @@ const router = express.Router();
 // Routes
 // POST /users/
 router.post('/', createUserController);
+
+router.get('/products/:id', getProductsUserController);
 
 router.get('/profile/', authUser, getProfileController);
 

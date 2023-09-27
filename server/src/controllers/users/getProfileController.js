@@ -2,7 +2,6 @@ import selectUserByIdModel from '../../models/users/selectUserByIdModel.js';
 
 const getProfileController = async (req, res, next) => {
     try {
-        console.log('QUE OSTIAS LELGA AQUÍ', req.user);
         const user = await selectUserByIdModel(req.user);
 
         res.send({
