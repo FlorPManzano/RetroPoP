@@ -6,6 +6,7 @@
     "type": "module",
     "scripts": {
         "initDb": "node ./src/db/initDb.js",
+        "backupDb": "node ./src/db/backupDb.js",
         "start": "nodemon server.js"
     },
     "keywords": [],
