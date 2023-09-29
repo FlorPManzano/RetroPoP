@@ -37,6 +37,7 @@ const loginUserController = async (req, res, next) => {
         if (!user.isActive) userNotActivatedError();
 
         // Comprobamos si la contraseña que ha insertado el usuario es correcta.
+
         const validPass = await comparePasswords(password, user.password);
 
         // Si la contraseña no coincide lanzamos un error.

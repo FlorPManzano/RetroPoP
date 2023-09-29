@@ -6,24 +6,12 @@ const getProductController = async (req, res, next) => {
     try {
         // Obtenemos el producto de la BBDD
         const product = await getProductModel(req.params.productId);
-
+        console.log('que putas entra por aqui', product, product.length);
         // Devolvemos el producto
         res.send({
-            status: 'ok',
+            status: product.length > 0 ? 'ok' : 'Error',
             // Funcion ternaria que devuelve el producto o un mensaje de que no existe el producto en caso de que venga un array vacio
-            data:
-                product.length > 0
-                    ? product.map((x) => {
-                          if (x.totalReviews === 0)
-                              return {
-                                  ...x,
-                                  totalReviews:
-                                      'El usuario no ha recibido ninguna valoración todavía',
-                                  mediaStars:
-                                      'El usuario no ha recibido ninguna valoración todavía',
-                              };
-                      })
-                    : 'No existe el producto',
+            data: product.length > 0 ? product[0] : 'No existe ese producto',
         });
     } catch (err) {
         // Si hay un error, lo devolvemos

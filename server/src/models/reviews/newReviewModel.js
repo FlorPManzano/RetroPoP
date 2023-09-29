@@ -8,9 +8,9 @@ const newReviewModel = async (bodyData, resno, user) => {
         connection = await getDb();
 
         const [booking] = await connection.query(
-            `INSERT INTO reviews (titleRw, textRw, starsRw, bookingId, userSellerId, userBuyerId)
-VALUES (?, ?, ?, (SELECT id FROM bookings WHERE resno = ?), (SELECT userId FROM products WHERE id = (SELECT productId FROM bookings WHERE resno = ?)), ?);`,
-            [titleRw, textRw, starsRw, resno, resno, user]
+            `INSERT INTO reviews (titleRw, textRw, starsRw, bookingId)
+            VALUES (?, ?, ?, (SELECT id FROM bookings WHERE resno = ?));`,
+            [titleRw, textRw, starsRw, resno]
         );
 
         // Devolvemos el producto

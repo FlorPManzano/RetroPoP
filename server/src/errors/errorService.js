@@ -126,6 +126,22 @@ export function userNotFoundError() {
     };
 }
 
+export function dateBookingNotPassed(date) {
+    throw {
+        httpStatus: 403,
+        code: 'DATE_NOT_PASSED',
+        message: `La fecha de la entrega aún no ha pasado (${date})`,
+    };
+}
+
+export function bookingAuthOwnerError() {
+    throw {
+        httpStatus: 403,
+        code: 'BOOKING_AUTH_OWNER',
+        message: 'Reserva no encontrada para este usuario',
+    };
+}
+
 export default {
     deleteFileError,
     emailAlreadyRegisteredError,
@@ -144,4 +160,6 @@ export default {
     productDoesNotExistError,
     reviewExistsError,
     userNotFoundError,
+    dateBookingNotPassed,
+    bookingAuthOwnerError,
 };

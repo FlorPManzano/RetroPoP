@@ -7,17 +7,16 @@ const getProductModel = async (id) => {
         connection = await getDb();
 
         // Localizamos al usuario con el email dado.
-        const products = await connection.query(
-            `SELECT P.productName, P.description, P.category, P.state, P.place, P.price, P.image, P.createdAt, P.userId, U.username, U.avatar, U.email,
-            (SELECT COUNT(userSellerId) FROM reviews WHERE userSellerId = U.id) AS totalReviews,
-            (SELECT AVG(starsRw) FROM reviews WHERE userSellerId = U.id) AS mediaStars
+        const [products] = await connection.query(
+            `SELECT P.id, P.productName, P.description, P.category, P.state, P.place, P.price, P.image, P.createdAt, U.id AS userSellerId, U.username, U.avatar,
+            (SELECT COUNT(p.userId) FROM reviews r, bookings b, products p WHERE p.userId = U.id AND p.id = b.productId AND b.id = r.bookingId) AS totalReviews,
+            (SELECT AVG(r.starsRw) FROM reviews r, bookings b, products p WHERE p.userId = U.id AND p.id = b.productId AND b.id = r.bookingId) AS mediaStars
             FROM products P
             JOIN users U ON P.userId = U.id
-            WHERE P.id = ?`,
+            WHERE p.id = ?`,
             [id]
         );
-
-        return products[0];
+        return products;
     } finally {
         if (connection) connection.release();
     }

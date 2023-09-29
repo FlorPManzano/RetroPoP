@@ -10,7 +10,7 @@ const getBookingByResModel = async (res) => {
             `SELECT * FROM bookings WHERE resno = ?`,
             [res]
         );
-
+        console.log('ey booking', booking);
         // Devolvemos el producto
         return booking;
     } finally {

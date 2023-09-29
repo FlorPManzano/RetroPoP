@@ -101,14 +101,6 @@ const main = async () => {
               bookingId INT UNSIGNED NOT NULL,
               FOREIGN KEY (bookingId) REFERENCES bookings (id)
                 ON DELETE CASCADE
-                ON UPDATE CASCADE,
-              userSellerId INT UNSIGNED NOT NULL,
-              FOREIGN KEY (userSellerId) REFERENCES users (id)
-                ON DELETE CASCADE
-                ON UPDATE CASCADE,
-              userBuyerId INT UNSIGNED NOT NULL,
-              FOREIGN KEY (userBuyerId) REFERENCES users (id)
-                ON DELETE CASCADE
                 ON UPDATE CASCADE
             )
         `);

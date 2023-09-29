@@ -25,7 +25,7 @@ router.put(
 );
 
 router.post(
-    '/:productId',
+    '/',
     authUser,
     productExists,
     checkSameUser,

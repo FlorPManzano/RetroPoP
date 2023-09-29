@@ -6,9 +6,20 @@ import authUser from '../middlewares/authUser.js';
 // Controllers
 import newReviewController from '../controllers/reviews/newReviewController.js';
 import reviewExist from '../middlewares/reviewExist.js';
+import reviewOnTime from '../middlewares/reviewOnTime.js';
+import authUserIsOwnerBooking from '../middlewares/authUserIsOwnerBooking.js';
+import checkBookingExist from '../middlewares/checkBookingExist.js';
 
 const router = express.Router();
 
-router.post('/:resno', authUser, reviewExist, newReviewController);
+router.post(
+    '/:resno',
+    authUser,
+    checkBookingExist,
+    authUserIsOwnerBooking,
+    reviewExist,
+    reviewOnTime,
+    newReviewController
+);
 
 export default router;
