@@ -13,6 +13,7 @@ import checkRepeatBooking from '../middlewares/checkRepeatBooking.js';
 import confirmBookingController from '../controllers/bookings/confirmBookingController.js';
 import checkBookingExist from '../middlewares/checkBookingExist.js';
 import productExists from '../middlewares/productExists.js';
+import checkIsSelled from '../middlewares/checkIsSelled.js';
 
 // Router
 const router = express.Router();
@@ -30,6 +31,7 @@ router.post(
     productExists,
     checkSameUser,
     checkRepeatBooking,
+    checkIsSelled,
     newBookingController
 );
 

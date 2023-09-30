@@ -41,7 +41,7 @@ de endpoints
 
 [✅] Eliminar usuario
 [✅] Cuando cambies de foto de perfil, que borre la anterior
+[✅] Poder ver perfil de otro user con sus productos activos
 [] Añadir auth-2-factor-mobile
 [] Añadir change-password/forgot password
 [] Añadir favoritos
-[] Poder ver perfil de otro user con sus productos activos

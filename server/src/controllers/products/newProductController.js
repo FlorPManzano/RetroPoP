@@ -12,8 +12,6 @@ const newProductController = async (req, res, next) => {
     try {
         const { productName, description, category, state, place, price } =
             req.body;
-        // console.log(req.userId);
-        // console.log(req.body);
         const userId = req.user;
 
         // Validar los datos que llegan por el body con el esquema Joi

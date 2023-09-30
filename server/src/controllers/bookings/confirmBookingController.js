@@ -6,6 +6,8 @@ import sendCancelBookingMail from '../../services/sendCancelBookingMail.js';
 import validateSchema from '../../utils/validateSchema.js';
 import newBookingSchema from '../../schemas/bookings/newBookingSchema.js';
 import productSelledModel from '../../models/products/productSelledModel.js';
+import getBookingByResModel from '../../models/bookings/getBookingByResModel.js';
+import deleteBookingsModel from '../../models/bookings/deleteBookingsModel.js';
 
 const confirmBookingController = async (req, res, next) => {
     try {
@@ -18,11 +20,12 @@ const confirmBookingController = async (req, res, next) => {
         // Variable que almacenará los datos de la reserva
         const dataBooking = await getDataBookingModel(resno);
 
-        await validateSchema(newBookingSchema, req.body);
+        console.log('DATAAAAAAAAAAAAA', dataBooking);
 
         // Si el usuario confirma la reserva, actualizamos el campo de deliveryTime y deliveryPlace en la tabla bookings
 
         if (confirm === true) {
+            await validateSchema(newBookingSchema, req.body);
             const booking = await confirmBookingModel(
                 resno,
                 deliveryTime,
@@ -30,6 +33,12 @@ const confirmBookingController = async (req, res, next) => {
             );
             // Una vez confirmada la reserva, actualizamos el campo isSelled a 1 en el producto
             productSelledModel(resno);
+
+            const deleteBookings = await deleteBookingsModel(
+                dataBooking[0].productId
+            );
+
+            console.log('deleteBookings', deleteBookings);
 
             // Enviamos un email al comprador
             sendConfirmBookingMail(dataBooking);

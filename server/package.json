@@ -7,6 +7,7 @@
     "scripts": {
         "initDb": "node ./src/db/initDb.js",
         "backupDb": "node ./src/db/backupDb.js",
+        "restoreDb": "node ./src/db/allInOne.js",
         "start": "nodemon server.js"
     },
     "keywords": [],

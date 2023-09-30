@@ -25,8 +25,7 @@ const newBookingController = async (req, res) => {
 
         res.send({
             status: 'ok',
-            message:
-                'Reserva creada correctamente, le hemos mandado un email al vendedor para que confirme o rechace la venta.',
+            message: `Reserva creada correctamente con el número de reserva ${resno}, le hemos mandado un email al vendedor para que confirme o rechace la venta.`,
         });
     } catch (err) {
         res.send(err);
