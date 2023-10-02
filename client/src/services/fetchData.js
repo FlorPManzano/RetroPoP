@@ -1,5 +1,7 @@
+import { APIUrl } from "../config";
+
 export default async function fetchData(route, method, data) {
-    const response = await fetch(`http://localhost:3000/${route}`, {
+    const response = await fetch(`${APIUrl}/${route}`, {
         method: method,
         headers: {
             Accept: 'application/json',
