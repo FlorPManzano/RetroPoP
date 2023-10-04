@@ -1,14 +1,14 @@
 import { APIUrl } from '../config';
 import { getToken } from '../utils/getToken.js';
 
-// export default async function fetchData(route, method, data) {
+// export default async function fetchData(route, method, body) {
 //     const res = await fetch(`${APIUrl}/${route}`, {
 //         method: method,
 //         headers: {
 //             Accept: 'application/json',
 //             'Content-Type': 'application/json',
 //         },
-//         body: JSON.stringify(data),
+//         body: JSON.stringify(body),
 //     });
 //     const json = await res.json();
 
@@ -128,6 +128,37 @@ const getSearchProductsService = async (params) => {
     return body;
 };
 
+const getProductByIdService = async (productId) => {
+    const res = await fetch(`${APIUrl}/products/${productId}`);
+    const body = await res.json();
+
+    if (!res.ok) {
+        throw new Error(body.error);
+    }
+
+    return body;
+};
+
+const addProductService = async (formData) => {
+    const token = getToken();
+
+    const res = await fetch(`${APIUrl}/products`, {
+        method: 'post',
+        headers: {
+            Authorization: token,
+        },
+        body: formData,
+    });
+
+    const body = await res.json();
+
+    if (!res.ok) {
+        throw new Error(body.error);
+    }
+
+    return body;
+};
+
 export {
     registerUserService,
     validateUserService,
@@ -136,4 +167,6 @@ export {
     editUserService,
     getAllProductsService,
     getSearchProductsService,
+    getProductByIdService,
+    addProductService,
 };
