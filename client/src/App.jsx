@@ -15,6 +15,7 @@ import FilteredPage from './pages/FilteredPage/FilteredPage';
 import HomePage from './pages/HomePage/HomePage';
 // import FilteredPage from './pages/FilteredPage/FilteredPage';
 import Navbar from './components/Navbar/Navbar';
+import ProductPage from './pages/ProductPage/ProductPage';
 
 const App = () => {
     return (
@@ -36,6 +37,9 @@ const App = () => {
                 <Route path="/" element={<HomePage />} />
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/search" element={<FilteredPage />} />
+                <Route path="/search/:category" element={<FilteredPage />} />
+                <Route path="/product/:id" element={<ProductPage />} />
+                <Route path="/product/" element={<ProductPage />} />
             </Routes>
         </>
     );

@@ -4,8 +4,11 @@ import { useState, useEffect } from 'react';
 import { getAllProductsService } from '../../services/fetchData.js';
 import ProductCard from '../ProductCard/ProductCard';
 
+import { useNavigate } from 'react-router-dom';
+
 export default function ListProducts() {
     const [products, setProducts] = useState([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -22,6 +25,12 @@ export default function ListProducts() {
         fetchProducts();
     }, []);
 
+    const handleCardClick = async (e, key) => {
+        e.preventDefault();
+        console.log(key);
+        navigate(`/product/${key}`);
+    };
+
     console.log('WEEEEEEE', products);
     return (
         <section className="list-products">
@@ -29,7 +38,12 @@ export default function ListProducts() {
                 <ul className="list-products__list">
                     {products &&
                         products.map((product) => (
-                            <li key={product.id}>
+                            <li
+                                key={product.id}
+                                onClick={(event) =>
+                                    handleCardClick(event, product.id)
+                                }
+                            >
                                 <ProductCard
                                     productName={product.productName}
                                     price={product.price}

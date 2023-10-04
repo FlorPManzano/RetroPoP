@@ -25,7 +25,7 @@
     justify-content: center;
     align-items: center;
     width: 50%;
-    height: 40px;
+    height: 50px;
     border-radius: 10px;
     outline: none;
     text-align: center;
@@ -33,14 +33,17 @@
 
 .upload-product {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
-    width: 150px;
-    height: 40px;
+    width: 230px;
+    height: 60px;
     border-radius: 10px;
+    font-size: 18px;
     outline: none;
     text-align: center;
-    background-color: rgb(49, 49, 49);
+    /* background-color: rgb(49, 49, 49); */
+    background: rgb(242, 61, 160);
+    background: linear-gradient(to right, #fef3ff, #838383);
     color: white;
     border: 1px solid white;
     cursor: pointer;
