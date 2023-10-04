@@ -27,7 +27,7 @@ const main = async () => {
         console.log(FgLightYellow, 'Borrando tablas si existen...');
 
         await connection.query(
-            'DROP TABLE IF EXISTS bookings, reviews, products, users'
+            'DROP TABLE IF EXISTS favorites, bookings, reviews, products, users'
         );
 
         console.log(FgLightBlue, 'Creando tablas si no existen...');
@@ -100,6 +100,20 @@ const main = async () => {
               modifiedAt DATETIME NULL ON UPDATE CURRENT_TIMESTAMP,
               bookingId INT UNSIGNED NOT NULL,
               FOREIGN KEY (bookingId) REFERENCES bookings (id)
+                ON DELETE CASCADE
+                ON UPDATE CASCADE
+            )
+        `);
+
+        console.log(FgLightMagenta, '---Creando tabla favorites---');
+        await connection.query(`
+            CREATE TABLE IF NOT EXISTS favorites (
+              userIdFav INT UNSIGNED NOT NULL,
+              FOREIGN KEY (userIdFav) REFERENCES users (id)
+                ON DELETE CASCADE
+                ON UPDATE CASCADE,
+              productIdFav INT UNSIGNED NOT NULL,
+              FOREIGN KEY (productIdFav) REFERENCES products (id)
                 ON DELETE CASCADE
                 ON UPDATE CASCADE
             )
