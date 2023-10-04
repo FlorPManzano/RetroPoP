@@ -47,6 +47,7 @@ const loginUserController = async (req, res, next) => {
         // Generamos un objeto con la información que queramos agregar al token.
         const tokenInfo = {
             id: user.id,
+            username: user.username,
         };
 
         console.log(tokenInfo);
@@ -59,6 +60,7 @@ const loginUserController = async (req, res, next) => {
         res.send({
             status: 'ok',
             data: {
+                username: user.username,
                 token,
             },
         });

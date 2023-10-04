@@ -1,0 +1,54 @@
+.navbar {
+    display: flex;
+    /* position: fixed;
+    z-index: 1; */
+    position: sticky;
+    justify-content: space-around;
+    align-items: center;
+    width: 100vw;
+    height: 100px;
+    background-color: rgba(45, 29, 58, 1);
+    box-shadow: 0 0 10px rgba(241, 241, 241, 0.5);
+}
+
+.logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 140px;
+    height: 140px;
+}
+
+.search-form {
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: 40px;
+    border-radius: 10px;
+    outline: none;
+    text-align: center;
+}
+
+.upload-product {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    height: 40px;
+    border-radius: 10px;
+    outline: none;
+    text-align: center;
+    background-color: rgb(49, 49, 49);
+    color: white;
+    border: 1px solid white;
+    cursor: pointer;
+}
+
+.login {
+    width: 50px;
+    height: 50px;
+    border: 1px solid white;
+    border-radius: 50%;
+}

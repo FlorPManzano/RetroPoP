@@ -1,7 +1,7 @@
 body {
-    display: grid;
-    place-items: center;
-    flex-direction: column;
+    margin: 0;
+    display: flex;
+    max-height: 100%;
     background: rgb(45, 29, 58);
     background: linear-gradient(
         90deg,

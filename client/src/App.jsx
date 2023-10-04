@@ -1,22 +1,42 @@
-//importamos las dependencia React router dom
-// import { Routes, Route } from 'react-router-dom';
+// //importamos las dependencia React router dom
+import { Routes, Route } from 'react-router-dom';
+// import { NavLink } from 'react-router-dom';
 import LoginPage from './pages/LoginPage/LoginPage';
-// import HomePage from './pages/HomePage/HomePage';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 // import ProfilePage from './pages/ProfilePage/ProfilePage';
+// import Navbar from './components/Navbar/Navbar';
+import FilteredPage from './pages/FilteredPage/FilteredPage';
 
 // importamos los componentes
 
 //importamos las páginas
+import HomePage from './pages/HomePage/HomePage';
+// import FilteredPage from './pages/FilteredPage/FilteredPage';
+import Navbar from './components/Navbar/Navbar';
 
 const App = () => {
     return (
         <>
-            <LoginPage />
-            {/* <Routes>
+            <ToastContainer
+                position="top-center"
+                autoClose={3000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick={false}
+                rtl={false}
+                pauseOnFocusLoss={false}
+                draggable={false}
+                pauseOnHover={false}
+                theme="light"
+            />
+            <Navbar />
+            <Routes>
                 <Route path="/" element={<HomePage />} />
                 <Route path="/login" element={<LoginPage />} />
-                <Route path="/profile" element={<ProfilePage />} />
-            </Routes> */}
+                <Route path="/search" element={<FilteredPage />} />
+            </Routes>
         </>
     );
 };

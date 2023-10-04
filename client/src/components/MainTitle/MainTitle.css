@@ -1,0 +1,36 @@
+/* @font-face {
+    font-family: 'Agrandir';
+    src: url('./Agrandir-GrandHeavy.otf');
+}
+
+@font-face {
+    font-family: 'Brittany Signature';
+    src: url('./BrittanySignature.ttf');
+    font-weight: 300;
+}
+
+.main-title-containter {
+    display: flex;
+    margin-bottom: 2rem;
+    width: 1200px;
+    padding: 0 1rem;
+}
+
+.main-title {
+    font-family: 'Agrandir', sans-serif;
+    font-size: 4rem;
+    font-weight: 700;
+    text-align: center;
+    color: #11d9c5;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 1);
+}
+.main-title__subtitle {
+    margin: -5rem;
+    margin-bottom: 1rem;
+    font-family: 'Brittany Signature', sans-serif;
+    font-size: 4rem;
+    font-weight: 400;
+    text-align: center;
+    color: #fff;
+    text-shadow: 0 5px 1px #a34685;
+} */

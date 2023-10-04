@@ -9,7 +9,7 @@ const {
     MYSQL_PASSWORD,
     MYSQL_DATABASE,
     SECRET,
-    UPLOADS_DIR,
+    UPLOADS_DIR = './src/uploads',
     NODE_ENV,
     MJ_USER,
     MJ_APIKEY_PUBLIC,

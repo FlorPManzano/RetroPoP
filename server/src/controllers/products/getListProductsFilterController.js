@@ -1,6 +1,7 @@
 import getListProductsFilterModel from '../../models/products/getListProductsFilterModel.js';
 
 const getListProductsFilterController = async (req, res, next) => {
+    // console.log('entra en el controlador de filtros', req.query);
     try {
         const params = {
             name: req.query.name,
@@ -8,7 +9,10 @@ const getListProductsFilterController = async (req, res, next) => {
             place: req.query.place,
             minPrice: req.query.minPrice,
             maxPrice: req.query.maxPrice,
+            state: req.query.state,
         };
+
+        console.log(params);
         const products = await getListProductsFilterModel(params);
 
         res.send({

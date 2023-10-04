@@ -7,16 +7,15 @@
     font-family: 'Poppins', sans-serif;
 }
 
-body {
+.container-login {
+    width: 100%;
+    min-height: 1080px;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
-    background: #07182f;
-    overflow: hidden;
 }
 
-.logo {
+.logo-grande {
     margin-top: -10rem;
     width: 500px;
 }
