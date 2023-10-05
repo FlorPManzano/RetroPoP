@@ -1,4 +1,6 @@
 import './ProductBigCard.css';
+import { productPropTypes } from '../../utils/customPropTypes';
+import { APIUrl } from '../../config';
 
 export default function ProductBigCard({ product }) {
     console.log('QUE OSTIAS LLEGA AQUI', product);
@@ -8,11 +10,18 @@ export default function ProductBigCard({ product }) {
                 <header className="product-page__header">
                     <div className="product-page__header__user">
                         <div className="product-page__header__user__name">
-                            <img src={product.avatar} alt="user" width="50" />
+                            <img
+                                src={`${APIUrl}/avatars/${product.avatar}`}
+                                alt="user"
+                                width="50"
+                            />
                             <h3>{product.username}</h3>
                         </div>
                         <div className="product-page__header__user__reviews">
-                            <h3>Aqui van las reviews</h3>
+                            <h3>
+                                {product.mediaStars} estrellas (
+                                {product.totalReviews} reviews)
+                            </h3>
                         </div>
                         <div className="product-page__header__user__creation">
                             <p>Fecha de creación: {product.createdAt}</p>
@@ -21,7 +30,7 @@ export default function ProductBigCard({ product }) {
                 </header>
                 <div className="product-page__gallery">
                     <img
-                        src="public/logo_retropop.png"
+                        src={`${APIUrl}/images/${product.image}`}
                         alt=""
                         className="product-image"
                     />
@@ -54,3 +63,7 @@ export default function ProductBigCard({ product }) {
         </div>
     );
 }
+
+ProductBigCard.propTypes = {
+    product: productPropTypes,
+};

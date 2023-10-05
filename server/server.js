@@ -5,7 +5,7 @@ import morgan from 'morgan';
 import fileUpload from 'express-fileupload';
 
 // Importamos las variables de entorno
-import 'dotenv/config';
+import 'dotenv/config.js';
 
 // Importamos la constante con el nombre de carpeta de la subida de archivos
 import { UPLOADS_DIR } from './config.js';
@@ -33,11 +33,12 @@ server.use(express.json());
 server.use(cors());
 // Muestra por consola información de la petición entrante
 server.use(morgan('common'));
+// Middleware que indica a Express cual es el directorio de ficheros estáticos.
+// server.use(express.static(UPLOADS_DIR));
+server.use(express.static('./src/uploads'));
 // Middleware que deserializa un body en formato "form-data" creando la propiedad "body" y
 // la propiedad "files" en el objeto "request".
 server.use(fileUpload());
-// Indica a Express cual es el directorio de ficheros estáticos.
-server.use(express.static('./src/uploads'));
 
 // Routes
 server.use('/users', userRoutes);

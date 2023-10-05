@@ -7,7 +7,7 @@ const Navbar = () => {
             <nav className="navbar">
                 <NavLink to="/">
                     <img
-                        src="public/iconRetroPop.png"
+                        src="public/logo-retropop.png"
                         className="logo"
                         alt=""
                     />
