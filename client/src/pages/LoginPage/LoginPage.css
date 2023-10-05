@@ -42,12 +42,12 @@
 
 .wrapper.animate-signUp .form-wrapper.sign-in {
     transform: rotate(7deg);
-    animation: animateRotate 0.7s ease-in-out forwards;
-    animation-delay: 0.3s;
+    animation: animateRotate 0.3s ease-in-out forwards;
+    animation-delay: 0s;
 }
 
 .wrapper.animate-signIn .form-wrapper.sign-in {
-    animation: animateSignIn 1.5s ease-in-out forwards;
+    animation: animateSignIn 0.3s ease-in-out forwards;
 }
 
 @keyframes animateSignIn {
@@ -69,8 +69,8 @@
 }
 
 .wrapper.animate-signIn .form-wrapper.sign-up {
-    animation: animateRotate 0.7s ease-in-out forwards;
-    animation-delay: 0.3s;
+    animation: animateRotate 0.4s ease-in-out forwards;
+    animation-delay: 0s;
 }
 
 @keyframes animateRotate {
@@ -85,7 +85,7 @@
 }
 
 .wrapper.animate-signUp .form-wrapper.sign-up {
-    animation: animateSignUp 1.5s ease-in-out forwards;
+    animation: animateSignUp 0.3s ease-in-out forwards;
 }
 
 @keyframes animateSignUp {
