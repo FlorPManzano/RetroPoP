@@ -7,24 +7,56 @@ import {
 import { useEffect, useState } from 'react';
 import './FilteredPage.css';
 import ProductCard from '../../components/ProductCard/ProductCard';
+import { useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 export default function FilteredPage() {
     const [maxPrice, setMaxPrice] = useState(1000); // [1
     const [price, setPrice] = useState(maxPrice);
     const [products, setProducts] = useState([]);
+    const [valuePrice, setValuePrice] = useState(maxPrice); //
+    const [params, setParams] = useState(''); //
+    const [loading, setLoading] = useState(false); //
+
+    const navigate = useNavigate();
+    const name = useLocation().search;
+    console.log(name);
 
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const body = await getAllProductsService();
+                const body = await getSearchProductsService(name);
                 const maxPrice = Math.ceil(
                     body.data.sort((a, b) => b.price - a.price)[0].price
                 );
                 setMaxPrice(maxPrice);
+                setProducts(body.data);
             } catch (err) {
                 console.log(err.message);
             }
         };
+
+        // const fetchProducts = async () => {
+        //     try {
+        //         const body = await getAllProductsService();
+        //         const maxPrice = Math.ceil(
+        //             body.data.sort((a, b) => b.price - a.price)[0].price
+        //         );
+        //         setMaxPrice(maxPrice);
+        //     } catch (err) {
+        //         console.log(err.message);
+        //     }
+        // };
+        // setPrice(maxPrice);
+        // document.querySelector('.select-category').value = '';
+        // document.querySelector('.range-price').value = `${maxPrice}`;
+        // document.querySelector(
+        //     '.range-price__text'
+        // ).textContent = `${maxPrice}`;
+        // document.querySelector('.select-state').value = '';
+        // document.querySelector('.search-location').value = '';
+
         fetchProducts();
     }, []);
 
@@ -37,6 +69,7 @@ export default function FilteredPage() {
             results.data !== 'No hay ningún resultado con esos filtros'
         ) {
             setProducts(results.data);
+            document.querySelector('.no-results').style.display = 'none';
         } else {
             setProducts([]);
             document.querySelector('.no-results').style.display = 'block';
@@ -46,7 +79,7 @@ export default function FilteredPage() {
     const handleCardClick = async (e, key) => {
         e.preventDefault();
         console.log(key);
-        // alert(`Hola soy la carta ${e.target}`);
+        navigate(`/product/${key}`);
     };
 
     const resetEventHandle = (e) => {
@@ -61,6 +94,11 @@ export default function FilteredPage() {
         setPrice(maxPrice);
     };
 
+    const handleChangeValuePrice = (e) => {
+        setValuePrice(e.target.value);
+        setPrice(e.target.value);
+    };
+
     return (
         <>
             <div className="container">
@@ -70,40 +108,55 @@ export default function FilteredPage() {
                             className="container-aside__form"
                             onSubmit={handleSubmit}
                         >
-                            <h3>Categorias</h3>
-                            <select name="select" className="select-category">
-                                <option value="" defaultValue>
-                                    Selecciona categoría
-                                </option>
-                                <option value="Audio">Audio</option>
-                                <option value="Camaras de fotos">
-                                    Cámaras de fotos
-                                </option>
-                                <option value="Consolas">Consolas</option>
-                                <option value="Juguetes">Juguetes</option>
-                                <option value="Maquinas de escribir">
-                                    Máquinas de escribir
-                                </option>
-                                <option value="Ordenadores">Ordenadores</option>
-                                <option value="Relojes">Relojes</option>
-                                <option value="Telefonos">Teléfonos</option>
-                                <option value="Televisores">Televisores</option>
-                                <option value="Video">Video</option>
-                                <option value="Otros">Otros</option>
-                            </select>
-                            <h3>Precio</h3>
-                            <input
-                                type="range"
-                                min="0"
-                                max={maxPrice && maxPrice}
-                                step="1"
-                                // value={maxPrice && maxPrice}
-                                className="range-price"
-                                onChange={(e) => setPrice(e.target.value)}
-                            />
-                            <p className="range-price__text">{price}</p>
+                            <section className="container-aside__section_category">
+                                <h3 className="filter-h3">Categorias</h3>
+                                <select
+                                    name="select"
+                                    className="select-category"
+                                >
+                                    <option value="" defaultValue>
+                                        Selecciona categoría
+                                    </option>
+                                    <option value="Audio">Audio</option>
+                                    <option value="Camaras de fotos">
+                                        Cámaras de fotos
+                                    </option>
+                                    <option value="Consolas">Consolas</option>
+                                    <option value="Juguetes">Juguetes</option>
+                                    <option value="Maquinas de escribir">
+                                        Máquinas de escribir
+                                    </option>
+                                    <option value="Ordenadores">
+                                        Ordenadores
+                                    </option>
+                                    <option value="Relojes">Relojes</option>
+                                    <option value="Telefonos">Teléfonos</option>
+                                    <option value="Televisores">
+                                        Televisores
+                                    </option>
+                                    <option value="Video">Video</option>
+                                    <option value="Otros">Otros</option>
+                                </select>
+                            </section>
+                            <section className="container-aside__section_price">
+                                <h3 className="filter-h3">Precio</h3>
+                                <input
+                                    type="range"
+                                    min="0"
+                                    max={maxPrice && maxPrice}
+                                    step="1"
+                                    value={valuePrice}
+                                    className="range-price"
+                                    onChange={handleChangeValuePrice}
+                                />
+                                <p className="range-price__text">
+                                    {maxPrice && price} €
+                                </p>
+                            </section>
                             <div className="container-aside__state">
-                                <h3>Estado del producto</h3>
+                                <h3 className="filter-h3">
+                                    Estado del producto
+                                </h3>
                                 <select name="select" className="select-state">
                                     <option value="" defaultValue>
                                         Selecciona estado
@@ -123,40 +176,58 @@ export default function FilteredPage() {
                                     </option>
                                 </select>
                             </div>
-                            <h3>Localidad</h3>
-                            <input type="text" className="search-location" />
-                            <button type="submit" className="btn-filter">
-                                Aplicar filtros
-                            </button>
-                            <button
-                                className="btn-reset"
-                                onClick={resetEventHandle}
-                            >
-                                Limpiar filtros
-                            </button>
+                            <section className="container-aside__section_location">
+                                <h3 className="filter-h3">Localidad</h3>
+                                <input
+                                    type="text"
+                                    className="search-location"
+                                />
+                            </section>
+                            <div className="container-aside__buttons">
+                                <button
+                                    className="btn-reset"
+                                    onClick={resetEventHandle}
+                                >
+                                    Limpiar filtros
+                                </button>
+                                <button type="submit" className="btn-filter">
+                                    Aplicar filtros
+                                </button>
+                            </div>
                         </form>
                     </section>
                 </aside>
                 <main className="container-main">
-                    {products.length > 0 && (
-                        <ul>
-                            {products.map((product) => (
-                                <li
-                                    key={product.id}
-                                    onClick={(event) =>
-                                        handleCardClick(event, product.id)
-                                    }
-                                >
-                                    <ProductCard
-                                        productName={product.productName}
-                                        price={product.price}
-                                        image={product.image}
-                                    />
-                                </li>
-                            ))}
-                        </ul>
-                    )}
-                    <h2 className="no-results">Sin resultados</h2>
+                    <div className="container-main__container">
+                        {products.length > 0 && (
+                            <ul className="ul-filtered">
+                                {products
+                                    .filter((product) => product.isSelled === 0)
+                                    .map((product) => (
+                                        <li
+                                            className="li-filtered"
+                                            key={product.id}
+                                            onClick={(event) =>
+                                                handleCardClick(
+                                                    event,
+                                                    product.id
+                                                )
+                                            }
+                                        >
+                                            <ProductCard
+                                                productName={
+                                                    product.productName
+                                                }
+                                                price={product.price}
+                                                image={product.image}
+                                            />
+                                        </li>
+                                    ))}
+                            </ul>
+                        )}
+
+                        <h2 className="no-results">Sin resultados</h2>
+                    </div>
                 </main>
             </div>
         </>

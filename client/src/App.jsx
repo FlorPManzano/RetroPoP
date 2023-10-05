@@ -1,21 +1,18 @@
 // //importamos las dependencia React router dom
 import { Routes, Route } from 'react-router-dom';
-// import { NavLink } from 'react-router-dom';
-import LoginPage from './pages/LoginPage/LoginPage';
+
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
-// import ProfilePage from './pages/ProfilePage/ProfilePage';
-// import Navbar from './components/Navbar/Navbar';
-import FilteredPage from './pages/FilteredPage/FilteredPage';
 
 // importamos los componentes
 
 //importamos las páginas
+import LoginPage from './pages/LoginPage/LoginPage';
 import HomePage from './pages/HomePage/HomePage';
-// import FilteredPage from './pages/FilteredPage/FilteredPage';
+import FilteredPage from './pages/FilteredPage/FilteredPage';
 import Navbar from './components/Navbar/Navbar';
 import ProductPage from './pages/ProductPage/ProductPage';
+import ValidateUserPage from './pages/ValidateUserPage/ValidateUserPage';
 
 const App = () => {
     return (
@@ -40,6 +37,11 @@ const App = () => {
                 <Route path="/search/:category" element={<FilteredPage />} />
                 <Route path="/product/:id" element={<ProductPage />} />
                 <Route path="/product/" element={<ProductPage />} />
+                <Route
+                    path="/validate/:regCode"
+                    element={<ValidateUserPage />}
+                />
+                <Route path="*" element={<h1>404</h1>} />
             </Routes>
         </>
     );

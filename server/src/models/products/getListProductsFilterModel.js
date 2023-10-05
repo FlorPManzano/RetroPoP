@@ -22,7 +22,7 @@ const getListProductsFilterModel = async (params) => {
         connection = await getDb();
 
         const products = await connection.query(
-            `SELECT P.id, P.productName, P.description, P.category, P.state, P.place, P.price, P.image, P.createdAt, U.id AS userId, U.username, U.avatar
+            `SELECT P.id, P.productName, P.description, P.category, P.state, P.place, P.price, P.image, P.createdAt, P.isSelled, U.id AS userId, U.username, U.avatar
             FROM products P
             JOIN users U ON P.userId = U.id
             WHERE P.productName LIKE ? AND P.category LIKE ? AND P.place LIKE ? AND P.price >= ? AND P.price <= ? AND P.state LIKE ?`,

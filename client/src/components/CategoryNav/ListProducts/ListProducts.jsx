@@ -1,8 +1,8 @@
 import './ListProducts.css';
 import { useState, useEffect } from 'react';
 
-import { getAllProductsService } from '../../services/fetchData.js';
-import ProductCard from '../ProductCard/ProductCard';
+import { getAllProductsService } from '../../../services/fetchData.js';
+import ProductCard from '../../ProductCard/ProductCard';
 
 import { useNavigate } from 'react-router-dom';
 
@@ -37,20 +37,22 @@ export default function ListProducts() {
             <div className="list-products__container">
                 <ul className="list-products__list">
                     {products &&
-                        products.map((product) => (
-                            <li
-                                key={product.id}
-                                onClick={(event) =>
-                                    handleCardClick(event, product.id)
-                                }
-                            >
-                                <ProductCard
-                                    productName={product.productName}
-                                    price={product.price}
-                                    image={product.image}
-                                />
-                            </li>
-                        ))}
+                        products
+                            .filter((product) => product.isSelled === 0)
+                            .map((product) => (
+                                <li
+                                    key={product.id}
+                                    onClick={(event) =>
+                                        handleCardClick(event, product.id)
+                                    }
+                                >
+                                    <ProductCard
+                                        productName={product.productName}
+                                        price={product.price}
+                                        image={product.image}
+                                    />
+                                </li>
+                            ))}
                 </ul>
             </div>
         </section>

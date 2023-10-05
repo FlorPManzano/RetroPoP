@@ -13,10 +13,10 @@
 .category-nav__bundle {
     display: grid;
     place-items: center;
-    justify-self: center;
+    justify-content: center;
     align-items: center;
     height: 102px;
-    width: 50%;
+    width: 900px;
     /* border: 1px solid #1f1f1f; */
     border-radius: 10px;
     background: rgb(242, 61, 160);
@@ -39,5 +39,5 @@
     border-radius: 10px;
     /* border: 1px solid #ebebeb;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); */
-    width: 99.6%;
+    width: 898px;
 }

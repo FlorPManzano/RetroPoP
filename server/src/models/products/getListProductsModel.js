@@ -7,7 +7,7 @@ const getListProductsModel = async () => {
         connection = await getDb();
 
         const products = await connection.query(
-            `SELECT P.id, P.productName, P.price, P.image FROM products P`
+            `SELECT P.id, P.productName, P.price, P.image, P.isSelled FROM products P`
         );
 
         return products[0];

@@ -1,4 +1,4 @@
-SPRINT I
+SPRINT II
 [x] Análisis funcional
 [x] Wireframe
 BACKEND

@@ -22,7 +22,7 @@ export default function sendActivateMail(username, email, registrationCode) {
                 Subject: 'Bienvenido a RetroPoP!',
                 TextPart:
                     'Dear passenger 1, welcome to Mailjet! May the delivery force be with you!',
-                HTMLPart: `<h3>Bienvenido a <a href="https://www.retropop.com/">RetroPop</a>!</h3><br />Hola ${username}, Activa tu cuenta a través del siguiente enlace http://localhost:3000/users/validate/${registrationCode}`,
+                HTMLPart: `<h3>Bienvenido a <a href="https://www.retropop.com/">RetroPop</a>!</h3><br />Hola ${username}, Activa tu cuenta a través del siguiente enlace http://localhost:5173/validate/${registrationCode}`,
             },
         ],
     });

@@ -30,7 +30,7 @@ router.get('/products/:id', getProductsUserController);
 
 router.get('/profile/', authUser, getProfileController);
 
-router.get('/validate/:regCode', activateUserController);
+router.post('/validate/:regCode', activateUserController);
 
 router.post('/delete', authUser, userExists, deleteUserController);
 

@@ -86,7 +86,7 @@ export default function LoginPage() {
                                 <label htmlFor="">Usuario</label>
                             </div>
                             <div className="input-group">
-                                <input type="text" />
+                                <input type="text" required />
                                 <label htmlFor="">Email</label>
                             </div>
                             <div className="input-group">

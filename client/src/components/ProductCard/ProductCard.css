@@ -24,8 +24,14 @@
     width: 218px;
     height: 318px;
     border-radius: 10px;
-    background-color: rgba(45, 29, 58, 1);
+    background-color: rgba(45, 29, 58, 0.555);
     box-sizing: border-box;
+    cursor: pointer;
+}
+
+.product-card-container:hover {
+    transform: scale(1.05);
+    transition: transform 0.5s ease;
 }
 
 .product-card__image-container {
@@ -80,7 +86,7 @@
     width: 50%;
     height: 40px;
     border-radius: 10px;
-    background-color: rgba(45, 29, 58, 1);
+    /* background-color: rgba(45, 29, 58, 1); */
     color: white;
     font-size: 20px;
     font-weight: 700;
