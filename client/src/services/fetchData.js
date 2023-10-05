@@ -27,9 +27,6 @@ const registerUserService = async ({ username, email, password }) => {
 
     const body = await res.json();
 
-    if (!res.ok) {
-        throw new Error(body.error);
-    }
     return body;
 };
 
@@ -70,8 +67,7 @@ const loginUserService = async ({ email, password }) => {
 };
 
 // Ver perfil privado de un usuario
-const getUserProfileService = async () => {
-    const token = getToken();
+const getUserProfileService = async (token) => {
     const res = await fetch(`${APIUrl}/users/profile`, {
         headers: {
             Authorization: token,

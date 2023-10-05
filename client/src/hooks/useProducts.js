@@ -23,5 +23,11 @@ export const useProducts = () => {
         fetchProducts();
     }, [setErrMsg]);
 
+    // Función que agrega un producto en el State.
+
+    // Función que edita un producto en el State.
+
+    // Función que agrega un like a un producto en el State.
+
     return { products, loading };
 };

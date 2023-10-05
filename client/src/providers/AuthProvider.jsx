@@ -1,43 +1,43 @@
-// import { useState } from 'react';
-// import authContext from '../contexts/authContext.js';
-// import { userLocalStorageKey } from '../config';
-// import proptypes from 'prop-types';
-// // import isEmpty from '../helpers/isEmpty';
+import { useState } from 'react';
+import authContext from '../contexts/AuthContext.js';
+import { userLocalStorageKey } from '../config';
+import proptypes from 'prop-types';
+// import isEmpty from '../helpers/isEmpty';
 
-// function AuthProvider({ children }) {
-//     const savedUser =
-//         JSON.parse(localStorage.getItem(userLocalStorageKey)) || {};
-//     const [userData, setUserData] = useState(savedUser);
+function AuthProvider({ children }) {
+    const savedUser =
+        JSON.parse(localStorage.getItem(userLocalStorageKey)) || {};
+    const [userData, setUserData] = useState(savedUser);
 
-//     const setUserHandler = (user = {}) => {
-//         // if (isEmpty(user)) return;
+    const setUserHandler = (user = {}) => {
+        // if (isEmpty(user)) return;
 
-//         localStorage.setItem(userLocalStorageKey, JSON.stringify(user));
-//         setUserData(user);
-//     };
+        localStorage.setItem(userLocalStorageKey, JSON.stringify(user));
+        setUserData(user);
+    };
 
-//     const logoutHandler = () => {
-//         localStorage.removeItem(userLocalStorageKey);
-//         setUserData(null);
-//     };
+    const logoutHandler = () => {
+        localStorage.removeItem(userLocalStorageKey);
+        setUserData(null);
+    };
 
-//     const authValues = {
-//         username: userData?.username ?? null,
-//         token: userData?.token ?? null,
-//         isAuthenticated: !!userData?.token,
-//         setUser: setUserHandler,
-//         logout: logoutHandler,
-//     };
+    const authValues = {
+        username: userData?.username ?? null,
+        token: userData?.token ?? null,
+        isAuthenticated: !!userData?.token,
+        setUser: setUserHandler,
+        logout: logoutHandler,
+    };
 
-//     return (
-//         <authContext.Provider value={authValues}>
-//             {children}
-//         </authContext.Provider>
-//     );
-// }
+    return (
+        <authContext.Provider value={authValues}>
+            {children}
+        </authContext.Provider>
+    );
+}
 
-// export default AuthProvider;
+export default AuthProvider;
 
-// AuthProvider.propTypes = {
-//     children: proptypes.node.isRequired,
-// };
+AuthProvider.propTypes = {
+    children: proptypes.node.isRequired,
+};

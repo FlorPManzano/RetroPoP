@@ -5,8 +5,11 @@ import {
 } from '../../services/fetchData.js';
 
 import { toast } from 'react-toastify';
+import useAuth from '../../hooks/useAuth';
 
 export default function LoginPage() {
+    const { authRegister } = useAuth();
+
     const toastError = (errMsg) => toast.error(errMsg);
     const toastSuccess = (msg) => toast.success(msg);
 
@@ -22,32 +25,15 @@ export default function LoginPage() {
         wrapper.classList.remove('animate-signUp');
     };
 
-    const registerSubmit = async (e) => {
+    const registerSubmit = (e) => {
         e.preventDefault();
-        try {
-            const data = {
-                username: e.target[0].value,
-                email: e.target[1].value,
-                password: e.target[2].value,
-            };
 
-            if (e.target[2].value !== e.target[3].value)
-                return toastError('Las contraseñas no coinciden');
-
-            const newUser = await registerUserService(
-                data.username,
-                data.email,
-                data.password
-            );
-            console.log(newUser);
-            newUser.status === 'error'
-                ? toastError(newUser.message)
-                : toastSuccess(newUser.message);
-        } catch (error) {
-            error.message === 'Failed to fetch'
-                ? toastError('Error de conexión')
-                : toastError(error.message);
-        }
+        authRegister({
+            username: e.target[0].value,
+            email: e.target[1].value,
+            password: e.target[2].value,
+            repeatedPass: e.target[3].value,
+        });
     };
 
     const LoginSubmit = async (e) => {
