@@ -13,6 +13,7 @@ import FilteredPage from './pages/FilteredPage/FilteredPage';
 import Navbar from './components/Navbar/Navbar';
 import ProductPage from './pages/ProductPage/ProductPage';
 import ValidateUserPage from './pages/ValidateUserPage/ValidateUserPage';
+import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 
 const App = () => {
     return (
@@ -41,7 +42,7 @@ const App = () => {
                     path="/validate/:regCode"
                     element={<ValidateUserPage />}
                 />
-                <Route path="*" element={<h1>404</h1>} />
+                <Route path="*" element={<NotFoundPage />} />
             </Routes>
         </>
     );

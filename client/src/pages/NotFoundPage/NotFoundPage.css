@@ -1,0 +1,58 @@
+.neonText-404,
+.neonText-pagnotfound {
+    color: #fff;
+    text-shadow:
+        0 0 7px #fff,
+        0 0 10px #fff,
+        0 0 21px #fff,
+        0 0 42px #f23da0,
+        0 0 82px #f23da0,
+        0 0 92px #f23da0,
+        0 0 102px #f23da0,
+        0 0 151px #f23da0;
+}
+
+.neonText-404 {
+    font-size: 5rem;
+    animation: flicker 1.5s infinite alternate;
+}
+
+@keyframes flicker {
+    0%,
+    18%,
+    22%,
+    25%,
+    53%,
+    57%,
+    100% {
+        text-shadow:
+            0 0 4px #fff,
+            0 0 11px #fff,
+            0 0 19px #fff,
+            0 0 40px #f23da0,
+            0 0 80px #f23da0,
+            0 0 90px #f23da0,
+            0 0 100px #f23da0,
+            0 0 150px #f23da0;
+    }
+
+    20%,
+    24%,
+    55% {
+        text-shadow: none;
+    }
+}
+
+.neonText-pagnotfound {
+    font-size: 2rem;
+}
+.container-notfoundpage {
+    margin-top: 20vh;
+}
+
+.neonText-404,
+.neonText-pagnotfound {
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 400;
+}
