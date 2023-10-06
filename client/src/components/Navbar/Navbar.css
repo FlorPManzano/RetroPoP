@@ -56,3 +56,39 @@
     border: 1px solid white;
     border-radius: 50%;
 }
+
+.dropdown-menu {
+    position: absolute;
+    top: 90px;
+    right: 50px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    padding: 10px;
+}
+
+.dropdown-menu p {
+    margin: 0;
+}
+
+.dropdown-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.dropdown-menu li {
+    cursor: pointer;
+    padding: 8px 0;
+    text-align: center;
+}
+
+/* Agrega estilos para el avatar */
+.user {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    cursor: pointer;
+}

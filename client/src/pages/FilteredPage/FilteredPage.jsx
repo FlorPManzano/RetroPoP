@@ -12,12 +12,11 @@ import { useParams } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 
 export default function FilteredPage() {
-    const [maxPrice, setMaxPrice] = useState(1000); // [1
-    const [price, setPrice] = useState(maxPrice);
+    const [maxPrice, setMaxPrice] = useState(); // [1
     const [products, setProducts] = useState([]);
     const [valuePrice, setValuePrice] = useState(maxPrice); //
-    const [params, setParams] = useState(''); //
-    const [loading, setLoading] = useState(false); //
+    // const [params, setParams] = useState(''); //
+    // const [loading, setLoading] = useState(false); //
 
     const navigate = useNavigate();
     const name = useLocation().search;
@@ -32,6 +31,7 @@ export default function FilteredPage() {
                 );
                 setMaxPrice(maxPrice);
                 setProducts(body.data);
+                setValuePrice(maxPrice);
             } catch (err) {
                 console.log(err.message);
             }
@@ -91,12 +91,11 @@ export default function FilteredPage() {
         ).textContent = `${maxPrice}`;
         document.querySelector('.select-state').value = '';
         document.querySelector('.search-location').value = '';
-        setPrice(maxPrice);
+        setValuePrice(maxPrice);
     };
 
     const handleChangeValuePrice = (e) => {
         setValuePrice(e.target.value);
-        setPrice(e.target.value);
     };
 
     return (
@@ -143,14 +142,14 @@ export default function FilteredPage() {
                                 <input
                                     type="range"
                                     min="0"
-                                    max={maxPrice && maxPrice}
+                                    max={maxPrice}
                                     step="1"
                                     value={valuePrice}
                                     className="range-price"
                                     onChange={handleChangeValuePrice}
                                 />
                                 <p className="range-price__text">
-                                    {maxPrice && price} €
+                                    {valuePrice} €
                                 </p>
                             </section>
                             <div className="container-aside__state">

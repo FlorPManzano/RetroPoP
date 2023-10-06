@@ -79,7 +79,13 @@ export default function LoginPage() {
                                 <label htmlFor="">Email</label>
                             </div>
                             <div className="input-group">
-                                <input type="password" required />
+                                <input type="password" required></input>
+                                <img
+                                    className="eye"
+                                    src="icons/eye-open.png"
+                                    alt="eye"
+                                    width="30"
+                                />
                                 <label htmlFor="">Contraseña</label>
                             </div>
                             <div className="input-group">

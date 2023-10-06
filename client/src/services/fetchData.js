@@ -76,11 +76,7 @@ const getUserProfileService = async (token) => {
 
     const body = await res.json();
 
-    if (!res.ok) {
-        throw new Error(body.error);
-    }
-
-    return body.data.data;
+    return body.user;
 };
 
 // Editar un perfil privado de un usuario

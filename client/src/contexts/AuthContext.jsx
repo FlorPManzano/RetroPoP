@@ -38,13 +38,14 @@ export const AuthProvider = ({ children }) => {
                 setLoading(true);
 
                 const body = await getUserProfileService(authToken);
+                console.log(body);
 
                 if (body.status === 'error') {
                     // Manejamos los errores con toast.
                 }
 
                 // Establecemos el valor del usuario.
-                setAuthUser(body.user);
+                setAuthUser(body);
             } catch (err) {
                 // Manejamos los errores con toast.
             } finally {
@@ -102,7 +103,7 @@ export const AuthProvider = ({ children }) => {
             localStorage.setItem(userLocalStorageKey, body.data.token);
 
             // Almacenamos el token en el State.
-            setAuthToken(body.token);
+            setAuthToken(body.data.token);
             navigate('/');
         } catch (err) {
             if (err.message === 'Failed to fetch')

@@ -110,6 +110,8 @@ h2 {
 }
 
 .input-group {
+    display: flex;
+    flex-direction: row;
     position: relative;
     width: 320px;
     margin: 30px 0;
@@ -144,6 +146,11 @@ h2 {
     top: 0;
     font-size: 12px;
     background: #e0e0e0;
+}
+
+.eye {
+    position: relative;
+    right: 30px;
 }
 
 .forgot-pass {

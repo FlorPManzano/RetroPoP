@@ -1,11 +1,21 @@
 import './Navbar.css';
 import { useNavigate } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
+import { NavLink } from 'react-router-dom';
+import { APIUrl } from '../../config';
 import { useState } from 'react';
 
 const Navbar = () => {
-    const { authToken } = useAuth();
+    const { authToken, authUser, authLogout } = useAuth();
     console.log(authToken);
+    console.log(authUser);
+
+    // Aquí vamos a hacer pruebas
+
+    const [showMenu, setShowMenu] = useState(false);
+    const toggleMenu = () => setShowMenu(!showMenu);
+
+    // Aquí terminan las pruebas
 
     const navigate = useNavigate();
     const handleSubmitSearch = (e) => {
@@ -42,22 +52,50 @@ const Navbar = () => {
                 />
 
                 {authToken && (
-                    <button
-                        className="upload-product"
-                        style={{ cursor: 'pointer' }}
-                    >
-                        <img src="/icons/add-product.png" alt="" width="50" />{' '}
-                        Subir producto
-                    </button>
+                    <NavLink to="/upload">
+                        <button
+                            className="upload-product"
+                            style={{ cursor: 'pointer' }}
+                        >
+                            <img
+                                src="/icons/add-product.png"
+                                alt=""
+                                width="50"
+                            />{' '}
+                            Subir producto
+                        </button>
+                    </NavLink>
                 )}
 
-                <img
-                    src="/icons/login.png"
-                    className="user"
-                    alt=""
-                    onClick={handleClickLogin}
-                    style={{ cursor: 'pointer' }}
-                />
+                <div>
+                    {!authUser ? (
+                        <img
+                            className="user"
+                            src="/icons/login.png"
+                            onClick={handleClickLogin}
+                        ></img>
+                    ) : (
+                        <div>
+                            <img
+                                onClick={toggleMenu}
+                                className="user"
+                                src={`${APIUrl}/avatars/${authUser.avatar}`}
+                                alt="Avatar"
+                            />
+
+                            {showMenu && (
+                                <div className="dropdown-menu">
+                                    <ul>
+                                        <li>Ver perfil</li>
+                                        <li onClick={authLogout}>
+                                            Cerrar sesión
+                                        </li>
+                                    </ul>
+                                </div>
+                            )}
+                        </div>
+                    )}
+                </div>
             </nav>
         </>
     );
