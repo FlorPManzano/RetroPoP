@@ -63,7 +63,7 @@ const ProductCreateForm = () => {
             navigate('/');
         } catch (err) {
             // Captura y manejo de errores mediante el hook useError.
-            setErrMsg(err.message);
+            //   setErrMsg(err.message);
         } finally {
             setLoading(false);
         }
