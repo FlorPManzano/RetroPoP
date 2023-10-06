@@ -5,7 +5,7 @@ import { getProductByIdService } from '../../services/fetchData';
 import ProductBigCard from '../../components/ProductBigCard/ProductBigCard';
 
 export default function ProductPage() {
-    const [product, setProduct] = useState({});
+    const [product, setProduct] = useState(null);
 
     const { id } = useParams();
 
@@ -23,5 +23,5 @@ export default function ProductPage() {
         getProduct();
     }, [id]);
 
-    return <>{product && <ProductBigCard product={product} />}</>;
+    return product && <ProductBigCard product={product} />;
 }

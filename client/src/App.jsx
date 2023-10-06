@@ -14,6 +14,7 @@ import Navbar from './components/Navbar/Navbar';
 import ProductPage from './pages/ProductPage/ProductPage';
 import ValidateUserPage from './pages/ValidateUserPage/ValidateUserPage';
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
+import ProductCreateForm from './forms/ProductCreateForm/ProductCreateForm';
 
 const App = () => {
     return (
@@ -42,6 +43,7 @@ const App = () => {
                     path="/validate/:regCode"
                     element={<ValidateUserPage />}
                 />
+                <Route path="/upload/" element={<ProductCreateForm />} />
                 <Route path="*" element={<NotFoundPage />} />
             </Routes>
         </>

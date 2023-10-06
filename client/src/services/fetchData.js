@@ -58,9 +58,10 @@ const loginUserService = async (email, password) => {
     });
 
     const body = await res.json();
-    if (!res.ok) {
-        throw new Error(body.error);
-    }
+
+    // if (!res.ok) {
+    //     throw new Error(body.error);
+    // }
 
     return body;
 };

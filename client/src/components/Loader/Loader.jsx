@@ -5,7 +5,7 @@ export default function Loader() {
         <div className="container-loader">
             <img
                 className="loader"
-                src="public/logo-retropop.png"
+                src="/logo-retropop.png"
                 alt="loader"
                 width="200"
             />

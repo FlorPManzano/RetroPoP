@@ -1,6 +1,7 @@
 import './ProductBigCard.css';
 import { productPropTypes } from '../../utils/customPropTypes';
 import { APIUrl } from '../../config';
+import { NavLink } from 'react-router-dom';
 
 export default function ProductBigCard({ product }) {
     console.log('QUE OSTIAS LLEGA AQUI', product);
@@ -52,9 +53,15 @@ export default function ProductBigCard({ product }) {
                 </div>
                 <footer className="product-page__footer">
                     <div className="product-page__footer__state">
-                        <h3 className="h3-bigproduct">#{product.category}</h3>
-                        <h3 className="h3-bigproduct">{product.place}</h3>
-                        <h3 className="h3-bigproduct">{product.state}</h3>
+                        <NavLink to={`/search/?category=${product.category}`}>
+                            <h3 className="h3-footer">#{product.category}</h3>
+                        </NavLink>
+                        <NavLink to={`/search/?place=${product.place}`}>
+                            <h3 className="h3-footer">{product.place}</h3>
+                        </NavLink>
+                        <NavLink to={`/search/?state=${product.state}`}>
+                            <h3 className="h3-footer">{product.state}</h3>
+                        </NavLink>
                     </div>
                     <div className="product-page__footer__buttons">
                         <button className="product-page__footer__buttons__buy">

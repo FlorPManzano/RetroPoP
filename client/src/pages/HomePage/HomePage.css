@@ -9,7 +9,7 @@ body {
         rgba(49, 114, 118, 1) 50%,
         rgba(47, 28, 56, 1) 100%
     ); */
-    background-image: url('public/bg.jpg');
+    background-image: url('/bg.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;

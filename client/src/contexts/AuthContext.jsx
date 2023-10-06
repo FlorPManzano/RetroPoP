@@ -105,9 +105,8 @@ export const AuthProvider = ({ children }) => {
             setAuthToken(body.token);
             navigate('/');
         } catch (err) {
-            err.message === 'Failed to fetch'
-                ? toastError('Error de conexión')
-                : toastError(err.message);
+            if (err.message === 'Failed to fetch')
+                toastError('Error de conexión');
         } finally {
             setLoading(false);
         }
@@ -125,7 +124,14 @@ export const AuthProvider = ({ children }) => {
 
     return (
         <AuthContext.Provider
-            value={{ authUser, authRegister, authLogin, authLogout, loading }}
+            value={{
+                authUser,
+                authRegister,
+                authLogin,
+                authLogout,
+                loading,
+                authToken,
+            }}
         >
             {children}
         </AuthContext.Provider>

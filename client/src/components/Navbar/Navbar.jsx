@@ -1,7 +1,12 @@
 import './Navbar.css';
 import { useNavigate } from 'react-router-dom';
+import useAuth from '../../hooks/useAuth';
+import { useState } from 'react';
 
 const Navbar = () => {
+    const { authToken } = useAuth();
+    console.log(authToken);
+
     const navigate = useNavigate();
     const handleSubmitSearch = (e) => {
         if (e.key === 'Enter') {
@@ -23,7 +28,7 @@ const Navbar = () => {
         <>
             <nav className="navbar">
                 <img
-                    src="public/logo-retropop.png"
+                    src="/logo-retropop.png"
                     className="logo"
                     alt=""
                     onClick={handleClickHome}
@@ -36,16 +41,18 @@ const Navbar = () => {
                     onKeyDown={handleSubmitSearch}
                 />
 
-                <button
-                    className="upload-product"
-                    style={{ cursor: 'pointer' }}
-                >
-                    <img src="public/icons/add-product.png" alt="" width="50" />{' '}
-                    Subir producto
-                </button>
+                {authToken && (
+                    <button
+                        className="upload-product"
+                        style={{ cursor: 'pointer' }}
+                    >
+                        <img src="/icons/add-product.png" alt="" width="50" />{' '}
+                        Subir producto
+                    </button>
+                )}
 
                 <img
-                    src="public/icons/login.png"
+                    src="/icons/login.png"
                     className="user"
                     alt=""
                     onClick={handleClickLogin}
