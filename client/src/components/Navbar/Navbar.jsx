@@ -29,9 +29,16 @@ const Navbar = () => {
         navigate('/');
     };
 
-    const handleClickLogin = () => {
+    const handleClickLogin = (e) => {
+        e.stopPropagation();
+        toggleMenu();
         document.querySelector('.search-form').value = '';
         navigate('/login');
+    };
+
+    const handleClickAvatar = (e) => {
+        e.stopPropagation();
+        toggleMenu();
     };
 
     return (
@@ -77,14 +84,17 @@ const Navbar = () => {
                     ) : (
                         <div>
                             <img
-                                onClick={toggleMenu}
+                                onClick={handleClickAvatar}
                                 className="user"
                                 src={`${APIUrl}/avatars/${authUser.avatar}`}
                                 alt="Avatar"
                             />
 
                             {showMenu && (
-                                <div className="dropdown-menu">
+                                <div
+                                    className="dropdown-menu"
+                                    onClick={(e) => e.stopPropagation()}
+                                >
                                     <ul>
                                         <li>Ver perfil</li>
                                         <li onClick={authLogout}>
