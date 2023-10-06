@@ -11,9 +11,12 @@ import { addProductService } from '../../services/fetchData.js';
 import { handleAddFilePreview } from '../../utils/handleAddFilePreview.js';
 //REmove para terminar si da tiempo (ver fichero en utils)
 import { handleRemoveFilePreview } from '../../utils/handleAddRemove.js';
+import useAuth from '../../hooks/useAuth.js';
+import { toast } from 'react-toastify';
 
 // Definición del componente ProductCreateForm.
 const ProductCreateForm = () => {
+    const { authToken } = useAuth();
     const navigate = useNavigate();
     const fileInputRef = useRef(null);
 
@@ -34,7 +37,9 @@ const ProductCreateForm = () => {
 
     // Función que crea un producto
     // Esta función se encarga de crear un producto cuando se envía el formulario.
-    const handleProductCreate = async () => {
+    const handleProductCreate = async (e) => {
+        e.preventDefault();
+        console.log('entra en handleProductCreate', e.target);
         try {
             setLoading(true);
 
@@ -42,7 +47,7 @@ const ProductCreateForm = () => {
             // con append agregamos un nuevo campo y su valor al objeto fromData
             const formData = new FormData();
 
-            formData.append('name', productName);
+            formData.append('productName', productName);
             formData.append('description', description);
             formData.append('category', category);
             formData.append('state', state);
@@ -53,7 +58,7 @@ const ProductCreateForm = () => {
             if (file) formData.append('image', file);
 
             // Creamos un producto en la base de datos medianto un servicio.
-            const body = await addProductService(formData);
+            const body = await addProductService(authToken, formData);
 
             //si el servicio devuelve un estado de error se lanza una excepción
             if (body.status === 'error') {
@@ -62,7 +67,18 @@ const ProductCreateForm = () => {
 
             // En caso de exito redirigimos a la página principal.
             navigate('/');
+            toast.success('Producto creado correctamente');
         } catch (err) {
+            if (err.message === 'El valor de "price" debe ser un número') {
+                toast.error('Tienes que introducir un precio');
+            }
+            if (err.message === 'El campo "place" no debe estar vacío') {
+                toast.error('Debes introducir una localidad');
+            }
+            if (err.message === 'El campo "image" es requerido') {
+                toast.error('Tienes que adjuntar una imagen del producto');
+            }
+            // toast.error(err.message);
             // Captura y manejo de errores mediante el hook useError.
             //   setErrMsg(err.message);
         } finally {
@@ -71,13 +87,7 @@ const ProductCreateForm = () => {
     };
     // Renderizado del formulario y elementos de la interfaz del usuario
     return (
-        <form
-            className="product-create-form"
-            onSubmit={(e) => {
-                e.preventDefault();
-                handleProductCreate();
-            }}
-        >
+        <form className="product-create-form" onSubmit={handleProductCreate}>
             <textarea
                 value={productName}
                 onChange={(e) => setProductName(e.target.value)}

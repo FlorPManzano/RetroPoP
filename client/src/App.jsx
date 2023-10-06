@@ -15,6 +15,7 @@ import ProductPage from './pages/ProductPage/ProductPage';
 import ValidateUserPage from './pages/ValidateUserPage/ValidateUserPage';
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 import ProductCreateForm from './forms/ProductCreateForm/ProductCreateForm';
+import PrivateRoutes from './components/PrivateRoutes';
 
 const App = () => {
     return (
@@ -43,8 +44,14 @@ const App = () => {
                     path="/validate/:regCode"
                     element={<ValidateUserPage />}
                 />
-                <Route path="/upload/" element={<ProductCreateForm />} />
+
                 <Route path="*" element={<NotFoundPage />} />
+
+                <Route element={<PrivateRoutes />}>
+                    <Route path="/upload/" element={<ProductCreateForm />} />
+
+                    {/* <Route path="/profile" element={<Profile />} /> */}
+                </Route>
             </Routes>
         </>
     );

@@ -2,8 +2,11 @@ import './ProductBigCard.css';
 import { productPropTypes } from '../../utils/customPropTypes';
 import { APIUrl } from '../../config';
 import { NavLink } from 'react-router-dom';
+import useAuth from '../../hooks/useAuth';
 
 export default function ProductBigCard({ product }) {
+    const { authToken } = useAuth();
+
     console.log('QUE OSTIAS LLEGA AQUI', product);
     return (
         <div className="product-big-card">

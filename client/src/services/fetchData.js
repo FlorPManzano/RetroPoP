@@ -133,6 +133,7 @@ const getProductByIdService = async (productId) => {
 };
 
 const addProductService = async (token, formData) => {
+    console.log('ey', token, formData);
     const res = await fetch(`${APIUrl}/products`, {
         method: 'post',
         headers: {
@@ -142,10 +143,6 @@ const addProductService = async (token, formData) => {
     });
 
     const body = await res.json();
-
-    if (!res.ok) {
-        throw new Error(body.error);
-    }
 
     return body;
 };

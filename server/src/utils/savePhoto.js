@@ -20,6 +20,9 @@ const savePhoto = async (img, name, folder) => {
     try {
         // Creamos la ruta absoluta al directorio de subida de archivos.
         const uploadsPath = path.join(dirname, '..', UPLOADS_DIR, folder);
+        console.log('uploadsPath', uploadsPath);
+        console.log('dirname', dirname);
+        console.log('UPLOADS_DIR', UPLOADS_DIR);
 
         try {
             // El método "access" lanza un error si la ruta especificada no existe.
