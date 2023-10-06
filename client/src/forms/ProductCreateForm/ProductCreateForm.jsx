@@ -22,7 +22,7 @@ const ProductCreateForm = () => {
 
     // Utilización de useState para definir varios estados del componente
 
-    //const productName
+    const [productName, setProductName] = useState('');
     const [description, setDescription] = useState(''); // almacena el contenido
     const [category, setCategory] = useState('');
     const [state, setState] = useState('');
@@ -42,6 +42,7 @@ const ProductCreateForm = () => {
             // con append agregamos un nuevo campo y su valor al objeto fromData
             const formData = new FormData();
 
+            formData.append('name', productName);
             formData.append('description', description);
             formData.append('category', category);
             formData.append('state', state);
@@ -78,45 +79,81 @@ const ProductCreateForm = () => {
             }}
         >
             <textarea
-                value={category}
-                onChange={(e) => setCategory(e.target.value)}
+                value={productName}
+                onChange={(e) => setProductName(e.target.value)}
                 maxLength="280"
                 autoFocus
                 required
-                placeholder="Category"
+                placeholder="Nombre del Producto"
             />
 
+            <div className="select-container">
+                <label htmlFor="category-select">Categoría:</label>
+                <select
+                    id="category-select"
+                    value={category}
+                    onChange={(e) => setCategory(e.target.value)}
+                    required
+                >
+                    <option value="" defaultValue>
+                        Selecciona una categoría
+                    </option>
+                    <option value="Audio">Audio</option>
+                    <option value="Cámaras de fotos">Cámaras de fotos</option>
+                    <option value="Consolas">Consolas</option>
+                    <option value="Juguetes">Juguetes</option>
+                    <option value="Máquinas de escribir">
+                        Máquinas de escribir
+                    </option>
+                    <option value="Ordenadores">Ordenadores</option>
+                    <option value="Relojes">Relojes</option>
+                    <option value="Teléfonos">Teléfonos</option>
+                    <option value="Televisores">Televisores</option>
+                    <option value="Video">Video</option>
+                    <option value="Otros">Otros</option>
+                </select>
+            </div>
             <textarea
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
                 maxLength="280"
                 autoFocus
                 required
-                placeholder="Description"
+                placeholder="Descripción"
             />
-
-            <input
-                type="text"
-                value={state}
-                onChange={(e) => setState(e.target.value)}
-                placeholder="State"
-            />
-
+            <div className="select-container">
+                <label htmlFor="state-select">Estado:</label>
+                <select
+                    id="state-select"
+                    value={state}
+                    onChange={(e) => setState(e.target.value)}
+                    required
+                >
+                    <option value="" defaultValue>
+                        Selecciona estado
+                    </option>
+                    <option value="Nuevo">Nuevo</option>
+                    <option value="Como nuevo">Como nuevo</option>
+                    <option value="En buen estado">En buen estado</option>
+                    <option value="En condiciones aceptables">
+                        En condiciones aceptables
+                    </option>
+                    <option value="No funciona">No funciona</option>
+                </select>
+            </div>
             <input
                 type="text"
                 value={place}
                 onChange={(e) => setPlace(e.target.value)}
-                placeholder="Place"
+                placeholder="Localidad"
             />
-
             <input
                 type="number"
                 value={price}
                 onChange={(e) => setPrice(e.target.value)}
                 min="0"
-                placeholder="Price"
+                placeholder="Precio"
             />
-
             <div className="img-prev-container">
                 <button disabled={loading}>Enviar</button>
 
