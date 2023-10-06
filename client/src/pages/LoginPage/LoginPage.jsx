@@ -1,17 +1,17 @@
 import './LoginPage.css';
-import {
-    loginUserService,
-    registerUserService,
-} from '../../services/fetchData.js';
+// import {
+//     loginUserService,
+//     registerUserService,
+// } from '../../services/fetchData.js';
 
-import { toast } from 'react-toastify';
-import useAuth from '../../hooks/useAuth';
+// import { toast } from 'react-toastify';
+import useAuth from '../../hooks/useAuth.js';
 
 export default function LoginPage() {
-    const { authRegister } = useAuth();
+    const { authRegister, authLogin } = useAuth();
 
-    const toastError = (errMsg) => toast.error(errMsg);
-    const toastSuccess = (msg) => toast.success(msg);
+    // const toastError = (errMsg) => toast.error(errMsg);
+    // const toastSuccess = (msg) => toast.success(msg);
 
     const signinClick = () => {
         const wrapper = document.querySelector('.wrapper');
@@ -38,30 +38,33 @@ export default function LoginPage() {
 
     const LoginSubmit = async (e) => {
         e.preventDefault();
-        try {
-            const data = {
-                email: e.target[0].value,
-                password: e.target[1].value,
-            };
+        // try {
+        authLogin({
+            email: e.target[0].value,
+            password: e.target[1].value,
+        });
+        // const data = {
+        //     email: e.target[0].value,
+        //     password: e.target[1].value,
+        // };
 
-            const user = await loginUserService(data.email, data.password);
-            if (user.status === 'ok') {
-                localStorage.setItem(user.data.username, user.data.token);
-            }
-            toast.success(`Bienvenido ${user.data.username}`);
-            user.status === 'error'
-                ? toastError(user.message)
-                : toastSuccess(user.message);
-        } catch (error) {
-            error.message === 'Failed to fetch'
-                ? toastError('Error de conexión')
-                : toastError(error.message);
-        }
+        //     const user = await loginUserService(data.email, data.password);
+        //     if (user.status === 'ok') {
+        //         localStorage.setItem(user.data.username, user.data.token);
+        //     }
+        //     toast.success(`Bienvenido ${user.data.username}`);
+        //     user.status === 'error'
+        //         ? toastError(user.message)
+        //         : toastSuccess(user.message);
+        // } catch (error) {
+        //     error.message === 'Failed to fetch'
+        //         ? toastError('Error de conexión')
+        //         : toastError(error.message);
+        // }
     };
 
     return (
         <>
-            {/* <img src="public/iconRetroPop.png" className="logo-grande" alt="" /> */}
             <div className="container-login">
                 <div className="wrapper">
                     <div className="form-wrapper sign-up">

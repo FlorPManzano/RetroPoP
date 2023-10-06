@@ -1,5 +1,4 @@
 import { APIUrl } from '../config';
-import { getToken } from '../utils/getToken.js';
 
 // export default async function fetchData(route, method, body) {
 //     const res = await fetch(`${APIUrl}/${route}`, {
@@ -16,7 +15,7 @@ import { getToken } from '../utils/getToken.js';
 // }
 
 // Registro del usuario
-const registerUserService = async ({ username, email, password }) => {
+const registerUserService = async (username, email, password) => {
     const res = await fetch(`${APIUrl}/users`, {
         method: 'POST',
         headers: {
@@ -49,7 +48,7 @@ const validateUserService = async (params) => {
 };
 
 // Inicio de sesión
-const loginUserService = async ({ email, password }) => {
+const loginUserService = async (email, password) => {
     const res = await fetch(`${APIUrl}/users/login`, {
         method: 'POST',
         headers: {
@@ -73,13 +72,14 @@ const getUserProfileService = async (token) => {
             Authorization: token,
         },
     });
+
     const body = await res.json();
 
     if (!res.ok) {
         throw new Error(body.error);
     }
 
-    return body;
+    return body.data.data;
 };
 
 // Editar un perfil privado de un usuario
@@ -135,9 +135,7 @@ const getProductByIdService = async (productId) => {
     return body;
 };
 
-const addProductService = async (formData) => {
-    const token = getToken();
-
+const addProductService = async (token, formData) => {
     const res = await fetch(`${APIUrl}/products`, {
         method: 'post',
         headers: {

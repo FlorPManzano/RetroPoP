@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { useError } from '../../hooks/useError';
 
 // Importamos los servicios para crear productos
-import { addProductService } from '../../services/productService';
+import { addProductService } from '../services/fetchData';
 
 // importamos funciones utilitarias que permite previsualizar y eliminar una imagen.
 import { handleAddFilePreview } from '../../utils/handleAddFilePreview';

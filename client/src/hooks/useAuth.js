@@ -2,7 +2,7 @@
 import { useContext } from 'react';
 
 // Importamos el contexto.
-import { AuthContext } from '../contexts/AuthContext';
+import { AuthContext } from '../contexts/AuthContext.jsx';
 
 const useAuth = () => {
     return useContext(AuthContext);

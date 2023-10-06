@@ -13,13 +13,16 @@ import {
     getUserProfileService,
     loginUserService,
     registerUserService,
-} from '../services/fetchData';
+} from '../services/fetchData.js';
+import { toast } from 'react-toastify';
 
 // Creamos un contexto.
 export const AuthContext = createContext(null);
 
 // Creamos el componente provider del contexto.
 export const AuthProvider = ({ children }) => {
+    const toastError = (errMsg) => toast.error(errMsg);
+    const toastSuccess = (msg) => toast.success(msg);
     const navigate = useNavigate();
 
     const [authToken, setAuthToken] = useState(
@@ -60,24 +63,25 @@ export const AuthProvider = ({ children }) => {
         password,
         repeatedPass,
     }) => {
+        console.log('ey', username, email, password, repeatedPass);
         try {
             setLoading(true);
 
             // Manejar el error de las contraseñas no coinciden.
+            if (password !== repeatedPass)
+                return toastError('Las contraseñas no coinciden');
 
-            const body = await registerUserService({
-                username,
-                email,
-                password,
-            });
+            const body = await registerUserService(username, email, password);
 
-            if (body.status === 'error') {
-                // Manejamos los errores con toast.
-            }
+            body.status === 'error'
+                ? toastError(body.message)
+                : toastSuccess(body.message);
 
             navigate('/login');
         } catch (err) {
-            // Manejamos los errores con toast.
+            err.message === 'Failed to fetch'
+                ? toastError('Error de conexión')
+                : toastError(err.message);
         } finally {
             setLoading(false);
         }
@@ -88,22 +92,22 @@ export const AuthProvider = ({ children }) => {
         try {
             setLoading(true);
 
-            const body = await loginUserService({
-                email,
-                password,
-            });
+            const body = await loginUserService(email, password);
 
-            if (body.status === 'error') {
-                // Manejamos los errores con toast.
-            }
+            body.status === 'error'
+                ? toastError(body.message)
+                : toastSuccess(body.message);
 
             // Almacenamos el token en el localStorage.
-            localStorage.setItem(userLocalStorageKey, body.token);
+            localStorage.setItem(userLocalStorageKey, body.data.token);
 
             // Almacenamos el token en el State.
             setAuthToken(body.token);
+            navigate('/');
         } catch (err) {
-            // Manejamos los errores con toast.
+            err.message === 'Failed to fetch'
+                ? toastError('Error de conexión')
+                : toastError(err.message);
         } finally {
             setLoading(false);
         }
@@ -121,7 +125,7 @@ export const AuthProvider = ({ children }) => {
 
     return (
         <AuthContext.Provider
-            value={(authUser, authRegister, authLogin, authLogout)}
+            value={{ authUser, authRegister, authLogin, authLogout, loading }}
         >
             {children}
         </AuthContext.Provider>
