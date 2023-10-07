@@ -63,8 +63,9 @@
     align-items: center;
     width: 60%;
     height: 200px;
-    border: 1px solid rgb(255, 255, 255);
+
     border-radius: 10px;
+    overflow: hidden;
     /* background-image: url('/icons/add-product.png');
     background-repeat: no-repeat;
     background-position: center; */
@@ -132,9 +133,9 @@ input[type='number'] {
 }
 
 .img-product {
-    width: 300px;
-    height: 150px;
-    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
 }
 
 input[type='file'] {
