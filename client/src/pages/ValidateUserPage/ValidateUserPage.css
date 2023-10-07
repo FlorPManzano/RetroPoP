@@ -1,0 +1,24 @@
+.container-main {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.container-main__content {
+    margin: 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    height: 40%;
+    margin: 0;
+    padding: 0;
+}
+
+.redirige-h3 {
+    color: white;
+}

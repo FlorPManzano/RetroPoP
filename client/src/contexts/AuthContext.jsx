@@ -132,6 +132,7 @@ export const AuthProvider = ({ children }) => {
                 authLogout,
                 loading,
                 authToken,
+                setAuthToken,
             }}
         >
             {children}

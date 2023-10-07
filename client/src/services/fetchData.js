@@ -40,10 +40,8 @@ const validateUserService = async (params) => {
     });
 
     const body = await res.json();
+    console.log('!!!!!', body);
 
-    if (!res.ok) {
-        throw new Error(body.error);
-    }
     return body;
 };
 
