@@ -13,6 +13,7 @@ import loginUserController from '../controllers/users/loginUserController.js';
 import editUserController from '../controllers/users/editUserController.js';
 import getProfileController from '../controllers/users/getProfileController.js';
 import deleteUserController from '../controllers/users/deleteUserController.js';
+import userBookingsController from '../controllers/users/userBookingsController.js';
 
 // Middlewares
 import authUser from '../middlewares/authUser.js';
@@ -23,7 +24,6 @@ import getProductsUserController from '../controllers/users/getProductsUserContr
 const router = express.Router();
 
 // Routes
-// POST /users/
 router.post('/', createUserController);
 
 router.get('/products/:id', getProductsUserController);
@@ -34,14 +34,12 @@ router.post('/validate/:regCode', activateUserController);
 
 router.post('/delete', authUser, userExists, deleteUserController);
 
-// POST /users/validate/e20b73bc-ab27-4edc-823b-807fba206bec
-// router.post('/validate/:regCode', userController.validateUser);
-
-// POST /users/login
 router.post('/login', loginUserController);
 
 // PUT /users/edit
 router.put('/edit', authUser, editUserController);
+
+router.get('/requests', authUser, userBookingsController);
 
 // PUT /users/recover-password
 // router.put('/recover-password', userController.sendRecoverPass);
