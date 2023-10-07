@@ -2,28 +2,16 @@ import './ProductCreateForm.css';
 
 // importamos los hooks necesarios
 import { useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { useProducts } from '../../hooks/useProducts';
-// import { useError } from '../../hooks/useError.js';
-
-// Importamos los servicios para crear productos
-import { addProductService } from '../../services/fetchData.js';
 
 // importamos funciones utilitarias que permite previsualizar y eliminar una imagen.
 import { handleAddFilePreview } from '../../utils/handleAddFilePreview.js';
 //REmove para terminar si da tiempo (ver fichero en utils)
 import { handleRemoveFilePreview } from '../../utils/handleAddRemove.js';
-import useAuth from '../../hooks/useAuth.js';
-import { toast } from 'react-toastify';
 
 // Definición del componente ProductCreateForm.
 const ProductCreateForm = () => {
-    const { authToken } = useAuth();
-    const navigate = useNavigate();
     const fileInputRef = useRef(null);
-
-    // Obtención de la función setErrMsg del hook useError.
-    // const { setErrMsg } = useError();
 
     // Importa la función addProduct del hook useProducts
     const { addProduct } = useProducts();
@@ -64,61 +52,24 @@ const ProductCreateForm = () => {
 
     const handleProductCreate = async (e) => {
         e.preventDefault();
-        console.log('entra en handleProductCreate', e.target);
-        try {
-            setLoading(true);
+        // try {
+        setLoading(true);
 
-            // Creamos un objeto FormData y establecemos sus propiedades. Adjuntamos los estados al formData
-            // con append agregamos un nuevo campo y su valor al objeto fromData
-            const formData = new FormData();
+        // Creamos un objeto FormData y establecemos sus propiedades. Adjuntamos los estados al formData
+        // con append agregamos un nuevo campo y su valor al objeto fromData
+        const formData = new FormData();
 
-            formData.append('productName', productName);
-            formData.append('description', description);
-            formData.append('category', category);
-            formData.append('state', state);
-            formData.append('place', place);
-            formData.append('price', price);
+        formData.append('productName', productName);
+        formData.append('description', description);
+        formData.append('category', category);
+        formData.append('state', state);
+        formData.append('place', place);
+        formData.append('price', price);
 
-            // Si existe una imagen la asignamos también.
-            if (file) formData.append('image', file);
+        // Si existe una imagen la asignamos también.
+        if (file) formData.append('image', file);
 
-            // Creamos un producto en la base de datos medianto un servicio.
-            const body = await addProductService(authToken, formData);
-
-            //si el servicio devuelve un estado de error se lanza una excepción
-            if (body.status === 'error') {
-                throw new Error(body.message);
-            }
-
-            addProduct({
-                name: productName,
-                description: description,
-                category: category,
-                state: state,
-                place: place,
-                price: price,
-                image: file,
-            });
-
-            // En caso de exito redirigimos a la página principal.
-            navigate('/');
-            toast.success('Producto creado correctamente');
-        } catch (err) {
-            if (err.message === 'El valor de "price" debe ser un número') {
-                toast.error('Tienes que introducir un precio');
-            }
-            if (err.message === 'El campo "place" no debe estar vacío') {
-                toast.error('Debes introducir una localidad');
-            }
-            if (err.message === 'El campo "image" es requerido') {
-                toast.error('Tienes que adjuntar una imagen del producto');
-            }
-            // toast.error(err.message);
-            // Captura y manejo de errores mediante el hook useError.
-            //   setErrMsg(err.message);
-        } finally {
-            setLoading(false);
-        }
+        addProduct(formData);
     };
     // Renderizado del formulario y elementos de la interfaz del usuario
     return (

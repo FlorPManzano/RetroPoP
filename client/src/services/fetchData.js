@@ -106,8 +106,9 @@ const addProductService = async (token, formData) => {
         },
         body: formData,
     });
-
+    console.log('!!!!!hazme caso', res);
     const body = await res.json();
+    console.log('!!!!!addProductService', body);
 
     return body;
 };

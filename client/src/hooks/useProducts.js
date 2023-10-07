@@ -1,11 +1,20 @@
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 
-import { getAllProductsService } from '../services/fetchData';
+import {
+    addProductService,
+    getAllProductsService,
+} from '../services/fetchData';
+import { useNavigate } from 'react-router-dom';
+import useAuth from './useAuth';
 
 export const useProducts = () => {
+    const toastError = (errMsg) => toast.error(errMsg);
+    const toastSuccess = (msg) => toast.success(msg);
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(false);
+    const navigate = useNavigate();
+    const { authToken } = useAuth();
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -24,13 +33,32 @@ export const useProducts = () => {
 
     // Función que agrega un producto en el State.
 
-    const addProduct = (newProduct) => {
-        // Clonamos la lista actual de productos para no modificarla directamente
-        const updatedProducts = [...products];
-        // Agregamos el nuevo producto al clon
-        updatedProducts.push(newProduct);
-        // Actualizamos el estado con la nueva lista de productos
-        setProducts(updatedProducts);
+    const addProduct = async (formData) => {
+        setLoading(true);
+        try {
+            const body = await addProductService(authToken, formData);
+            if (body.status === 'error') {
+                toastError(body.message);
+            }
+
+            navigate('/');
+            toastSuccess('Producto creado correctamente');
+        } catch (err) {
+            if (err.message === 'El valor de "price" debe ser un número') {
+                toast.error('Tienes que introducir un precio');
+            }
+            if (err.message === 'El campo "place" no debe estar vacío') {
+                toast.error('Debes introducir una localidad');
+            }
+            if (err.message === 'El campo "image" es requerido') {
+                toast.error('Tienes que adjuntar una imagen del producto');
+            }
+            err.message === 'Failed to fetch'
+                ? toastError('Error de conexión')
+                : toastError(err.message);
+        } finally {
+            setLoading(false);
+        }
     };
 
     // Función que edita un producto en el State.
