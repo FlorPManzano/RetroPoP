@@ -95,6 +95,9 @@ const Navbar = () => {
                                 >
                                     <ul>
                                         <li>Ver perfil</li>
+                                        <NavLink to="/profile/bookings">
+                                            <li>Solicitudes</li>
+                                        </NavLink>
                                         <li onClick={authLogout}>
                                             Cerrar sesión
                                         </li>

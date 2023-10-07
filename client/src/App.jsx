@@ -17,6 +17,7 @@ import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 import ProductCreateForm from './forms/ProductCreateForm/ProductCreateForm';
 import PrivateRoutes from './components/PrivateRoutes';
 import Loader from './components/Loader/Loader';
+import BookingsPage from './pages/BookingsPage/BookingsPage';
 
 const App = () => {
     return (
@@ -51,6 +52,10 @@ const App = () => {
 
                 <Route element={<PrivateRoutes />}>
                     <Route path="/upload/" element={<ProductCreateForm />} />
+                    <Route
+                        path="/profile/bookings"
+                        element={<BookingsPage />}
+                    />
 
                     {/* <Route path="/profile" element={<Profile />} /> */}
                 </Route>

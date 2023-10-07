@@ -3,6 +3,7 @@ import './ProductCreateForm.css';
 // importamos los hooks necesarios
 import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useProducts } from '../../hooks/useProducts';
 // import { useError } from '../../hooks/useError.js';
 
 // Importamos los servicios para crear productos
@@ -23,6 +24,9 @@ const ProductCreateForm = () => {
 
     // Obtención de la función setErrMsg del hook useError.
     // const { setErrMsg } = useError();
+
+    // Importa la función addProduct del hook useProducts
+    const { addProduct } = useProducts();
 
     // Utilización de useState para definir varios estados del componente
 
@@ -85,6 +89,16 @@ const ProductCreateForm = () => {
             if (body.status === 'error') {
                 throw new Error(body.message);
             }
+
+            addProduct({
+                name: productName,
+                description: description,
+                category: category,
+                state: state,
+                place: place,
+                price: price,
+                image: file,
+            });
 
             // En caso de exito redirigimos a la página principal.
             navigate('/');

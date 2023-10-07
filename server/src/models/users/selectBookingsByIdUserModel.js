@@ -9,7 +9,7 @@ const selectBookingsByIdUserModel = async (id) => {
         connection = await getDb();
 
         const [bookings] = await connection.query(
-            `SELECT P.image, P.productName, P.price, P.description, U.username AS userBuyerId, B.createdAt FROM bookings B
+            `SELECT P.image, P.productName, P.price, P.description, U.username AS userBuyer, B.createdAt FROM bookings B
             JOIN products P ON P.id = B.productId
             JOIN users X ON X.id = P.userId
             JOIN users U ON U.id = B.userBuyerId

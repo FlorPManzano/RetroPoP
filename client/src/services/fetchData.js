@@ -1,19 +1,5 @@
 import { APIUrl } from '../config';
 
-// export default async function fetchData(route, method, body) {
-//     const res = await fetch(`${APIUrl}/${route}`, {
-//         method: method,
-//         headers: {
-//             Accept: 'application/json',
-//             'Content-Type': 'application/json',
-//         },
-//         body: JSON.stringify(body),
-//     });
-//     const json = await res.json();
-
-//     return json;
-// }
-
 // Registro del usuario
 const registerUserService = async (username, email, password) => {
     const res = await fetch(`${APIUrl}/users`, {
@@ -57,10 +43,6 @@ const loginUserService = async (email, password) => {
 
     const body = await res.json();
 
-    // if (!res.ok) {
-    //     throw new Error(body.error);
-    // }
-
     return body;
 };
 
@@ -89,9 +71,6 @@ const editUserService = async (token, editUserForm) => {
 
     const body = await res.json();
 
-    if (!res.ok) {
-        throw new Error(body.error);
-    }
     return body;
 };
 
@@ -99,10 +78,6 @@ const getAllProductsService = async () => {
     const res = await fetch(`${APIUrl}/products`);
 
     const body = await res.json();
-
-    if (!res.ok) {
-        throw new Error(body.error);
-    }
 
     return body;
 };
@@ -112,20 +87,12 @@ const getSearchProductsService = async (params) => {
 
     const body = await res.json();
 
-    if (!res.ok) {
-        throw new Error(body.error);
-    }
-
     return body;
 };
 
 const getProductByIdService = async (productId) => {
     const res = await fetch(`${APIUrl}/products/${productId}`);
     const body = await res.json();
-
-    if (!res.ok) {
-        throw new Error(body.error);
-    }
 
     return body;
 };
@@ -145,6 +112,18 @@ const addProductService = async (token, formData) => {
     return body;
 };
 
+const getBookingsService = async (token) => {
+    const res = await fetch(`${APIUrl}/users/requests`, {
+        headers: {
+            Authorization: token,
+        },
+    });
+
+    const body = await res.json();
+
+    return body;
+};
+
 export {
     registerUserService,
     validateUserService,
@@ -155,4 +134,5 @@ export {
     getSearchProductsService,
     getProductByIdService,
     addProductService,
+    getBookingsService,
 };
