@@ -13,14 +13,20 @@ export default function BookingPage() {
             try {
                 const bookingsRequest = await getBookingsService(authToken);
 
-                setBookings(bookingsRequest.userBookings);
+                if (
+                    bookingsRequest.userBookings !==
+                    'El usuario no tiene ninguna reserva activa'
+                )
+                    setBookings(bookingsRequest.userBookings);
                 console.log(bookingsRequest.userBookings);
+                console.log('fff', bookings);
             } catch (error) {
                 console.log(error.message);
             }
         };
         getBookings();
     }, []);
+
     return (
         <>
             <h2>Solicitudes de Reserva</h2>
@@ -32,6 +38,9 @@ export default function BookingPage() {
                         </li>
                     ))}
                 </ul>
+            )}
+            {!bookings && (
+                <p className="booking-no-results">No tienes reservas activas</p>
             )}
         </>
     );

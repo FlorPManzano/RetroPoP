@@ -1,12 +1,11 @@
 import { useEffect, useState } from 'react';
-import { useError } from './useError';
+import { toast } from 'react-toastify';
 
 import { getAllProductsService } from '../services/fetchData';
 
 export const useProducts = () => {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(false);
-    const { setErrMsg } = useError();
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -15,13 +14,13 @@ export const useProducts = () => {
                 const body = await getAllProductsService();
                 setProducts(body.data.products);
             } catch (err) {
-                setErrMsg(err.message);
+                toast.error(err.message);
             } finally {
                 setLoading(false);
             }
         };
         fetchProducts();
-    }, [setErrMsg]);
+    }, []);
 
     // Función que agrega un producto en el State.
 
