@@ -25,9 +25,18 @@ export const useProducts = () => {
 
     // Función que agrega un producto en el State.
 
+    const addProduct = (newProduct) => {
+        // Clonamos la lista actual de productos para no modificarla directamente
+        const updatedProducts = [...products];
+        // Agregamos el nuevo producto al clon
+        updatedProducts.push(newProduct);
+        // Actualizamos el estado con la nueva lista de productos
+        setProducts(updatedProducts);
+    };
+
     // Función que edita un producto en el State.
 
     // Función que agrega un like a un producto en el State.
 
-    return { products, loading };
+    return { products, loading, addProduct };
 };
