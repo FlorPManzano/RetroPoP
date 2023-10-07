@@ -1,5 +1,6 @@
-// importamos los hooks necesarios
+import './ProductCreateForm.css';
 
+// importamos los hooks necesarios
 import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 // import { useError } from '../../hooks/useError.js';
@@ -25,6 +26,7 @@ const ProductCreateForm = () => {
 
     // Utilización de useState para definir varios estados del componente
 
+    const [img, setImg] = useState(null); // almacena la imagen
     const [productName, setProductName] = useState('');
     const [description, setDescription] = useState(''); // almacena el contenido
     const [category, setCategory] = useState('');
@@ -37,6 +39,25 @@ const ProductCreateForm = () => {
 
     // Función que crea un producto
     // Esta función se encarga de crear un producto cuando se envía el formulario.
+
+    const onChangeImg = (e) => {
+        setImg(e.target.value);
+        handleAddFilePreview(e, setFile, setPreviewUrl);
+    };
+
+    const handleClearFields = (e) => {
+        e.preventDefault();
+        setProductName('');
+        setDescription('');
+        setCategory('');
+        setState('');
+        setPlace('');
+        setPrice('');
+        setFile(null);
+        setPreviewUrl('');
+        setImg(null);
+    };
+
     const handleProductCreate = async (e) => {
         e.preventDefault();
         console.log('entra en handleProductCreate', e.target);
@@ -87,116 +108,163 @@ const ProductCreateForm = () => {
     };
     // Renderizado del formulario y elementos de la interfaz del usuario
     return (
-        <form className="product-create-form" onSubmit={handleProductCreate}>
-            <textarea
-                value={productName}
-                onChange={(e) => setProductName(e.target.value)}
-                maxLength="280"
-                autoFocus
-                required
-                placeholder="Nombre del Producto"
-            />
-
-            <div className="select-container">
-                <label htmlFor="category-select">Categoría:</label>
-                <select
-                    id="category-select"
-                    value={category}
-                    onChange={(e) => setCategory(e.target.value)}
-                    required
-                >
-                    <option value="" defaultValue>
-                        Selecciona una categoría
-                    </option>
-                    <option value="Audio">Audio</option>
-                    <option value="Cámaras de fotos">Cámaras de fotos</option>
-                    <option value="Consolas">Consolas</option>
-                    <option value="Juguetes">Juguetes</option>
-                    <option value="Máquinas de escribir">
-                        Máquinas de escribir
-                    </option>
-                    <option value="Ordenadores">Ordenadores</option>
-                    <option value="Relojes">Relojes</option>
-                    <option value="Teléfonos">Teléfonos</option>
-                    <option value="Televisores">Televisores</option>
-                    <option value="Video">Video</option>
-                    <option value="Otros">Otros</option>
-                </select>
-            </div>
-            <textarea
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-                maxLength="280"
-                autoFocus
-                required
-                placeholder="Descripción"
-            />
-            <div className="select-container">
-                <label htmlFor="state-select">Estado:</label>
-                <select
-                    id="state-select"
-                    value={state}
-                    onChange={(e) => setState(e.target.value)}
-                    required
-                >
-                    <option value="" defaultValue>
-                        Selecciona estado
-                    </option>
-                    <option value="Nuevo">Nuevo</option>
-                    <option value="Como nuevo">Como nuevo</option>
-                    <option value="En buen estado">En buen estado</option>
-                    <option value="En condiciones aceptables">
-                        En condiciones aceptables
-                    </option>
-                    <option value="No funciona">No funciona</option>
-                </select>
-            </div>
-            <input
-                type="text"
-                value={place}
-                onChange={(e) => setPlace(e.target.value)}
-                placeholder="Localidad"
-            />
-            <input
-                type="number"
-                value={price}
-                onChange={(e) => setPrice(e.target.value)}
-                min="0"
-                placeholder="Precio"
-            />
-            <div className="img-prev-container">
-                <button disabled={loading}>Enviar</button>
-
-                <label htmlFor="file-input" className="custom-file-label">
-                    <span>Seleccionar archivo</span>
-                </label>
-
-                <input
-                    type="file"
-                    id="file-input"
-                    accept="image/*"
-                    ref={fileInputRef}
-                    onChange={(e) =>
-                        handleAddFilePreview(e, setFile, setPreviewUrl)
-                    }
-                />
-
-                {previewUrl && (
-                    <img
-                        src={previewUrl}
-                        onClick={() => {
-                            handleRemoveFilePreview(
-                                fileInputRef,
-                                setFile,
-                                setPreviewUrl
-                            );
-                        }}
-                        alt="Previsualización"
-                        title="Eliminar imagen"
+        <div className="product-create-form-container">
+            <form
+                className="product-create-form"
+                onSubmit={handleProductCreate}
+            >
+                <section className="title-upload-product">
+                    <h2 className="title-upload">Sube tu producto</h2>
+                </section>
+                <header className="product-create-form__header">
+                    <input
+                        type="text"
+                        value={productName}
+                        onChange={(e) => setProductName(e.target.value)}
+                        maxLength="280"
+                        autoFocus
+                        required
+                        placeholder="Nombre del Producto"
                     />
-                )}
-            </div>
-        </form>
+
+                    <div className="select-container">
+                        {/* <label htmlFor="category-select">Categoría:</label> */}
+                        <select
+                            className="select-category"
+                            id="category-select"
+                            value={category}
+                            onChange={(e) => setCategory(e.target.value)}
+                            required
+                        >
+                            <option value="" defaultValue>
+                                Selecciona una categoría
+                            </option>
+                            <option value="Audio">Audio</option>
+                            <option value="Cámaras de fotos">
+                                Cámaras de fotos
+                            </option>
+                            <option value="Consolas">Consolas</option>
+                            <option value="Juguetes">Juguetes</option>
+                            <option value="Máquinas de escribir">
+                                Máquinas de escribir
+                            </option>
+                            <option value="Ordenadores">Ordenadores</option>
+                            <option value="Relojes">Relojes</option>
+                            <option value="Teléfonos">Teléfonos</option>
+                            <option value="Televisores">Televisores</option>
+                            <option value="Video">Video</option>
+                            <option value="Otros">Otros</option>
+                        </select>
+                    </div>
+                </header>
+
+                <section className="product-create-form__body">
+                    <div className="select-container">
+                        {/* <label htmlFor="state-select">Estado:</label> */}
+                        <select
+                            className="select-category"
+                            id="state-select"
+                            value={state}
+                            onChange={(e) => setState(e.target.value)}
+                            required
+                        >
+                            <option value="" defaultValue>
+                                Selecciona estado
+                            </option>
+                            <option value="Nuevo">Nuevo</option>
+                            <option value="Como nuevo">Como nuevo</option>
+                            <option value="En buen estado">
+                                En buen estado
+                            </option>
+                            <option value="En condiciones aceptables">
+                                En condiciones aceptables
+                            </option>
+                            <option value="No funciona">No funciona</option>
+                        </select>
+                    </div>
+                    <input
+                        type="text"
+                        value={place}
+                        onChange={(e) => setPlace(e.target.value)}
+                        placeholder="Localidad"
+                    />
+                    <input
+                        type="number"
+                        value={price}
+                        onChange={(e) => setPrice(e.target.value)}
+                        min="0"
+                        placeholder="Precio"
+                    />
+                </section>
+
+                <section className="product-create-form__section_description">
+                    <textarea
+                        className="product-create-form__description"
+                        value={description}
+                        onChange={(e) => setDescription(e.target.value)}
+                        maxLength="280"
+                        autoFocus
+                        required
+                        placeholder="Descripción"
+                    />
+                </section>
+                <div className="img-prev-container">
+                    {previewUrl && (
+                        <img
+                            className="img-product"
+                            src={previewUrl}
+                            onClick={() => {
+                                handleRemoveFilePreview(
+                                    fileInputRef,
+                                    setFile,
+                                    setPreviewUrl
+                                );
+                            }}
+                            alt="Previsualización"
+                            title="Eliminar imagen"
+                        />
+                    )}
+                    {!img ? (
+                        <div className="conditional-img">
+                            <label
+                                htmlFor="file-input"
+                                className="custom-file-label"
+                            >
+                                <span className="span-img">
+                                    <img
+                                        src="/icons/add-product.png"
+                                        alt="upload"
+                                        width="150"
+                                    />
+                                </span>
+                                <span className="span-text-img">
+                                    Subir imagen
+                                </span>
+                            </label>
+                            <input
+                                className="custom-file-input"
+                                type="file"
+                                id="file-input"
+                                accept="image/*"
+                                ref={fileInputRef}
+                                onChange={onChangeImg}
+                            />{' '}
+                        </div>
+                    ) : null}
+                </div>
+                <footer className="product-create-form__footer">
+                    <button
+                        className="clear-fields"
+                        onClick={handleClearFields}
+                    >
+                        Borrar
+                    </button>
+                    <button className="submit-btn" disabled={loading}>
+                        Enviar
+                    </button>
+                </footer>
+            </form>
+        </div>
     );
 };
 

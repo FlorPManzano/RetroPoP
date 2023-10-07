@@ -16,6 +16,7 @@ import ValidateUserPage from './pages/ValidateUserPage/ValidateUserPage';
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 import ProductCreateForm from './forms/ProductCreateForm/ProductCreateForm';
 import PrivateRoutes from './components/PrivateRoutes';
+import Loader from './components/Loader/Loader';
 
 const App = () => {
     return (
@@ -40,6 +41,7 @@ const App = () => {
                 <Route path="/search/:category" element={<FilteredPage />} />
                 <Route path="/product/:id" element={<ProductPage />} />
                 <Route path="/product/" element={<ProductPage />} />
+                <Route path="/loader" element={<Loader />} />
                 <Route
                     path="/validate/:regCode"
                     element={<ValidateUserPage />}
