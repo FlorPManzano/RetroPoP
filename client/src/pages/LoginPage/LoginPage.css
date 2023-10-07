@@ -149,8 +149,10 @@ h2 {
 }
 
 .eye {
-    position: relative;
-    right: 30px;
+    position: absolute;
+    right: 10px;
+    top: 5px;
+    cursor: pointer;
 }
 
 .forgot-pass {

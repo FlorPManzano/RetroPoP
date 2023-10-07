@@ -7,8 +7,6 @@ import { useState } from 'react';
 
 const Navbar = () => {
     const { authToken, authUser, authLogout } = useAuth();
-    console.log(authToken);
-    console.log(authUser);
 
     // Aquí vamos a hacer pruebas
 

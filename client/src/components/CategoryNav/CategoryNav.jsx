@@ -58,16 +58,6 @@ export default function CategoryNav() {
                             />
                         </NavLink>
                         <NavLink
-                            to="/search/?category=Radios"
-                            className="category-nav__link"
-                        >
-                            <img
-                                src="/icons/radios.png"
-                                alt="radios"
-                                width="80"
-                            />
-                        </NavLink>
-                        <NavLink
                             to="/search/?category=Relojes"
                             className="category-nav__link"
                         >

@@ -19,8 +19,8 @@
     height: 700px;
     border: 1px solid rgb(255, 255, 255);
     border-radius: 10px;
-    background: rgba(242, 61, 161, 0.356);
-    background: linear-gradient(to right, #11d9c583, #f23da185);
+    background: rgba(189, 189, 189, 0.493);
+    /* background: linear-gradient(to right, #11d9c583, #f23da185); */
 }
 
 .title-upload {
@@ -95,7 +95,7 @@
     /* border: 1px solid black; */
 }
 
-input[type='text'] {
+.input-place-upload {
     width: 300px;
     height: 50px;
     border-radius: 20px;

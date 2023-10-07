@@ -31,7 +31,7 @@ export default function ListProducts() {
         navigate(`/product/${key}`);
     };
 
-    console.log('WEEEEEEE', products);
+    // console.log('WEEEEEEE', products);
     return (
         <section className="list-products">
             <div className="list-products__container">

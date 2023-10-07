@@ -118,6 +118,7 @@ const ProductCreateForm = () => {
                 </section>
                 <header className="product-create-form__header">
                     <input
+                        className="input-place-upload"
                         type="text"
                         value={productName}
                         onChange={(e) => setProductName(e.target.value)}
@@ -183,6 +184,7 @@ const ProductCreateForm = () => {
                         </select>
                     </div>
                     <input
+                        className="input-place-upload"
                         type="text"
                         value={place}
                         onChange={(e) => setPlace(e.target.value)}
@@ -232,9 +234,10 @@ const ProductCreateForm = () => {
                             >
                                 <span className="span-img">
                                     <img
-                                        src="/icons/add-product.png"
+                                        src="/icons/folder.png"
                                         alt="upload"
                                         width="150"
+                                        style={{ cursor: 'pointer' }}
                                     />
                                 </span>
                                 <span className="span-text-img">
