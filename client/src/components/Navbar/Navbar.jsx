@@ -94,9 +94,41 @@ const Navbar = () => {
                                     onClick={(e) => e.stopPropagation()}
                                 >
                                     <ul>
-                                        <li>Ver perfil</li>
-                                        <NavLink to="/profile/bookings">
-                                            <li>Solicitudes</li>
+                                        <NavLink
+                                            to=""
+                                            className="dropdown-menu-show-profile"
+                                        >
+                                            <li
+                                                onClick={(e) =>
+                                                    e.stopPropagation()
+                                                }
+                                            >
+                                                Ver perfil
+                                            </li>
+                                        </NavLink>
+                                        <NavLink
+                                            to="/profile/bookings"
+                                            className="dropdown-menu-bookings-requests"
+                                        >
+                                            <li
+                                                onClick={(e) =>
+                                                    e.stopPropagation()
+                                                }
+                                            >
+                                                Solicitudes
+                                            </li>
+                                        </NavLink>
+                                        <NavLink
+                                            to=""
+                                            className="dropdown-menu-review-request"
+                                        >
+                                            <li
+                                                onClick={(e) =>
+                                                    e.stopPropagation()
+                                                }
+                                            >
+                                                Valoraciones
+                                            </li>
                                         </NavLink>
                                         <li onClick={authLogout}>
                                             Cerrar sesión

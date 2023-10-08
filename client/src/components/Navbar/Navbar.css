@@ -92,3 +92,10 @@
     border-radius: 50%;
     cursor: pointer;
 }
+
+.dropdown-menu-bookings-requests,
+.dropdown-menu-show-profile,
+.dropdown-menu-review-request {
+    text-decoration: none;
+    color: black;
+}

@@ -13,7 +13,7 @@ const selectBookingsByIdUserModel = async (id) => {
             JOIN products P ON P.id = B.productId
             JOIN users X ON X.id = P.userId
             JOIN users U ON U.id = B.userBuyerId
-            WHERE X.id=?`,
+            WHERE X.id=? AND B.deliveryPlace IS NULL`,
             [id]
         );
 
