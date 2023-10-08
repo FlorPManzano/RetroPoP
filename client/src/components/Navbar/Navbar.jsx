@@ -57,7 +57,7 @@ const Navbar = () => {
                 />
 
                 {authToken && (
-                    <NavLink to="/upload">
+                    <NavLink to="/upload" className="upload-product-nav">
                         <button
                             className="upload-product"
                             style={{ cursor: 'pointer' }}

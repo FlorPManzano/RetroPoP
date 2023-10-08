@@ -32,13 +32,16 @@
     color: white;
 }
 
+.upload-product-nav {
+    text-decoration: none;
+}
 .upload-product {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     align-items: center;
     width: 230px;
     height: 60px;
-    border-radius: 10px;
+    border-radius: 20px;
     font-size: 18px;
     outline: none;
     text-align: center;

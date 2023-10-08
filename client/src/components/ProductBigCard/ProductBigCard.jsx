@@ -46,7 +46,7 @@ export default function ProductBigCard({ product }) {
                 <div className="product-page__info">
                     <div className="product-page__info__name">
                         <h2 className="h3-bigproduct">{product.productName}</h2>
-                        <h3 className="h3-bigproduct">{product.price}</h3>
+                        <h3 className="h3-bigproduct">{product.price}€</h3>
                     </div>
                     <div className="product-page__info__description">
                         <p className="p-product-description">
