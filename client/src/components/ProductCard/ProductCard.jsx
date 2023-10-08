@@ -1,5 +1,5 @@
 import './ProductCard.css';
-import { userPropTypes } from '../../utils/customPropTypes.js';
+import { productPropTypes } from '../../utils/customPropTypes.js';
 import { APIUrl } from '../../config';
 
 export default function ProductCard({ image, productName, price }) {
@@ -25,8 +25,6 @@ export default function ProductCard({ image, productName, price }) {
     );
 }
 
-ProductCard.propTypes = {
-    image: userPropTypes.image,
-    productName: userPropTypes.productName,
-    price: userPropTypes.price,
+ProductCard.PropTypes = {
+    product: productPropTypes,
 };

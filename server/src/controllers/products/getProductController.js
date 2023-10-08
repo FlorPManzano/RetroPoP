@@ -6,7 +6,6 @@ const getProductController = async (req, res, next) => {
     try {
         // Obtenemos el producto de la BBDD
         const product = await getProductModel(req.params.productId);
-        console.log('que putas entra por aqui', product, product.length);
         // Devolvemos el producto
         res.send({
             status: product.length > 0 ? 'ok' : 'Error',

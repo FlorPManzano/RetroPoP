@@ -3,11 +3,20 @@ import { productPropTypes } from '../../utils/customPropTypes';
 import { APIUrl } from '../../config';
 import { NavLink } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
+import { useState } from 'react';
+import { useProducts } from '../../hooks/useProducts.js';
 
 export default function ProductBigCard({ product }) {
-    const { authToken } = useAuth();
+    // const { authToken } = useAuth();
+    const [loading, setLoading] = useState(false);
+    const { addBooking } = useProducts();
 
-    console.log('QUE OSTIAS LLEGA AQUI', product);
+    const handleBookingCreate = async (e) => {
+        e.preventDefault();
+        setLoading(true);
+        addBooking(product.id);
+    };
+
     return (
         <div className="product-big-card">
             <article className="product-page">
@@ -67,7 +76,10 @@ export default function ProductBigCard({ product }) {
                         </NavLink>
                     </div>
                     <div className="product-page__footer__buttons">
-                        <button className="product-page__footer__buttons__buy">
+                        <button
+                            className="product-page__footer__buttons__buy"
+                            onClick={handleBookingCreate}
+                        >
                             Reservar
                         </button>
                         <button className="product-page__footer__buttons__fav">

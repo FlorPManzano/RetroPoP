@@ -16,7 +16,6 @@ const getProductModel = async (id) => {
             WHERE p.id = ?`,
             [id]
         );
-        console.log('holi', products);
 
         return products;
     } finally {

@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 
 import { getAllProductsService } from '../../services/fetchData.js';
 import ProductCard from '../ProductCard/ProductCard';
-
+import { productPropTypes } from '../../utils/customPropTypes';
 import { useNavigate } from 'react-router-dom';
 
 export default function ListProducts() {
@@ -58,6 +58,10 @@ export default function ListProducts() {
         </section>
     );
 }
+
+ListProducts.PropTypes = {
+    product: productPropTypes,
+};
 
 // <main>
 //     <ul>

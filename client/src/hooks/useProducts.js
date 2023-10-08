@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 
 import {
+    addBookingsService,
     addProductService,
     getAllProductsService,
 } from '../services/fetchData';
@@ -61,9 +62,27 @@ export const useProducts = () => {
         }
     };
 
-    // Función que edita un producto en el State.
+    // Función que agrega una reserva
+    const addBooking = async (productId) => {
+        setLoading(true);
 
-    // Función que agrega un like a un producto en el State.
+        try {
+            const body = await addBookingsService(authToken, productId);
 
-    return { products, loading, addProduct };
+            if (body.status === 'error') {
+                toastError(body.message);
+            }
+
+            navigate('/');
+            toastSuccess('Has realizado la reserva correctamente');
+        } catch (err) {
+            err.message === 'Failed to fetch'
+                ? toastError('Error de conexión')
+                : toastError(err.message);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    return { products, loading, addProduct, addBooking };
 };

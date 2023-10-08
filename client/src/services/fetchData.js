@@ -26,7 +26,6 @@ const validateUserService = async (params) => {
     });
 
     const body = await res.json();
-    console.log('!!!!!', body);
 
     return body;
 };
@@ -98,7 +97,6 @@ const getProductByIdService = async (productId) => {
 };
 
 const addProductService = async (token, formData) => {
-    console.log('ey', token, formData);
     const res = await fetch(`${APIUrl}/products`, {
         method: 'post',
         headers: {
@@ -106,9 +104,8 @@ const addProductService = async (token, formData) => {
         },
         body: formData,
     });
-    console.log('!!!!!hazme caso', res);
+
     const body = await res.json();
-    console.log('!!!!!addProductService', body);
 
     return body;
 };
@@ -118,6 +115,21 @@ const getBookingsService = async (token) => {
         headers: {
             Authorization: token,
         },
+    });
+
+    const body = await res.json();
+
+    return body;
+};
+
+const addBookingsService = async (token, idProduct) => {
+    const res = await fetch(`${APIUrl}/bookings`, {
+        method: 'POST',
+        headers: {
+            Authorization: token,
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ idProduct }),
     });
 
     const body = await res.json();
@@ -136,4 +148,5 @@ export {
     getProductByIdService,
     addProductService,
     getBookingsService,
+    addBookingsService,
 };
