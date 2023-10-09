@@ -39,6 +39,24 @@ const Navbar = () => {
         toggleMenu();
     };
 
+    const handleClickProfile = (e) => {
+        e.stopPropagation();
+        toggleMenu();
+        navigate('/profile');
+    };
+
+    const handleClickBookings = (e) => {
+        e.stopPropagation();
+        toggleMenu();
+        navigate('/profile/bookings');
+    };
+
+    const handleClickReviews = (e) => {
+        e.stopPropagation();
+        toggleMenu();
+        navigate('/profile/reviews');
+    };
+
     return (
         <>
             <nav className="navbar">
@@ -84,7 +102,11 @@ const Navbar = () => {
                             <img
                                 onClick={handleClickAvatar}
                                 className="user"
-                                src={`${APIUrl}/avatars/${authUser.avatar}`}
+                                src={
+                                    authUser.avatar
+                                        ? `${APIUrl}/avatars/${authUser.avatar}`
+                                        : '/icons/acceso.png'
+                                }
                                 alt="Avatar"
                             />
 
@@ -94,42 +116,16 @@ const Navbar = () => {
                                     onClick={(e) => e.stopPropagation()}
                                 >
                                     <ul>
-                                        <NavLink
-                                            to=""
-                                            className="dropdown-menu-show-profile"
-                                        >
-                                            <li
-                                                onClick={(e) =>
-                                                    e.stopPropagation()
-                                                }
-                                            >
-                                                Ver perfil
-                                            </li>
-                                        </NavLink>
-                                        <NavLink
-                                            to="/profile/bookings"
-                                            className="dropdown-menu-bookings-requests"
-                                        >
-                                            <li
-                                                onClick={(e) =>
-                                                    e.stopPropagation()
-                                                }
-                                            >
-                                                Solicitudes
-                                            </li>
-                                        </NavLink>
-                                        <NavLink
-                                            to=""
-                                            className="dropdown-menu-review-request"
-                                        >
-                                            <li
-                                                onClick={(e) =>
-                                                    e.stopPropagation()
-                                                }
-                                            >
-                                                Valoraciones
-                                            </li>
-                                        </NavLink>
+                                        <li onClick={handleClickProfile}>
+                                            Ver perfil
+                                        </li>
+
+                                        <li onClick={handleClickBookings}>
+                                            Solicitudes
+                                        </li>
+                                        <li onClick={handleClickReviews}>
+                                            Valoraciones
+                                        </li>
                                         <li onClick={authLogout}>
                                             Cerrar sesión
                                         </li>
