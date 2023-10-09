@@ -44,7 +44,7 @@ export default function ListProducts() {
                             .filter(
                                 (product) =>
                                     product.isSelled === 0 &&
-                                    product.userId !== authUser.id
+                                    product.userId !== authUser?.id
                             )
                             .map((product) => (
                                 <li

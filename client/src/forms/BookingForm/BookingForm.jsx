@@ -2,17 +2,26 @@ import { useState } from 'react';
 import './BookingForm.css';
 import { useProducts } from '../../hooks/useProducts';
 import formatDate from '../../utils/formatDate';
+import { useNavigate } from 'react-router-dom';
 
 export default function BookingForm({ resno }) {
     const [deliveryPlace, setDeliveryPlace] = useState('');
     const [deliveryTime, setDeliveryTime] = useState('');
     const { confirmBooking } = useProducts();
 
-    const bookingSubmit = (e) => {
+    const navigate = useNavigate();
+
+    const bookingSubmit = async (e) => {
         e.preventDefault();
         const deliveryTimeFormatted = formatDate(deliveryTime);
 
-        confirmBooking(resno, deliveryTimeFormatted, deliveryPlace);
+        const result = await confirmBooking(
+            resno,
+            deliveryTimeFormatted,
+            deliveryPlace
+        );
+        console.log(result);
+        navigate(`/profile/bookings/`);
     };
     return (
         <div className="popup-booking">

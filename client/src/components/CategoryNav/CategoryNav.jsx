@@ -38,6 +38,16 @@ export default function CategoryNav() {
                             />
                         </NavLink>
                         <NavLink
+                            to="/search/?category=juguetes"
+                            className="category-nav__link"
+                        >
+                            <img
+                                src="/icons/juguetes.png"
+                                alt="juguetes"
+                                width="80"
+                            />
+                        </NavLink>
+                        <NavLink
                             to="/search/?category=Maquinas de escribir"
                             className="category-nav__link"
                         >

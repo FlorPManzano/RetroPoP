@@ -4,10 +4,17 @@ import { bookingPropTypes } from '../../utils/customPropTypes';
 import { useState } from 'react';
 import BookingForm from '../../forms/BookingForm/BookingForm';
 import { useProducts } from '../../hooks/useProducts';
+import { useNavigate } from 'react-router-dom';
+import formatDate from '../../utils/formatDate';
 
 export default function BookingCard({ booking }) {
     const [showModal, setShowModal] = useState(false);
-    const { cancelBooking } = useProducts();
+    const { confirmBooking, cancelBooking } = useProducts();
+
+    const [deliveryPlace, setDeliveryPlace] = useState('');
+    const [deliveryTime, setDeliveryTime] = useState('');
+
+    const navigate = useNavigate();
 
     const acceptBooking = (e) => {
         e.preventDefault();
@@ -16,6 +23,21 @@ export default function BookingCard({ booking }) {
     const rejectBooking = (e) => {
         e.preventDefault();
         cancelBooking(booking.resno);
+    };
+
+    const bookingSubmit = async (e) => {
+        e.preventDefault();
+        const deliveryTimeFormatted = formatDate(deliveryTime);
+
+        const result = await confirmBooking(
+            booking.resno,
+            deliveryTimeFormatted,
+            deliveryPlace
+        );
+        console.log(result);
+        setShowModal(false);
+
+        navigate(`/`);
     };
 
     return (
@@ -46,7 +68,34 @@ export default function BookingCard({ booking }) {
                     <div className="booking-container-info-buttons">
                         <button onClick={rejectBooking}>Rechazar</button>
                         <button onClick={acceptBooking}>Aceptar</button>
-                        {showModal && <BookingForm resno={booking.resno} />}
+                        {showModal && (
+                            <div className="popup-booking">
+                                <h2>Datos de la entrega</h2>
+                                <form action="" onSubmit={bookingSubmit}>
+                                    <input
+                                        type="text"
+                                        value={deliveryPlace}
+                                        onChange={(e) =>
+                                            setDeliveryPlace(e.target.value)
+                                        }
+                                        maxLength="30"
+                                        autoFocus
+                                        required
+                                        placeholder="Lugar de entrega"
+                                    />
+                                    <input
+                                        type="datetime-local"
+                                        value={deliveryTime}
+                                        onChange={(e) =>
+                                            setDeliveryTime(e.target.value)
+                                        }
+                                        required
+                                        placeholder="Fecha y hora de entrega"
+                                    />
+                                    <button type="submit">Confirmar</button>
+                                </form>
+                            </div>
+                        )}
                     </div>
                 </footer>
             </div>
