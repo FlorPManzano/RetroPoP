@@ -18,7 +18,6 @@ import ProductCreateForm from './forms/ProductCreateForm/ProductCreateForm';
 import PrivateRoutes from './components/PrivateRoutes';
 import Loader from './components/Loader/Loader';
 import BookingsPage from './pages/BookingsPage/BookingsPage';
-import ProfilePage from './pages/ProfilePage/ProfilePage';
 
 const App = () => {
     return (
@@ -58,7 +57,7 @@ const App = () => {
                         element={<BookingsPage />}
                     />
 
-                    <Route path="/profile" element={<ProfilePage />} />
+                    {/* <Route path="/profile" element={<Profile />} /> */}
                 </Route>
             </Routes>
         </>
