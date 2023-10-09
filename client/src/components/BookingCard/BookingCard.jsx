@@ -1,21 +1,21 @@
 import './BookingCard.css';
 import { APIUrl } from '../../config';
-import { NavLink } from 'react-router-dom';
-import useAuth from '../../hooks/useAuth';
 import { bookingPropTypes } from '../../utils/customPropTypes';
 import { useState } from 'react';
 import BookingForm from '../../forms/BookingForm/BookingForm';
+import { useProducts } from '../../hooks/useProducts';
 
 export default function BookingCard({ booking }) {
-    const { authToken } = useAuth();
-    const { showPopUp, setShowPopUp } = useState(false);
+    const [showModal, setShowModal] = useState(false);
+    const { cancelBooking } = useProducts();
 
     const acceptBooking = (e) => {
         e.preventDefault();
-        setShowPopUp(true);
+        setShowModal(true);
     };
     const rejectBooking = (e) => {
         e.preventDefault();
+        cancelBooking(booking.resno);
     };
 
     return (
@@ -46,7 +46,7 @@ export default function BookingCard({ booking }) {
                     <div className="booking-container-info-buttons">
                         <button onClick={rejectBooking}>Rechazar</button>
                         <button onClick={acceptBooking}>Aceptar</button>
-                        {showPopUp && <BookingForm />}
+                        {showModal && <BookingForm resno={booking.resno} />}
                     </div>
                 </footer>
             </div>
