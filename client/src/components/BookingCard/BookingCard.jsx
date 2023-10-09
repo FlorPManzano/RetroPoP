@@ -3,10 +3,21 @@ import { APIUrl } from '../../config';
 import { NavLink } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 import { bookingPropTypes } from '../../utils/customPropTypes';
+import { useState } from 'react';
+import BookingForm from '../../forms/BookingForm/BookingForm';
 
 export default function BookingCard({ booking }) {
     const { authToken } = useAuth();
-    console.log(booking);
+    const { showPopUp, setShowPopUp } = useState(false);
+
+    const acceptBooking = (e) => {
+        e.preventDefault();
+        setShowPopUp(true);
+    };
+    const rejectBooking = (e) => {
+        e.preventDefault();
+    };
+
     return (
         <div className="booking-container">
             <img
@@ -33,8 +44,9 @@ export default function BookingCard({ booking }) {
                         Por {booking.userBuyer} el {booking.createdAt}
                     </p>
                     <div className="booking-container-info-buttons">
-                        <button>Rechazar</button>
-                        <button>Aceptar</button>
+                        <button onClick={rejectBooking}>Rechazar</button>
+                        <button onClick={acceptBooking}>Aceptar</button>
+                        {showPopUp && <BookingForm />}
                     </div>
                 </footer>
             </div>

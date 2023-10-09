@@ -18,8 +18,6 @@ export default function BookingPage() {
                     'El usuario no tiene ninguna reserva activa'
                 )
                     setBookings(bookingsRequest.userBookings);
-                console.log(bookingsRequest.userBookings);
-                console.log('fff', bookings);
             } catch (error) {
                 console.log(error.message);
             }

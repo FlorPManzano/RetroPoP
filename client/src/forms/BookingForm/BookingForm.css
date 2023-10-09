@@ -1,0 +1,31 @@
+.popup-booking {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid white;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    text-align: center;
+    border-radius: 20px;
+}
+
+.popup-p-booking {
+    margin-bottom: 10px;
+}
+
+.popup-button-booking {
+    margin: 5px;
+    padding: 10px 20px;
+    background: linear-gradient(to right, #11d9c5, #f23da0);
+    color: white;
+    border: 1px solid white;
+    cursor: pointer;
+    border-radius: 20px;
+}
+
+.popup-button-booking:hover {
+    background-color: #1a6dff;
+}
