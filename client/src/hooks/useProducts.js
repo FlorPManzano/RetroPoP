@@ -5,6 +5,8 @@ import {
     addBookingsService,
     addProductService,
     getAllProductsService,
+    confirmBookingService,
+    cancelBookingService,
 } from '../services/fetchData';
 import { useNavigate } from 'react-router-dom';
 import useAuth from './useAuth';
@@ -85,5 +87,63 @@ export const useProducts = () => {
         }
     };
 
-    return { products, loading, addProduct, addBooking };
+    // Función que acepta una reserva
+    const confirmBooking = async (resno, deliveryTime, deliveryPlace) => {
+        setLoading(true);
+
+        try {
+            const body = await confirmBookingService(
+                authToken,
+                resno,
+                deliveryTime,
+                deliveryPlace
+            );
+
+            if (body.status === 'error') {
+                toastError(body.message);
+                navigate('/profile/bookings');
+            } else {
+                navigate('/profile/bookings');
+                toastSuccess('Has confirmado la reserva correctamente');
+            }
+        } catch (err) {
+            err.message === 'Failed to fetch'
+                ? toastError('Error de conexión')
+                : toastError(err.message);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    // Función que rechaza una reserva
+    const cancelBooking = async (resno) => {
+        setLoading(true);
+
+        try {
+            const body = await cancelBookingService(authToken, resno);
+
+            if (body.status === 'error') {
+                toastError(body.message);
+                navigate('/profile/bookings');
+            } else {
+                navigate('/profile/bookings');
+                toastSuccess('Has rechazado la reserva correctamente');
+            }
+        } catch (err) {
+            err.message === 'Failed to fetch'
+                ? toastError('Error de conexión')
+                : toastError(err.message);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    return {
+        products,
+        loading,
+        addProduct,
+        addBooking,
+        confirmBooking,
+        cancelBooking,
+    };
 };

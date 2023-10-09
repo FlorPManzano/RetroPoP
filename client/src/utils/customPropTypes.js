@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 export const bookingPropTypes = PropTypes.shape({
     id: PropTypes.number.isRequired,
     resno: PropTypes.string.isRequired,
-    deliveryPlace: PropTypes.string.isRequired,
-    deliveryTime: PropTypes.string.isRequired,
+    deliveryPlace: PropTypes.string,
+    deliveryTime: PropTypes.string,
     createdAt: PropTypes.string.isRequired,
     userBuyerId: PropTypes.number.isRequired,
     productId: PropTypes.number.isRequired,

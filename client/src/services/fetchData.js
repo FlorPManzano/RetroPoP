@@ -137,6 +137,46 @@ const addBookingsService = async (token, idProduct) => {
     return body;
 };
 
+const confirmBookingService = async (
+    token,
+    resno,
+    deliveryTime,
+    deliveryPlace
+) => {
+    const confirm = true;
+    const res = await fetch(`${APIUrl}/bookings/confirm/${resno}`, {
+        method: 'PUT',
+        headers: {
+            Authorization: token,
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ confirm, deliveryTime, deliveryPlace }),
+    });
+
+    const body = await res.json();
+
+    return body;
+};
+
+const cancelBookingService = async (token, resno) => {
+    const confirm = false;
+    const deliveryTime = '';
+    const deliveryPlace = '';
+
+    const res = await fetch(`${APIUrl}/bookings/confirm/${resno}`, {
+        method: 'PUT',
+        headers: {
+            Authorization: token,
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ confirm, deliveryTime, deliveryPlace }),
+    });
+
+    const body = await res.json();
+
+    return body;
+};
+
 export {
     registerUserService,
     validateUserService,
@@ -149,4 +189,6 @@ export {
     addProductService,
     getBookingsService,
     addBookingsService,
+    confirmBookingService,
+    cancelBookingService,
 };
