@@ -10,11 +10,22 @@ export default function ProductBigCard({ product }) {
     // const { authToken } = useAuth();
     const [loading, setLoading] = useState(false);
     const { addBooking } = useProducts();
+    const [showPopUp, setShowPopUp] = useState(false);
 
     const handleBookingCreate = async (e) => {
         e.preventDefault();
+        setShowPopUp(true);
+    };
+
+    const confirmBooking = (e) => {
+        e.preventDefault();
         setLoading(true);
         addBooking(product.id);
+    };
+
+    const cancelBooking = (e) => {
+        e.preventDefault();
+        setShowPopUp(false);
     };
 
     return (
@@ -82,6 +93,26 @@ export default function ProductBigCard({ product }) {
                         >
                             Reservar
                         </button>
+                        {showPopUp && (
+                            <div className="popup">
+                                <p className="popup-p">
+                                    ¿Estás segur@ de que quieres reservar este
+                                    producto?
+                                </p>
+                                <button
+                                    onClick={confirmBooking}
+                                    className="popup-button"
+                                >
+                                    Confirmar
+                                </button>
+                                <button
+                                    onClick={cancelBooking}
+                                    className="popup-button"
+                                >
+                                    Cancelar
+                                </button>
+                            </div>
+                        )}
                         <button className="product-page__footer__buttons__fav">
                             ❤
                         </button>

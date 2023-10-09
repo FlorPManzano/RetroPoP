@@ -71,10 +71,11 @@ export const useProducts = () => {
 
             if (body.status === 'error') {
                 toastError(body.message);
+                navigate('/');
+            } else {
+                navigate('/');
+                toastSuccess('Has realizado la reserva correctamente');
             }
-
-            navigate('/');
-            toastSuccess('Has realizado la reserva correctamente');
         } catch (err) {
             err.message === 'Failed to fetch'
                 ? toastError('Error de conexión')
