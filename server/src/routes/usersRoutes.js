@@ -32,7 +32,7 @@ router.get('/profile/', authUser, getProfileController);
 
 router.post('/validate/:regCode', activateUserController);
 
-router.post('/delete', authUser, userExists, deleteUserController);
+router.delete('/delete', authUser, userExists, deleteUserController);
 
 router.post('/login', loginUserController);
 
