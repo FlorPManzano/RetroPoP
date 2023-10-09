@@ -7,11 +7,12 @@ import {
 import { useEffect, useState } from 'react';
 import './FilteredPage.css';
 import ProductCard from '../../components/ProductCard/ProductCard';
-import { useNavigate } from 'react-router-dom';
-import { useParams } from 'react-router-dom';
-import { useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
+import useAuth from '../../hooks/useAuth.js';
 
 export default function FilteredPage() {
+    const { authUser } = useAuth();
+
     const [maxPrice, setMaxPrice] = useState(); // [1
     const [products, setProducts] = useState([]);
     const [valuePrice, setValuePrice] = useState(maxPrice); //
@@ -25,55 +26,66 @@ export default function FilteredPage() {
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const body = await getSearchProductsService(name);
+                const body = await getAllProductsService();
                 const maxPrice = Math.ceil(
                     body.data.sort((a, b) => b.price - a.price)[0].price
                 );
+                console.log(maxPrice);
+                // setMaxPrice(maxPrice);
+                // setProducts(body.data);
                 setMaxPrice(maxPrice);
-                setProducts(body.data);
                 setValuePrice(maxPrice);
             } catch (err) {
                 console.log(err.message);
             }
         };
-
-        // const fetchProducts = async () => {
-        //     try {
-        //         const body = await getAllProductsService();
-        //         const maxPrice = Math.ceil(
-        //             body.data.sort((a, b) => b.price - a.price)[0].price
-        //         );
-        //         setMaxPrice(maxPrice);
-        //     } catch (err) {
-        //         console.log(err.message);
-        //     }
-        // };
-        // setPrice(maxPrice);
-        // document.querySelector('.select-category').value = '';
-        // document.querySelector('.range-price').value = `${maxPrice}`;
-        // document.querySelector(
-        //     '.range-price__text'
-        // ).textContent = `${maxPrice}`;
-        // document.querySelector('.select-state').value = '';
-        // document.querySelector('.search-location').value = '';
-
         fetchProducts();
     }, []);
 
+    useEffect(() => {
+        const fetchProducts = async () => {
+            try {
+                const results = await getSearchProductsService(name);
+
+                console.log(results);
+
+                if (
+                    results.status === 'ok' &&
+                    results.data !== 'No hay ningún resultado con esos filtros'
+                ) {
+                    setProducts(results.data);
+                    document.querySelector('.no-results').style.display =
+                        'none';
+                } else {
+                    setProducts([]);
+                    document.querySelector('.no-results').style.display =
+                        'block';
+                }
+            } catch (err) {
+                console.log(err.message);
+            }
+        };
+        fetchProducts();
+    }, [name]);
+
     const handleSubmit = async (e) => {
         e.preventDefault();
+        console.log(e.target[1].value);
+
         const data = `?category=${e.target[0].value}&maxPrice=${e.target[1].value}&state=${e.target[2].value}&place=${e.target[3].value}`;
-        const results = await getSearchProductsService(data);
-        if (
-            results.status === 'ok' &&
-            results.data !== 'No hay ningún resultado con esos filtros'
-        ) {
-            setProducts(results.data);
-            document.querySelector('.no-results').style.display = 'none';
-        } else {
-            setProducts([]);
-            document.querySelector('.no-results').style.display = 'block';
-        }
+        console.log(data);
+        navigate(`/search/${data}`);
+        // const results = await getSearchProductsService(data);
+        // if (
+        //     results.status === 'ok' &&
+        //     results.data !== 'No hay ningún resultado con esos filtros'
+        // ) {
+        //     setProducts(results.data);
+        //     document.querySelector('.no-results').style.display = 'none';
+        // } else {
+        //     setProducts([]);
+        //     document.querySelector('.no-results').style.display = 'block';
+        // }
     };
 
     const handleCardClick = async (e, key) => {
@@ -201,7 +213,11 @@ export default function FilteredPage() {
                         {products.length > 0 && (
                             <ul className="ul-filtered">
                                 {products
-                                    .filter((product) => product.isSelled === 0)
+                                    .filter(
+                                        (product) =>
+                                            product.isSelled === 0 &&
+                                            product.userId !== authUser.id
+                                    )
                                     .map((product) => (
                                         <li
                                             className="li-filtered"

@@ -6,7 +6,11 @@ import ProductCard from '../ProductCard/ProductCard';
 import { productPropTypes } from '../../utils/customPropTypes';
 import { useNavigate } from 'react-router-dom';
 
+import useAuth from '../../hooks/useAuth';
+
 export default function ListProducts() {
+    const { authUser } = useAuth();
+
     const [products, setProducts] = useState([]);
     const navigate = useNavigate();
 
@@ -27,7 +31,6 @@ export default function ListProducts() {
 
     const handleCardClick = async (e, key) => {
         e.preventDefault();
-        console.log(key);
         navigate(`/product/${key}`);
     };
 
@@ -38,7 +41,11 @@ export default function ListProducts() {
                 <ul className="list-products__list">
                     {products &&
                         products
-                            .filter((product) => product.isSelled === 0)
+                            .filter(
+                                (product) =>
+                                    product.isSelled === 0 &&
+                                    product.userId !== authUser.id
+                            )
                             .map((product) => (
                                 <li
                                     key={product.id}
