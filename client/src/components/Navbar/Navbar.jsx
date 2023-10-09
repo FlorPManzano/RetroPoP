@@ -8,12 +8,10 @@ import { useState } from 'react';
 const Navbar = () => {
     const { authToken, authUser, authLogout } = useAuth();
 
-    // Aquí vamos a hacer pruebas
-
     const [showMenu, setShowMenu] = useState(false);
     const toggleMenu = () => setShowMenu(!showMenu);
 
-    // Aquí terminan las pruebas
+    const [avatar, setAvatar] = useState(null);
 
     const navigate = useNavigate();
     const handleSubmitSearch = (e) => {
@@ -84,7 +82,11 @@ const Navbar = () => {
                             <img
                                 onClick={handleClickAvatar}
                                 className="user"
-                                src={`${APIUrl}/avatars/${authUser.avatar}`}
+                                src={
+                                    authUser.avatar
+                                        ? `${APIUrl}/avatars/${authUser.avatar}`
+                                        : '/icons/acceso.png'
+                                }
                                 alt="Avatar"
                             />
 
@@ -94,7 +96,9 @@ const Navbar = () => {
                                     onClick={(e) => e.stopPropagation()}
                                 >
                                     <ul>
-                                        <li>Ver perfil</li>
+                                        <NavLink to="/profile">
+                                            <li>Ver perfil</li>
+                                        </NavLink>
                                         <NavLink to="/profile/bookings">
                                             <li>Solicitudes</li>
                                         </NavLink>

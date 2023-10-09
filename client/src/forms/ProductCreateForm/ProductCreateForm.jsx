@@ -90,15 +90,17 @@ const ProductCreateForm = () => {
                 throw new Error(body.message);
             }
 
-            addProduct({
-                name: productName,
-                description: description,
-                category: category,
-                state: state,
-                place: place,
-                price: price,
-                image: file,
-            });
+            // addProduct({
+            //     name: productName,
+            //     description: description,
+            //     category: category,
+            //     state: state,
+            //     place: place,
+            //     price: price,
+            //     image: file,
+            // });
+
+            // ???????????????????
 
             // En caso de exito redirigimos a la página principal.
             navigate('/');
