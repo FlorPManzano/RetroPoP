@@ -232,3 +232,8 @@ body {
 .popup-button:hover {
     background-color: #1a6dff;
 }
+
+.product-page__footer__buttons__fav__img {
+    width: 30px;
+    height: 30px;
+}

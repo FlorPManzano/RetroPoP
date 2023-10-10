@@ -97,7 +97,6 @@
     margin: 1rem;
     display: flex;
     justify-content: end;
-    width: 50%;
+    width: 40px;
     color: red;
-    font-size: 30px;
 }

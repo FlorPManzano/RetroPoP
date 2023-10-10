@@ -8,6 +8,7 @@ import { useProducts } from '../../hooks/useProducts.js';
 import { toast } from 'react-toastify';
 
 export default function ProductBigCard({ product }) {
+    const [fav, setFav] = useState(false); // eslint-disable-line no-unused-vars
     const { authToken } = useAuth();
     const [loading, setLoading] = useState(false);
     const { addBooking } = useProducts();
@@ -34,6 +35,13 @@ export default function ProductBigCard({ product }) {
     const cancelBooking = (e) => {
         e.preventDefault();
         setShowPopUp(false);
+    };
+
+    const handleFavSubmit = async (e) => {
+        e.preventDefault();
+        setLoading(true);
+        setFav(!fav);
+        // const result = await addFavService(product.id);
     };
 
     return (
@@ -121,8 +129,18 @@ export default function ProductBigCard({ product }) {
                                 </button>
                             </div>
                         )}
-                        <button className="product-page__footer__buttons__fav">
-                            ❤
+                        <button
+                            className="product-page__footer__buttons__fav"
+                            onClick={handleFavSubmit}
+                        >
+                            <img
+                                className="product-page__footer__buttons__fav__img"
+                                src={
+                                    fav
+                                        ? '/icons/heart2.png'
+                                        : '/icons/heart1.png'
+                                }
+                            />
                         </button>
                     </div>
                 </footer>
