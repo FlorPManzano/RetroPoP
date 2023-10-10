@@ -180,13 +180,13 @@ const ProductCreateForm = () => {
                         <img
                             className="img-product"
                             src={previewUrl}
-                            onClick={() => {
-                                handleRemoveFilePreview(
-                                    fileInputRef,
-                                    setFile,
-                                    setPreviewUrl
-                                );
-                            }}
+                            // onClick={() => {
+                            //     handleRemoveFilePreview(
+                            //         fileInputRef,
+                            //         setFile,
+                            //         setPreviewUrl
+                            //     );
+                            // }}
                             alt="Previsualización"
                             title="Eliminar imagen"
                         />

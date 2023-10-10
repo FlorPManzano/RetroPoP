@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 // Importamos la función que crea un contexto y los hooks.
 import { createContext, useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useHref, useNavigate } from 'react-router-dom';
 
 // Importamos el nombre con el que guardamos el token en el localStorage.
 import { userLocalStorageKey } from '../config';
@@ -39,7 +39,6 @@ export const AuthProvider = ({ children }) => {
                 setLoading(true);
 
                 const body = await getUserProfileService(authToken);
-                console.log(body);
 
                 if (body.status === 'error') {
                     // Manejamos los errores con toast.
@@ -125,23 +124,24 @@ export const AuthProvider = ({ children }) => {
     };
 
     // Función de actualización de perfil.
-    const authUpdateProfile = async (updatedProfile) => {
+    const authUpdateProfile = async (updatedProfile, bio, avatar) => {
+        console.log('aaaaaaa');
         try {
             setLoading(true);
 
             // Realiza la solicitud para actualizar el perfil del usuario utilizando editUserService
             const response = await editUserService(authToken, updatedProfile);
 
-            if (response.status === 'success') {
+            if (response.status === 'ok') {
                 // Actualiza el usuario en el estado
                 setAuthUser({ ...authUser, ...updatedProfile });
 
                 toastSuccess('Perfil actualizado con éxito');
             } else {
-                toastError('Error al actualizar el perfil');
+                toastError('Error al actualizar el perfil 2');
             }
         } catch (error) {
-            toastError('Error al actualizar el perfil');
+            toastError('Error al actualizar el perfil 3');
         } finally {
             setLoading(false);
         }

@@ -60,6 +60,7 @@ const getUserProfileService = async (token) => {
 
 // Editar un perfil privado de un usuario
 const editUserService = async (token, editUserForm) => {
+    console.log('fetch', token, editUserForm);
     const res = await fetch(`${APIUrl}/users/edit`, {
         method: 'PUT',
         headers: {
