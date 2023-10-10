@@ -17,8 +17,11 @@ export default function ProductBigCard({ product }) {
 
     const handleBookingCreate = async (e) => {
         e.preventDefault();
-        toast.error('Debes estar logueado para reservar un producto');
-        if (!authToken) return navigate('/login');
+
+        if (!authToken) {
+            toast.error('Debes estar logueado para reservar un producto');
+            return navigate('/login');
+        }
         setShowPopUp(true);
     };
 
