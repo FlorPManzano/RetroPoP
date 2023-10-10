@@ -64,6 +64,14 @@ export default function ProfilePage() {
         }
     };
 
+    // const handleAvatarChange = (e) => {
+    //     const selectedFile = e.target.files[0];
+
+    //     if (selectedFile) {
+    //         setAvatar(selectedFile);
+    //     }
+    // };
+
     return (
         authUser && (
             <>
