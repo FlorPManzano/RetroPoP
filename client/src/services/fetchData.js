@@ -63,7 +63,7 @@ const editUserService = async (token, editUserForm) => {
     const res = await fetch(`${APIUrl}/users/edit`, {
         method: 'PUT',
         headers: {
-            token,
+            Authorization: token,
         },
         body: editUserForm,
     });
