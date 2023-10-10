@@ -1,25 +1,30 @@
 import { useState, useEffect, useRef } from 'react';
 import { toast } from 'react-toastify';
 import useAuth from '../../hooks/useAuth.js'; // Importa el hook personalizado de autenticación.
-import { editUserService } from '../../services/fetchData.js'; // Importa el servicio para editar datos de usuario.
+import {
+    deleteUserService,
+    editUserService,
+} from '../../services/fetchData.js'; // Importa el servicio para editar datos de usuario.
 import './ProfilePage.css'; // Importa los estilos de la página.
 import { APIUrl } from '../../config.js'; // Importa la URL de la API.
+import { useNavigate } from 'react-router-dom';
 import { Navigate } from 'react-router-dom';
 import { handleAddFilePreview } from '../../utils/handleAddFilePreview.js';
 
 export default function ProfilePage() {
     const fileInputRef = useRef(null);
     // Obtiene datos de usuario y función para actualizar el perfil desde el hook de autenticación.
-    const { authUser, authUpdateProfile, authToken } = useAuth();
+    const { authUser, authUpdateProfile, authToken, authLogout } = useAuth();
     // Configura estados iniciales para username, email, bio y avatar con datos del usuario.
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [bio, setBio] = useState(''); // Si no hay bio, establece una cadena vacía.
     const [avatar, setAvatar] = useState(null); // Inicializa el avatar como nulo.
-    const [img, setImg] = useState(null);
-
-    const [file, setFile] = useState(null); // Almacena el archivo de imagen seleccionado
+    const [img, setImg] = useState(''); // Inicializa el estado para la imagen como cadena vacía.
+    const [loading, setLoading] = useState(false); // Inicializa el estado para el loading como falso.
+    const [showPopUp, setShowPopUp] = useState(false); // Inicializa el estado para mostrar el popup como falso.
     const [previewUrl, setPreviewUrl] = useState(''); // Almacena la url de la previsualiza
+    const navigate = useNavigate();
 
     // Efecto para actualizar estados cuando cambia el usuario.
     useEffect(() => {
@@ -73,10 +78,38 @@ export default function ProfilePage() {
         handleAddFilePreview(e, setAvatar, setPreviewUrl);
     };
 
+    const confirmDelete = async (e) => {
+        e.preventDefault();
+        setLoading(true);
+        try {
+            await deleteUserService(authToken);
+            authLogout();
+            toast.success('Usuario borrado con éxito');
+            navigate('/');
+        } catch (error) {
+            toast.error('Error al borrar el usuario');
+        }
+    };
+
+    const cancelDelete = (e) => {
+        e.preventDefault();
+        setShowPopUp(false);
+    };
+
+    const handleDeleteUser = (e) => {
+        e.preventDefault();
+
+        if (!authToken) {
+            toast.error('Debes estar logueado para borrar tu usario');
+            return navigate('/login');
+        }
+        setShowPopUp(true);
+    };
+
     return (
         authUser && (
             <div className="main-profile-container">
-                <form onSubmit={handleUpdateProfile}>
+                <form>
                     <article className="profile-container">
                         <section className="profile-header">
                             <h2 className="main-profile-title">
@@ -144,10 +177,35 @@ export default function ProfilePage() {
                             </div>
                         </section>
                         <section className="profile-footer">
-                            <button className="profile-footer-btn-delete">
+                            <button
+                                onClick={handleDeleteUser}
+                                className="profile-footer-btn-delete"
+                            >
                                 Borrar perfil
                             </button>
+                            {showPopUp && (
+                                <div className="popup">
+                                    <p className="popup-p">
+                                        ¿Estás de que quieres eliminar tu
+                                        usuario? ¡¡¡Esta acción no se puede
+                                        deshacer!!!
+                                    </p>
+                                    <button
+                                        onClick={confirmDelete}
+                                        className="popup-button"
+                                    >
+                                        Confirmar
+                                    </button>
+                                    <button
+                                        onClick={cancelDelete}
+                                        className="popup-button"
+                                    >
+                                        Cancelar
+                                    </button>
+                                </div>
+                            )}
                             <button
+                                onClick={handleUpdateProfile}
                                 type="Submit"
                                 className="profile-footer-btn-save"
                             >

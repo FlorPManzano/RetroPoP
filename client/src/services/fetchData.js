@@ -205,6 +205,19 @@ const newReviewService = async (titleRw, textRw, starsRw, resno, token) => {
     return body;
 };
 
+const deleteUserService = async (token) => {
+    const res = await fetch(`${APIUrl}/users/delete`, {
+        method: 'DELETE',
+        headers: {
+            Authorization: token,
+        },
+    });
+
+    const body = await res.json();
+
+    return body;
+};
+
 export {
     registerUserService,
     validateUserService,
@@ -221,4 +234,5 @@ export {
     cancelBookingService,
     getReviewsService,
     newReviewService,
+    deleteUserService,
 };
