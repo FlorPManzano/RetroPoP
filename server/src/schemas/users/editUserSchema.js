@@ -8,9 +8,11 @@ import joiErrorMessages from '../joiErrorMessages.js';
 
 // Creamos el esquema de validación.
 
-const editUserSchema = joi.object({
-    bio: joi.string().max(200).messages(joiErrorMessages),
-    avatar: imgSchema.messages(joiErrorMessages),
-});
+const editUserSchema = joi
+    .object({
+        bio: joi.string().max(200).messages(joiErrorMessages),
+        avatar: imgSchema.messages(joiErrorMessages),
+    })
+    .or('bio', 'avatar');
 
 export default editUserSchema;
