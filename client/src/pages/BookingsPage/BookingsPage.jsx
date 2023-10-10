@@ -27,15 +27,23 @@ export default function BookingPage() {
 
     return (
         <>
-            <h2>Solicitudes de Reserva</h2>
+            {bookings ? (
+                <h2 className="main_title">Solicitudes de Reserva</h2>
+            ) : (
+                <h2 className="main_title">No tienes solicitudes pendientes</h2>
+            )}
             {bookings && (
-                <ul>
-                    {bookings.map((booking) => (
-                        <li key={booking.id}>
-                            <BookingCard booking={booking} />
-                        </li>
-                    ))}
-                </ul>
+                <section className="list-bookings">
+                    <div className="bookings-container">
+                        <ul className="list-bookings__container">
+                            {bookings.map((booking) => (
+                                <li key={booking.id}>
+                                    <BookingCard booking={booking} />
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                </section>
             )}
             {!bookings && (
                 <p className="booking-no-results">No tienes reservas activas</p>

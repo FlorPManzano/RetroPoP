@@ -2,3 +2,32 @@
     color: white;
     text-align: center;
 }
+
+.list-bookings {
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+.bookings-container {
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+    width: 70%;
+}
+
+.list-bookings__container {
+    gap: 1rem;
+    list-style: none;
+    display: grid;
+    place-items: center;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}

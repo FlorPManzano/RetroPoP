@@ -14,6 +14,15 @@ export default function BookingCard({ booking }) {
     const [deliveryPlace, setDeliveryPlace] = useState('');
     const [deliveryTime, setDeliveryTime] = useState('');
 
+    const dateNow = new Date(booking.createdAt)
+        .toDateString()
+        .split(' ')
+        .splice(1);
+
+    const dateNowFormatted = `${dateNow[1]} ${dateNow[0]} ${dateNow[2]}`;
+
+    const [date, setDate] = useState(dateNowFormatted);
+
     const navigate = useNavigate();
 
     const acceptBooking = (e) => {
@@ -53,7 +62,7 @@ export default function BookingCard({ booking }) {
                         {booking.productName}
                     </h3>
                     <p className="booking-container-info-price">
-                        {booking.price}
+                        {booking.price} €
                     </p>
                 </header>
                 <main className="booking-container-info-main">
@@ -63,11 +72,15 @@ export default function BookingCard({ booking }) {
                 </main>
                 <footer className="booking-container-info-footer">
                     <p className="booking-container-info-buyer">
-                        Por {booking.userBuyer} el {booking.createdAt}
+                        Por {booking.userBuyer} el {date}
                     </p>
                     <div className="booking-container-info-buttons">
-                        <button onClick={rejectBooking}>Rechazar</button>
-                        <button onClick={acceptBooking}>Aceptar</button>
+                        <button className="btn-reject" onClick={rejectBooking}>
+                            Rechazar
+                        </button>
+                        <button className="btn-accept" onClick={acceptBooking}>
+                            Aceptar
+                        </button>
                         {showModal && (
                             <div className="popup-booking">
                                 <h2>Datos de la entrega</h2>
