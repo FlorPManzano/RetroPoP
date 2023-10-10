@@ -19,6 +19,8 @@ import PrivateRoutes from './components/PrivateRoutes';
 import Loader from './components/Loader/Loader';
 import BookingsPage from './pages/BookingsPage/BookingsPage';
 import ProfilePage from './pages/ProfilePage/ProfilePage';
+import StarsReview from './components/StarsReview/StarsReview';
+import ReviewsPage from './pages/ReviewsPage/ReviewsPage';
 
 const App = () => {
     return (
@@ -48,6 +50,7 @@ const App = () => {
                     path="/validate/:regCode"
                     element={<ValidateUserPage />}
                 />
+                <Route path="/stars/" element={<StarsReview />} />
 
                 <Route path="*" element={<NotFoundPage />} />
 
@@ -59,6 +62,7 @@ const App = () => {
                     />
 
                     <Route path="/profile" element={<ProfilePage />} />
+                    <Route path="/profile/reviews" element={<ReviewsPage />} />
                 </Route>
             </Routes>
         </>

@@ -177,6 +177,33 @@ const cancelBookingService = async (token, resno) => {
     return body;
 };
 
+const getReviewsService = async (token) => {
+    const res = await fetch(`${APIUrl}/reviews`, {
+        headers: {
+            Authorization: token,
+        },
+    });
+
+    const body = await res.json();
+
+    return body;
+};
+
+const newReviewService = async (titleRw, textRw, starsRw, resno, token) => {
+    const res = await fetch(`${APIUrl}/reviews/${resno}`, {
+        method: 'POST',
+        headers: {
+            Authorization: token,
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ titleRw, textRw, starsRw }),
+    });
+
+    const body = await res.json();
+
+    return body;
+};
+
 export {
     registerUserService,
     validateUserService,
@@ -191,4 +218,6 @@ export {
     addBookingsService,
     confirmBookingService,
     cancelBookingService,
+    getReviewsService,
+    newReviewService,
 };

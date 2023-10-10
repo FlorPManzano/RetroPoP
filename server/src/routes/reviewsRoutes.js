@@ -9,6 +9,7 @@ import reviewExist from '../middlewares/reviewExist.js';
 import reviewOnTime from '../middlewares/reviewOnTime.js';
 import authUserIsOwnerBooking from '../middlewares/authUserIsOwnerBooking.js';
 import checkBookingExist from '../middlewares/checkBookingExist.js';
+import getReviewsController from '../controllers/reviews/getReviewsController.js';
 
 const router = express.Router();
 
@@ -21,5 +22,7 @@ router.post(
     reviewOnTime,
     newReviewController
 );
+
+router.get('/', authUser, getReviewsController);
 
 export default router;

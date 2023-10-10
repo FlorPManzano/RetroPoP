@@ -2,7 +2,7 @@ body {
     margin: 0;
     display: flex;
     max-height: 100%;
-    background-image: url('/bg.jpg');
+    background-image: url('/bg-retropop.png');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;

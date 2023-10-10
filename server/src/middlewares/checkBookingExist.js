@@ -4,7 +4,7 @@ import { bookingNotFoundError } from '../errors/errorService.js';
 const checkBookingExist = async (req, res, next) => {
     try {
         // Variable que almacenará el resultado de la consulta a la base de datos
-        const booking = await getBookingByResModel(req.params.uuid);
+        const booking = await getBookingByResModel(req.params.resno);
 
         // Si no existe la reserva lanzamos un error
         if (booking.length === 0) bookingNotFoundError();
