@@ -2,24 +2,29 @@ import { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import useAuth from '../../hooks/useAuth.js'; // Importa el hook personalizado de autenticación.
 import { editUserService } from '../../services/fetchData.js'; // Importa el servicio para editar datos de usuario.
+import './ProfilePage.css'; // Importa los estilos de la página.
+import { APIUrl } from '../../config.js'; // Importa la URL de la API.
 
 export default function ProfilePage() {
     // Obtiene datos de usuario y función para actualizar el perfil desde el hook de autenticación.
-    const { user, authUpdateProfile } = useAuth();
+    const { authToken, authUser, authUpdateProfile } = useAuth();
 
+    console.log('HOLAAAA', authUser);
     // Configura estados iniciales para username, email, bio y avatar con datos del usuario.
-    const [username, setUsername] = useState(user.username);
-    const [email, setEmail] = useState(user.email);
-    const [bio, setBio] = useState(user.bio || ''); // Si no hay bio, establece una cadena vacía.
+    const [username, setUsername] = useState(authUser?.username);
+    const [email, setEmail] = useState(authUser?.email);
+    const [bio, setBio] = useState(authUser?.bio || ''); // Si no hay bio, establece una cadena vacía.
     const [avatar, setAvatar] = useState(null); // Inicializa el avatar como nulo.
 
     // Efecto para actualizar estados cuando cambia el usuario.
     useEffect(() => {
-        setUsername(user.username);
-        setEmail(user.email);
-        setBio(user.bio || '');
-        setAvatar(null);
-    }, [user]);
+        setUsername(authUser?.username);
+        setEmail(authUser?.email);
+        setBio(authUser?.bio || '');
+        setAvatar(authUser?.avatar);
+    }, []);
+
+    console.log(username, email, bio, avatar);
 
     // Función para actualizar el perfil del usuario.
     const handleUpdateProfile = async (e) => {
@@ -55,13 +60,13 @@ export default function ProfilePage() {
         }
     };
 
-    const handleAvatarChange = (e) => {
-        const selectedFile = e.target.files[0];
+    // const handleAvatarChange = (e) => {
+    //     const selectedFile = e.target.files[0];
 
-        if (selectedFile) {
-            setAvatar(selectedFile);
-        }
-    };
+    //     if (selectedFile) {
+    //         setAvatar(selectedFile);
+    //     }
+    // };
 
     /* // Función para mostrar el perfil actual del usuario.
     const showUserProfile = () => {
@@ -84,48 +89,87 @@ export default function ProfilePage() {
     };*/
 
     return (
-        <>
-            {/*{showUserProfile()} */}{' '}
-            {/* Renderiza el perfil actual del usuario. */}
-            <div className="profile-container">
-                <h2>Editar Perfil</h2>
-                <form onSubmit={handleUpdateProfile}>
-                    <div className="form-group">
-                        <label>Username</label>
+        <div className="main-profile-container">
+            <article className="profile-container">
+                <section className="profile-header">
+                    <h2 className="main-profile-title">Editar perfil</h2>
+                </section>
+                <section className="profile-avatar-container">
+                    <h4 className="profile-avatar-title">Avatar</h4>
+                    <img
+                        src={
+                            avatar
+                                ? `${APIUrl}/avatars/${avatar}`
+                                : '/icons/user-profile.png'
+                        }
+                        alt="avatar"
+                        className="profile-avatar-img"
+                    />
+                    <div className="conditional-img">
+                        <label
+                            htmlFor="file-input"
+                            className="custom-file-label"
+                        >
+                            <span className="profile-avatar-btn">
+                                Subir imagen
+                            </span>
+                        </label>
+                        <input
+                            className="custom-file-input"
+                            type="file"
+                            id="file-input"
+                            accept="image/*"
+                            // ref={fileInputRef}
+                            // onChange={onChangeImg}
+                        />{' '}
+                    </div>
+                </section>
+                <section className="profile-body-container">
+                    <div className="profile-body-name-container">
+                        <h4 className="profile-body-name-title">
+                            Nombre de usuario
+                        </h4>
                         <input
                             type="text"
-                            value={username}
-                            onChange={(e) => setUsername(e.target.value)}
-                            required
+                            className="input-profile"
+                            value={username && username}
+                            disabled
                         />
                     </div>
-                    <div className="form-group">
-                        <label>Email</label>
+                    <div className="profile-body-mail-container">
+                        <h4 className="profile-body-mail-title">Email</h4>
                         <input
-                            type="email"
+                            type="text"
+                            className="input-profile"
                             value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            required
+                            disabled
                         />
                     </div>
-                    <div className="form-group">
-                        <label>Bio</label>
+                    <div className="profile-body-password-container">
+                        <h4 className="profile-body-password-title">
+                            Contraseña
+                        </h4>
+                        <input type="password" className="input-profile" />
+                    </div>
+                    <div className="profile-body-bio-container">
+                        <h4 className="profile-body-bio-title">Bio</h4>
                         <textarea
-                            value={bio}
                             onChange={(e) => setBio(e.target.value)}
-                        />
+                            value={bio && bio}
+                            className="profile-body-bio-input"
+                            rows="5"
+                        ></textarea>
                     </div>
-                    <div className="form-group">
-                        <label>Avatar</label>
-                        <input
-                            type="file"
-                            accept="image/*"
-                            onChange={handleAvatarChange}
-                        />
-                    </div>
-                    <button type="submit">Actualizar Perfil</button>
-                </form>
-            </div>
-        </>
+                </section>
+                <section className="profile-footer">
+                    <button className="profile-footer-btn-delete">
+                        Borrar perfil
+                    </button>
+                    <button className="profile-footer-btn-save">
+                        Guardar cambios
+                    </button>
+                </section>
+            </article>
+        </div>
     );
 }
