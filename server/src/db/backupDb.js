@@ -174,7 +174,22 @@ const backupDb = async () => {
       (12, 'Cámara de fotos Polaroid', 'Modelo SX-70 en excelente estado y funcional.', 'Cámaras de fotos', 'Como nuevo', 'Barcelona', 59, 'camaradefotos2.jpg', NOW(), NULL, 0, 4),
       (13, 'Reloj de bolsillo', 'Reloj de bolsillo antiguo, modelo desconocido, de principios del siglo XX en buen estado de conservación.', 'Relojes', 'Como nuevo', 'Barcelona', 76, 'reloj1.jpg', NOW(), NULL, 0, 4),
       (14, 'Teléfono de baquelita antiguo', 'modelo Ericsson DBH 1001, de principios del siglo XX en estado de conservación aceptable aunque no funciona.', 'Teléfonos', 'No funciona', 'Valencia', 28, 'telefono2.jpg', NOW(), NULL, 0, 5),
-      (15, 'Reproductor VHS', 'marca Index, modelo Panasonic NV-HS1000 de los años 90. No funcional y con claros signos de desgaste.', 'Video', 'No funciona', 'A Coruña', 20, 'video2.jpg', NOW(), NULL, 0, 3);
+      (15, 'Reproductor VHS', 'Marca Index, modelo Panasonic NV-HS1000 de los años 90. No funcional y con claros signos de desgaste.', 'Video', 'No funciona', 'A Coruña', 20, 'video2.jpg', NOW(), NULL, 0, 3),
+      (16, 'Colección completa - The Queen Collection', 'Colección completa de CDs de queen precintados.', 'Audio', 'Nuevo', 'Madrid', 100, 'audio5.jpg', NOW(), NULL, 0, 1),
+      (17, 'Máquina de escribir antigua', 'Es de la marca Remington, presenta claros signo de desgaste y no funciona.', 'Máquinas de escribir', 'No funciona', 'A Coruña', 25.50, 'escribir1.jpg', NOW(), NULL, 0, 3),
+      (18, 'Brother modelo electric 3600', 'Máquina de escribir en perfecto estado y funcional. Se manda con el maletín.', 'Máquinas de escribir', 'En buen estado', 'Valencia', 55, 'escribir2.jpg', NOW(), NULL, 0, 5),
+      (19, 'View Master', 'Comprado en el año 1941. Es totalmente funcional aunque presenta signos de desgaste.', 'Juguetes', 'En buen estado', 'Málaga', 29.75, 'juguete1.jpg', NOW(), NULL, 0, 2),
+      (20, 'Furby', 'Comprado a principios de siglo. No funciona, pero está en perfectas condiciones.', 'Juguetes', 'No funciona', 'Santa Cruz de Tenerife', 10, 'juguetes2.jpg', NOW(), NULL, 1, 7),
+      (21, 'Scalextric', 'Modelo GP-17, nunca se usó. Todo está nuevo, exceptuando la caja, que tiene algunos arañados.', 'Juguetes', 'Como nuevo', 'Barcelona', 75, 'juguete3.jpg', NOW(), NULL, 0, 4),
+      (22, 'Ordenador IBM', 'De los los años 80. Aun es funcional, aunque es muy lento. Se entrega con todo lo que sale en la foto.', 'Ordenadores', 'En condiciones aceptables', 'Madrid', 85, 'ordenador2.jpg', NOW(), NULL, 1, 1),
+      (23, 'Atari 800', 'Ordenador de la marca Atari, modelo 800. Se compró en el año 1981. Aunque no funciona, está en perfectas condiciones.', 'Ordenadores', 'No funciona', 'Bilbao', 30, 'ordenador3.jpg', NOW(), NULL, 0, 6),
+      (24, 'Ordenador antiguo', 'Modelo TRS-80 de 1978.', 'Ordenadores', 'En condiciones aceptables', 'Málaga', 32, 'ordenador4.jpg', NOW(), NULL, 1, 2),
+      (25, 'Máquina recreativa PacMan', 'Recreativa de finales de los 80s. Totalmente operativa, pero con algunas marcas.', 'Otros', 'En buen estado', 'Málaga', 300, 'otros1.jpg', NOW(), NULL, 0, 2),
+      (26, 'Reloj Madera', 'Reloj de pared antiguo. Funciona y está restaurado.', 'Relojes', 'Como nuevo', 'Madrid', 120, 'reloj2.jpg', NOW(), NULL, 1, 1),
+      (27, 'Cuco', 'Reloj de cuco de madera sin barnizar. Totalmente funcional.', 'Relojes', 'Como nuevo', 'Santa cruz de Tenerife', 79, 'reloj3.jpg', NOW(), NULL, 0, 7),
+      (28, 'Télefono Western Electric', 'Teléfono de los años 30. Ideal para coleccionistas.', 'Teléfonos', 'No funciona', 'Santa cruz de Tenerife', 25, 'telefono3.jpg', NOW(), NULL, 0, 7),
+      (29, 'Télefono antiguo', 'Marca Sanyo. No funcional.', 'Teléfonos', 'No funciona', 'A Coruña', 15, 'telefono4.jpg', NOW(), NULL, 0, 3),
+      (30, 'Televisor antiguo Philips', 'Televisor no funcional pero bien conservado. Ideal para decoración.', 'Televisores', 'No funciona', 'A Coruña', 150, 'televisor2.jpg', NOW(), NULL, 0, 3);
     `);
 
         console.log(
@@ -191,7 +206,19 @@ const backupDb = async () => {
       (5, '9bc4f77e-9d95-440a-915b-f4315bd33410', NULL, NULL, NOW(), 2, 15),
       (6, 'd4112f69-81b1-4a03-80ea-b6413ed96562', 'A Coruña', '2023-10-05 10:00:00', NOW(), 5, 4),
       (7, '5faedf45-3c0c-44bf-b8f8-50bd27588965', 'Valencia', '2023-09-22 13:30:00', NOW(), 6, 3),
-      (8, '7f3e37ff-4d28-4053-ba3a-ea48006f4d7f', 'Madrid', '2023-09-24 16:00:00', NOW(), 3, 10);
+      (8, '7f3e37ff-4d28-4053-ba3a-ea48006f4d7f', 'Madrid', '2023-09-24 16:00:00', NOW(), 3, 10),
+      (9, '8c798768-7586-4e85-ba2b-9d9dbacee607', NULL, NULL, NOW(), 4, 27),
+      (10, 'c049c447-ea53-4989-83e5-4e31e5c75c4f', 'Málaga', '2023-09-24 16:00:00', NOW(), 2, 6),
+      (11, '0b110647-d426-4a0e-aaed-324baf537ef5', NULL, NULL, NOW(), 3, 27),
+      (12, '217ac963-f91b-4e71-add6-c49c0c9bf16e', NULL, NULL, NOW(), 1, 21),
+      (13, '3c1dff6e-63c3-48e9-9f56-10fce4758e82', NULL, NULL, NOW(), 2, 18),
+      (14, '66163eca-1470-42e7-8818-7684eb75651e', 'Bilbao', '2023-09-24 16:00:00', NOW(), 4, 23),
+      (15, '5f37808e-c5a4-443d-b622-b221486fc529', 'Santa Cruz de Tenerife', '2023-09-24 16:00:00', NOW(), 3, 20),
+      (16, '1d996e66-78d7-4a8f-8176-4220cf6c988e', 'Málaga', '2023-10-11 16:00:00', NOW(), 3, 24),
+      (17, 'ca25361b-a4f9-494b-bcfc-e28753c049c8', 'Madrid', '2023-09-29 17:00:00', NOW(), 5, 26),
+      (18, '1cf4261d-8f3b-4042-bc1d-c524cdebab08', NULL, NULL, NOW(), 7, 16),
+      (19, '35ff3175-6154-4fe1-b16f-92d09d9ee47f', NULL, NULL, NOW(), 2, 16),
+      (20, '9c9dc2b0-6fc7-4c32-ab13-bc9370d3d6cd', 'Madrid', '2023-09-17 11:30:00', NOW(), 3, 22);
     `);
         console.log(
             FgLightMagenta,
@@ -201,7 +228,11 @@ const backupDb = async () => {
       INSERT INTO reviews (id, titleRw, textRw, starsRw, createdAt, modifiedAt, bookingId)
       VALUES
       (1, 'Vendedor excelente', 'Muy puntual y el producto tal y como se describe.', '5', NOW(), NULL, 4),
-      (2, 'Ha llegado tarde a la entrega', 'Ha llegado media hora tarde a la entrega y no ha sido nada agradable', '2', NOW(), NULL, 7);
+      (2, 'Ha llegado tarde a la entrega', 'Ha llegado media hora tarde a la entrega y no ha sido nada agradable', '2', NOW(), NULL, 7),
+      (3, 'Buen vendedor', 'Estaba todo perfecto aunque un poco dañado.', '4', NOW(), NULL, 15),
+      (4, 'Puntual', 'Ha sido puntual pero muy poco atento.', '3', NOW(), NULL, 16),
+      (5, 'Muy buena persona', 'Puntual, atento, majo y todo como se describía.', '5', NOW(), NULL, 17),
+      (6, 'No apareció =(', 'No fue al punto de encuentro, estuve esperando 2 horas.', '1', NOW(), NULL, 20);
     `);
 
         console.log(FgLightGreen, '¡Registros añadidos con éxito!');
