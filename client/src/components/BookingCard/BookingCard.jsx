@@ -84,8 +84,13 @@ export default function BookingCard({ booking }) {
                         {showModal && (
                             <div className="popup-booking">
                                 <h2>Datos de la entrega</h2>
-                                <form action="" onSubmit={bookingSubmit}>
+                                <form
+                                    action=""
+                                    onSubmit={bookingSubmit}
+                                    className="form-popup"
+                                >
                                     <input
+                                        className="input-delivery-place"
                                         type="text"
                                         value={deliveryPlace}
                                         onChange={(e) =>
@@ -97,6 +102,7 @@ export default function BookingCard({ booking }) {
                                         placeholder="Lugar de entrega"
                                     />
                                     <input
+                                        className="input-delivery-time"
                                         type="datetime-local"
                                         value={deliveryTime}
                                         onChange={(e) =>
@@ -105,7 +111,21 @@ export default function BookingCard({ booking }) {
                                         required
                                         placeholder="Fecha y hora de entrega"
                                     />
-                                    <button type="submit">Confirmar</button>
+                                    <footer className="footer-popup">
+                                        <button
+                                            className="btn-cancel-booking"
+                                            type="button"
+                                            onClick={() => setShowModal(false)}
+                                        >
+                                            Cancelar
+                                        </button>
+                                        <button
+                                            className="btn-confirm-booking"
+                                            type="submit"
+                                        >
+                                            Confirmar
+                                        </button>
+                                    </footer>
                                 </form>
                             </div>
                         )}
