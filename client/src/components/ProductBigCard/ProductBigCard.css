@@ -55,7 +55,17 @@ body {
     /* border: 1px solid black; */
 }
 
+.product_page_avatar {
+    width: 70px;
+    height: 70px;
+    margin-bottom: 1rem;
+    border-radius: 50%;
+    border: 1px solid black;
+    cursor: pointer;
+}
+
 .product-page__header__user__reviews {
+    margin-top: 1rem;
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -73,6 +83,7 @@ body {
 }
 
 .product-page__gallery {
+    margin-top: 1rem;
     display: flex;
     flex-direction: column;
     justify-content: center;

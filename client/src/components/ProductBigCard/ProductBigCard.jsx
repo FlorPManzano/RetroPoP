@@ -51,9 +51,9 @@ export default function ProductBigCard({ product }) {
                     <div className="product-page__header__user">
                         <div className="product-page__header__user__name">
                             <img
+                                className="product_page_avatar"
                                 src={`${APIUrl}/avatars/${product.avatar}`}
                                 alt="user"
-                                width="50"
                             />
                             <h3 className="h3-bigproduct">
                                 {product.username}
@@ -61,7 +61,7 @@ export default function ProductBigCard({ product }) {
                         </div>
                         <div className="product-page__header__user__reviews">
                             <h3 className="h3-bigproduct">
-                                {product.mediaStars} estrellas (
+                                {product.mediaStars.toFixed(1)} estrellas (
                                 {product.totalReviews} reviews)
                             </h3>
                         </div>
