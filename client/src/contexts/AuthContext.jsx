@@ -13,6 +13,7 @@ import {
     getUserProfileService,
     loginUserService,
     registerUserService,
+    editUserService,
 } from '../services/fetchData.js';
 import { toast } from 'react-toastify';
 
@@ -123,6 +124,29 @@ export const AuthProvider = ({ children }) => {
         setAuthUser(null);
     };
 
+    // Función de actualización de perfil.
+    const authUpdateProfile = async (updatedProfile) => {
+        try {
+            setLoading(true);
+
+            // Realiza la solicitud para actualizar el perfil del usuario utilizando editUserService
+            const response = await editUserService(authToken, updatedProfile);
+
+            if (response.status === 'success') {
+                // Actualiza el usuario en el estado
+                setAuthUser({ ...authUser, ...updatedProfile });
+
+                toastSuccess('Perfil actualizado con éxito');
+            } else {
+                toastError('Error al actualizar el perfil');
+            }
+        } catch (error) {
+            toastError('Error al actualizar el perfil');
+        } finally {
+            setLoading(false);
+        }
+    };
+
     return (
         <AuthContext.Provider
             value={{
@@ -133,6 +157,7 @@ export const AuthProvider = ({ children }) => {
                 loading,
                 authToken,
                 setAuthToken,
+                authUpdateProfile,
             }}
         >
             {children}
