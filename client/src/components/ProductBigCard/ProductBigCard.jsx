@@ -1,19 +1,24 @@
 import './ProductBigCard.css';
 import { productPropTypes } from '../../utils/customPropTypes';
 import { APIUrl } from '../../config';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 import { useState } from 'react';
 import { useProducts } from '../../hooks/useProducts.js';
+import { toast } from 'react-toastify';
 
 export default function ProductBigCard({ product }) {
-    // const { authToken } = useAuth();
+    const { authToken } = useAuth();
     const [loading, setLoading] = useState(false);
     const { addBooking } = useProducts();
     const [showPopUp, setShowPopUp] = useState(false);
 
+    const navigate = useNavigate();
+
     const handleBookingCreate = async (e) => {
         e.preventDefault();
+        toast.error('Debes estar logueado para reservar un producto');
+        if (!authToken) return navigate('/login');
         setShowPopUp(true);
     };
 
