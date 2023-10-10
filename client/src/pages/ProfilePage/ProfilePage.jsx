@@ -50,7 +50,7 @@ export default function ProfilePage() {
 
         try {
             // Llama al servicio para editar datos del usuario.
-            await editUserService(formData);
+            await editUserService(authToken, formData);
 
             // Llama a la función para actualizar el perfil de autenticación del usuario.
             await authUpdateProfile({ username, email, bio });
@@ -67,26 +67,6 @@ export default function ProfilePage() {
     //         setAvatar(selectedFile);
     //     }
     // };
-
-    /* // Función para mostrar el perfil actual del usuario.
-    const showUserProfile = () => {
-        return (
-            <div className="profile-info">
-                <h2>Perfil Actual</h2>
-                <p>
-                    <strong>Username:</strong> {user.username}
-                </p>
-                <p>
-                    <strong>Email:</strong> {user.email}
-                </p>
-                <p>
-                    <strong>Bio:</strong>{' '}
-                    {user.bio || 'No tiene una biografía.'}
-                </p>
-                <img src={user.avatarUrl} alt="Avatar" />
-            </div>
-        );
-    };*/
 
     return (
         <div className="main-profile-container">
