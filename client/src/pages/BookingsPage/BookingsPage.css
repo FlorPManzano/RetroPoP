@@ -1,3 +1,10 @@
+.main_title {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #f3ffe7;
+    margin: 2rem;
+}
+
 .booking-no-results {
     color: white;
     text-align: center;
