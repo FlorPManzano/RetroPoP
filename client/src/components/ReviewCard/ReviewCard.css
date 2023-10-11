@@ -43,8 +43,8 @@
     color: #fff;
     text-align: center;
     border-bottom: 1px solid rgb(255, 255, 255);
-    border-radius: 20px;
-    color: rgb(0, 204, 255);
+    /* border-radius: 20px; */
+    color: rgb(248, 248, 248);
     outline: none;
 }
 
@@ -70,11 +70,23 @@
 .review-card__info {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-around;
     gap: 10px;
     align-items: center;
     width: 500px;
-    height: 400px;
+    height: 500px;
+    padding: 1rem;
+    box-sizing: border-box;
+}
+
+.review-card__form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    gap: 10px;
+    align-items: center;
+    width: 500px;
+    height: 500px;
     padding: 1rem;
     box-sizing: border-box;
 }
@@ -131,6 +143,22 @@
 
 .review-card__button:hover {
     box-shadow: 0px 0px 10px 0px rgba(255, 255, 255, 0.75);
+}
+
+.stars-select {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 400px;
+    height: 50px;
+    font-size: 24px;
+    font-weight: 600;
+    color: #fff;
+    text-align: center;
+    border-bottom: 1px solid black;
+    border-radius: 20px;
+    color: black;
+    outline: none;
 }
 
 :root {
