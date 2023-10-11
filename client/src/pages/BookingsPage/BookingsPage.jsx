@@ -27,11 +27,12 @@ export default function BookingPage() {
 
     return (
         <>
-            {bookings ? (
+            {/* {bookings ? (
                 <h2 className="main_title">Solicitudes de Reserva</h2>
             ) : (
                 <h2 className="main_title">No tienes solicitudes pendientes</h2>
-            )}
+            )} */}
+            <h2 className="main_title">Solicitudes de Reserva</h2>
             {bookings && (
                 <section className="list-bookings">
                     <div className="bookings-container">
@@ -46,7 +47,9 @@ export default function BookingPage() {
                 </section>
             )}
             {!bookings && (
-                <p className="booking-no-results">No tienes reservas activas</p>
+                <h2 className="booking-no-results">
+                    No tienes reservas activas
+                </h2>
             )}
         </>
     );
