@@ -32,6 +32,7 @@ export default function BookingCard({ booking }) {
     const rejectBooking = (e) => {
         e.preventDefault();
         cancelBooking(booking.resno);
+        navigate(`/`);
     };
 
     const bookingSubmit = async (e) => {
@@ -43,7 +44,6 @@ export default function BookingCard({ booking }) {
             deliveryTimeFormatted,
             deliveryPlace
         );
-        console.log(result);
         setShowModal(false);
 
         navigate(`/`);

@@ -163,7 +163,6 @@ const cancelBookingService = async (token, resno) => {
     const confirm = false;
     const deliveryTime = '';
     const deliveryPlace = '';
-
     const res = await fetch(`${APIUrl}/bookings/confirm/${resno}`, {
         method: 'PUT',
         headers: {
@@ -172,7 +171,6 @@ const cancelBookingService = async (token, resno) => {
         },
         body: JSON.stringify({ confirm, deliveryTime, deliveryPlace }),
     });
-
     const body = await res.json();
 
     return body;

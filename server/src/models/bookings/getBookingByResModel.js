@@ -1,17 +1,16 @@
 // Importamos la conexión a la BBDD
 import getDb from '../../db/getDb.js';
 
-const getBookingByResModel = async (res) => {
+const getBookingByResModel = async (resno) => {
     let connection;
     try {
         connection = await getDb();
-
-        const [booking] = await connection.query(
+        const booking = await connection.query(
             `SELECT * FROM bookings WHERE resno = ?`,
-            [res]
+            [resno]
         );
-        console.log('ey booking', booking);
         // Devolvemos el producto
+
         return booking;
     } finally {
         if (connection) connection.release();
