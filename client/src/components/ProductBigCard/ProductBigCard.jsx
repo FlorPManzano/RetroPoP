@@ -39,6 +39,10 @@ export default function ProductBigCard({ product }) {
 
     const handleFavSubmit = async (e) => {
         e.preventDefault();
+        if (!authToken) {
+            toast.error('Debes estar logueado para añadir un favorito');
+            return navigate('/login');
+        }
         setLoading(true);
         setFav(!fav);
         // const result = await addFavService(product.id);
