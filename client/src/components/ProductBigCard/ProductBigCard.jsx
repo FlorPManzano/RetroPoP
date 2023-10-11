@@ -14,6 +14,15 @@ export default function ProductBigCard({ product }) {
     const { addBooking } = useProducts();
     const [showPopUp, setShowPopUp] = useState(false);
 
+    const dateNow = new Date(product.createdAt)
+        .toDateString()
+        .split(' ')
+        .splice(1);
+
+    const dateNowFormatted = `${dateNow[1]} ${dateNow[0]} ${dateNow[2]}`;
+
+    const [date, setDate] = useState(dateNowFormatted);
+
     const navigate = useNavigate();
 
     const handleBookingCreate = async (e) => {
@@ -39,6 +48,10 @@ export default function ProductBigCard({ product }) {
 
     const handleFavSubmit = async (e) => {
         e.preventDefault();
+        if (!authToken) {
+            toast.error('Debes estar logueado para añadir un favorito');
+            return navigate('/login');
+        }
         setLoading(true);
         setFav(!fav);
         // const result = await addFavService(product.id);
@@ -61,13 +74,13 @@ export default function ProductBigCard({ product }) {
                         </div>
                         <div className="product-page__header__user__reviews">
                             <h3 className="h3-bigproduct">
-                                {product.mediaStars.toFixed(1)} estrellas (
+                                {product?.mediaStars?.toFixed(1)} estrellas (
                                 {product.totalReviews} reviews)
                             </h3>
                         </div>
                         <div className="product-page__header__user__creation">
                             <p className="p-product-created">
-                                Fecha de creación: {product.createdAt}
+                                Fecha de creación: {date}
                             </p>
                         </div>
                     </div>

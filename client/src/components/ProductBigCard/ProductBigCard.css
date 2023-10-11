@@ -88,9 +88,8 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    /* width: 80%; */
+    width: 500px;
     height: 250px;
-    /* border: 1px solid black; */
 }
 
 .product-image {
@@ -99,7 +98,7 @@ body {
     border-radius: 20px;
     width: 90%;
     height: 100%;
-    /* border: 1px solid black; */
+    border: 1px solid rgb(247, 247, 247);
 }
 
 .product-page__info {
