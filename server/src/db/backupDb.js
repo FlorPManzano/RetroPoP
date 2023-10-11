@@ -199,11 +199,11 @@ const backupDb = async () => {
         await connection.query(`
       INSERT INTO bookings (id, resno, deliveryPlace, deliveryTime, createdAt, userBuyerId, productId)
       VALUES
-      (1, '333cbf89-ddc3-4f2b-8b92-9d1a5424e6f2', NULL, NULL, NOW(), 1, 15),
+      (1, '333cbf89-ddc3-4f2b-8b92-9d1a5424e6f2', 'A Coruña', '2023-10-01 15:00:00', NOW(), 1, 15),
       (2, 'f8f196c3-c850-4703-82ba-f3162ea0bfb3', 'Barcelona', '2023-10-01 16:00:00', NOW(), 6, 12),
       (3, '6a85c270-e112-48eb-9937-d6f6c363035a', NULL, NULL, NOW(), 7, 10),
       (4, '89c75662-a633-4b42-b59c-4474745614f4', 'Madrid', '2023-09-25 16:00:00', NOW(), 4, 2),
-      (5, '9bc4f77e-9d95-440a-915b-f4315bd33410', NULL, NULL, NOW(), 2, 15),
+      (5, '9bc4f77e-9d95-440a-915b-f4315bd33410', NULL, NULL, NOW(), 2, 17),
       (6, 'd4112f69-81b1-4a03-80ea-b6413ed96562', 'A Coruña', '2023-10-05 10:00:00', NOW(), 5, 4),
       (7, '5faedf45-3c0c-44bf-b8f8-50bd27588965', 'Valencia', '2023-09-22 13:30:00', NOW(), 6, 3),
       (8, '7f3e37ff-4d28-4053-ba3a-ea48006f4d7f', 'Madrid', '2023-09-24 16:00:00', NOW(), 3, 10),
