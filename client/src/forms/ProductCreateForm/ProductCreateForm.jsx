@@ -78,55 +78,64 @@ const ProductCreateForm = () => {
                 className="product-create-form"
                 onSubmit={handleProductCreate}
             >
-                <section className="title-upload-product">
+                <header className="title-upload-product">
                     <h2 className="title-upload">Sube tu producto</h2>
-                </section>
-                <header className="product-create-form__header">
-                    <input
-                        className="input-place-upload"
-                        type="text"
-                        value={productName}
-                        onChange={(e) => setProductName(e.target.value)}
-                        maxLength="280"
-                        autoFocus
-                        required
-                        placeholder="Nombre del Producto"
-                    />
-
-                    <div className="select-container">
-                        {/* <label htmlFor="category-select">Categoría:</label> */}
-                        <select
-                            className="select-category"
-                            id="category-select"
-                            value={category}
-                            onChange={(e) => setCategory(e.target.value)}
-                            required
-                        >
-                            <option value="" defaultValue>
-                                Selecciona una categoría
-                            </option>
-                            <option value="Audio">Audio</option>
-                            <option value="Cámaras de fotos">
-                                Cámaras de fotos
-                            </option>
-                            <option value="Consolas">Consolas</option>
-                            <option value="Juguetes">Juguetes</option>
-                            <option value="Máquinas de escribir">
-                                Máquinas de escribir
-                            </option>
-                            <option value="Ordenadores">Ordenadores</option>
-                            <option value="Relojes">Relojes</option>
-                            <option value="Teléfonos">Teléfonos</option>
-                            <option value="Televisores">Televisores</option>
-                            <option value="Video">Video</option>
-                            <option value="Otros">Otros</option>
-                        </select>
-                    </div>
                 </header>
+                <div className="body-form-main">
+                    <section className="product-create-form__left">
+                        <h4 className="product-create-form__title">
+                            Nombre del producto
+                        </h4>
+                        <h4 className="product-create-form__title">
+                            Categoría
+                        </h4>
+                        <h4 className="product-create-form__title">Estado</h4>
+                        <h4 className="product-create-form__title">
+                            Localidad
+                        </h4>
+                        <h4 className="product-create-form__title">Precio</h4>
+                    </section>
+                    <main className="product-create-form__main">
+                        <input
+                            className="input-place-upload"
+                            type="text"
+                            value={productName}
+                            onChange={(e) => setProductName(e.target.value)}
+                            maxLength="280"
+                            autoFocus
+                            required
+                            placeholder="Nombre del Producto"
+                        />
 
-                <section className="product-create-form__body">
-                    <div className="select-container">
-                        {/* <label htmlFor="state-select">Estado:</label> */}
+                        <div className="select-container">
+                            {/* <label htmlFor="category-select">Categoría:</label> */}
+                            <select
+                                className="select-category"
+                                id="category-select"
+                                value={category}
+                                onChange={(e) => setCategory(e.target.value)}
+                                required
+                            >
+                                <option value="" defaultValue>
+                                    Selecciona una categoría
+                                </option>
+                                <option value="Audio">Audio</option>
+                                <option value="Cámaras de fotos">
+                                    Cámaras de fotos
+                                </option>
+                                <option value="Consolas">Consolas</option>
+                                <option value="Juguetes">Juguetes</option>
+                                <option value="Máquinas de escribir">
+                                    Máquinas de escribir
+                                </option>
+                                <option value="Ordenadores">Ordenadores</option>
+                                <option value="Relojes">Relojes</option>
+                                <option value="Teléfonos">Teléfonos</option>
+                                <option value="Televisores">Televisores</option>
+                                <option value="Video">Video</option>
+                                <option value="Otros">Otros</option>
+                            </select>
+                        </div>
                         <select
                             className="select-category"
                             id="state-select"
@@ -147,22 +156,22 @@ const ProductCreateForm = () => {
                             </option>
                             <option value="No funciona">No funciona</option>
                         </select>
-                    </div>
-                    <input
-                        className="input-place-upload"
-                        type="text"
-                        value={place}
-                        onChange={(e) => setPlace(e.target.value)}
-                        placeholder="Localidad"
-                    />
-                    <input
-                        type="number"
-                        value={price}
-                        onChange={(e) => setPrice(e.target.value)}
-                        min="0"
-                        placeholder="Precio"
-                    />
-                </section>
+                        <input
+                            className="input-place-upload"
+                            type="text"
+                            value={place}
+                            onChange={(e) => setPlace(e.target.value)}
+                            placeholder="Localidad"
+                        />
+                        <input
+                            type="number"
+                            value={price}
+                            onChange={(e) => setPrice(e.target.value)}
+                            min="0"
+                            placeholder="Precio"
+                        />
+                    </main>
+                </div>
 
                 <section className="product-create-form__section_description">
                     <textarea
@@ -222,12 +231,15 @@ const ProductCreateForm = () => {
                 </div>
                 <footer className="product-create-form__footer">
                     <button
-                        className="clear-fields"
+                        className="clear-fields btn-product-upload"
                         onClick={handleClearFields}
                     >
                         Borrar
                     </button>
-                    <button className="submit-btn" disabled={loading}>
+                    <button
+                        className="submit-btn btn-product-upload"
+                        disabled={loading}
+                    >
                         Enviar
                     </button>
                 </footer>

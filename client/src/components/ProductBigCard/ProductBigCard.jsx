@@ -3,13 +3,14 @@ import { productPropTypes } from '../../utils/customPropTypes';
 import { APIUrl } from '../../config';
 import { NavLink, useNavigate } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useProducts } from '../../hooks/useProducts.js';
 import { toast } from 'react-toastify';
+import { setFavoriteService } from '../../services/fetchData';
 
 export default function ProductBigCard({ product }) {
-    const [fav, setFav] = useState(false); // eslint-disable-line no-unused-vars
-    const { authToken } = useAuth();
+    const [fav, setFav] = useState(false);
+    const { authToken, authFavs, setAuthFavs } = useAuth();
     const [loading, setLoading] = useState(false);
     const { addBooking } = useProducts();
     const [showPopUp, setShowPopUp] = useState(false);
@@ -24,6 +25,10 @@ export default function ProductBigCard({ product }) {
     const [date, setDate] = useState(dateNowFormatted);
 
     const navigate = useNavigate();
+
+    useEffect(() => {
+        authFavs?.includes(product.id) ? setFav(true) : setFav(false);
+    }, [authFavs]);
 
     const handleBookingCreate = async (e) => {
         e.preventDefault();
@@ -53,6 +58,11 @@ export default function ProductBigCard({ product }) {
             return navigate('/login');
         }
         setLoading(true);
+
+        const setFavorite = await setFavoriteService(authToken, product?.id);
+
+        toast.success(setFavorite.message);
+
         setFav(!fav);
         // const result = await addFavService(product.id);
     };
@@ -65,17 +75,17 @@ export default function ProductBigCard({ product }) {
                         <div className="product-page__header__user__name">
                             <img
                                 className="product_page_avatar"
-                                src={`${APIUrl}/avatars/${product.avatar}`}
+                                src={`${APIUrl}/avatars/${product?.avatar}`}
                                 alt="user"
                             />
                             <h3 className="h3-bigproduct">
-                                {product.username}
+                                {product?.username}
                             </h3>
                         </div>
                         <div className="product-page__header__user__reviews">
                             <h3 className="h3-bigproduct">
                                 {product?.mediaStars?.toFixed(1)} estrellas (
-                                {product.totalReviews} reviews)
+                                {product?.totalReviews} reviews)
                             </h3>
                         </div>
                         <div className="product-page__header__user__creation">
@@ -87,32 +97,34 @@ export default function ProductBigCard({ product }) {
                 </header>
                 <div className="product-page__gallery">
                     <img
-                        src={`${APIUrl}/images/${product.image}`}
+                        src={`${APIUrl}/images/${product?.image}`}
                         alt=""
                         className="product-image"
                     />
                 </div>
                 <div className="product-page__info">
                     <div className="product-page__info__name">
-                        <h2 className="h3-bigproduct">{product.productName}</h2>
-                        <h3 className="h3-bigproduct">{product.price}€</h3>
+                        <h2 className="h3-bigproduct">
+                            {product?.productName}
+                        </h2>
+                        <h3 className="h3-bigproduct">{product?.price}€</h3>
                     </div>
                     <div className="product-page__info__description">
                         <p className="p-product-description">
-                            {product.description}
+                            {product?.description}
                         </p>
                     </div>
                 </div>
                 <footer className="product-page__footer">
                     <div className="product-page__footer__state">
-                        <NavLink to={`/search/?category=${product.category}`}>
-                            <h3 className="h3-footer">#{product.category}</h3>
+                        <NavLink to={`/search/?category=${product?.category}`}>
+                            <h3 className="h3-footer">#{product?.category}</h3>
                         </NavLink>
-                        <NavLink to={`/search/?place=${product.place}`}>
-                            <h3 className="h3-footer">{product.place}</h3>
+                        <NavLink to={`/search/?place=${product?.place}`}>
+                            <h3 className="h3-footer">{product?.place}</h3>
                         </NavLink>
-                        <NavLink to={`/search/?state=${product.state}`}>
-                            <h3 className="h3-footer">{product.state}</h3>
+                        <NavLink to={`/search/?state=${product?.state}`}>
+                            <h3 className="h3-footer">{product?.state}</h3>
                         </NavLink>
                     </div>
                     <div className="product-page__footer__buttons">

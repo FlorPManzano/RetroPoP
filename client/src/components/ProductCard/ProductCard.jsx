@@ -3,8 +3,11 @@ import { productPropTypes } from '../../utils/customPropTypes.js';
 import { APIUrl } from '../../config';
 import { useState } from 'react';
 
-export default function ProductCard({ image, productName, price }) {
-    const [fav, setFav] = useState(false);
+import useAuth from '../../hooks/useAuth';
+
+export default function ProductCard({ image, productName, price, fav }) {
+    const { authUser } = useAuth();
+    const [favorite, setFavorite] = useState(fav);
 
     return (
         <div className="product-card-container">
@@ -21,11 +24,17 @@ export default function ProductCard({ image, productName, price }) {
                 </main>
                 <footer className="product-card__footer">
                     <p className="product-card__price">{price}€</p>
-                    <img
-                        className="product-card__button"
-                        alt="fav"
-                        src={fav ? '/icons/heart2.png' : '/icons/heart1.png'}
-                    />
+                    {authUser && (
+                        <img
+                            className="product-card__button"
+                            alt="fav"
+                            src={
+                                favorite
+                                    ? '/icons/heart2.png'
+                                    : '/icons/heart1.png'
+                            }
+                        />
+                    )}
                 </footer>
             </article>
         </div>

@@ -9,9 +9,10 @@ import { useNavigate } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 
 export default function ListProducts() {
-    const { authUser } = useAuth();
+    const { authUser, authFavs } = useAuth();
 
     const [products, setProducts] = useState([]);
+
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -20,6 +21,7 @@ export default function ListProducts() {
                 // setLoading(true);
                 const body = await getAllProductsService();
                 setProducts(body.data);
+                console.log(body.data);
             } catch (err) {
                 console.log(err.message);
             } finally {
@@ -57,6 +59,11 @@ export default function ListProducts() {
                                         productName={product.productName}
                                         price={product.price}
                                         image={product.image}
+                                        fav={
+                                            authFavs?.includes(product.id)
+                                                ? true
+                                                : false
+                                        }
                                     />
                                 </li>
                             ))}

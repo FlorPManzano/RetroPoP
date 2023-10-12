@@ -1,14 +1,17 @@
 import { useState, useEffect, useRef } from 'react';
 import { toast } from 'react-toastify';
 import useAuth from '../../hooks/useAuth.js'; // Importa el hook personalizado de autenticación.
-import { deleteUserService } from '../../services/fetchData.js'; // Importa el servicio para editar datos de usuario.
-import './ProfilePage.css'; // Importa los estilos de la página.
+import {
+    deleteUserService,
+    editUserService,
+} from '../../services/fetchData.js'; // Importa el servicio para editar datos de usuario.
+import './EditProfile.css'; // Importa los estilos de la página.
 import { APIUrl } from '../../config.js'; // Importa la URL de la API.
 import { useNavigate } from 'react-router-dom';
 import { Navigate } from 'react-router-dom';
 import { handleAddFilePreview } from '../../utils/handleAddFilePreview.js';
 
-export default function ProfilePage() {
+export default function EditProfilePage() {
     const fileInputRef = useRef(null);
     // Obtiene datos de usuario y función para actualizar el perfil desde el hook de autenticación.
     const { authUser, authUpdateProfile, authToken, authLogout } = useAuth();
@@ -59,6 +62,9 @@ export default function ProfilePage() {
         }
 
         try {
+            // Llama al servicio para editar datos del usuario.
+            // await editUserService(authToken, formData);
+
             // Llama a la función para actualizar el perfil de autenticación del usuario.
             console.log('Esto entra');
             await authUpdateProfile(formData);

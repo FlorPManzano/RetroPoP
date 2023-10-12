@@ -51,6 +51,12 @@
     color: white;
     border: 1px solid white;
     cursor: pointer;
+    transition: 1s;
+}
+.upload-product:hover {
+    background: #11d9c5;
+    background: linear-gradient(to right, #f23da1, #11d9c5);
+    transform: scale(1.1);
 }
 
 .login {

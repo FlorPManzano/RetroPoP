@@ -1,12 +1,13 @@
 import express from 'express';
 import authUser from '../middlewares/authUser.js';
-import newFavController from '../controllers/favorites/newFavController.js';
-import deleteFavController from '../controllers/favorites/deleteFavController.js';
+import setFavController from '../controllers/favorites/setFavController.js';
+import getFavController from '../controllers/favorites/getFavController.js';
 // Controllers
 
-import router from './reviewsRoutes.js';
+// Router
+const router = express.Router();
 
-router.post('/', authUser, newFavController);
-router.get('/', authUser, deleteFavController);
+router.put('/', authUser, setFavController);
+router.get('/', authUser, getFavController);
 
 export default router;

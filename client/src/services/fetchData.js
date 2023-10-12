@@ -216,6 +216,22 @@ const deleteUserService = async (token) => {
     return body;
 };
 
+const setFavoriteService = async (token, idProduct) => {
+    console.log('Intentando añadir favorito', token, idProduct);
+    const res = await fetch(`${APIUrl}/favorites`, {
+        method: 'PUT',
+        headers: {
+            Authorization: token,
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ idProduct }),
+    });
+
+    const body = await res.json();
+
+    return body;
+};
+
 export {
     registerUserService,
     validateUserService,
@@ -233,4 +249,5 @@ export {
     getReviewsService,
     newReviewService,
     deleteUserService,
+    setFavoriteService,
 };

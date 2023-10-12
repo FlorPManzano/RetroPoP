@@ -30,6 +30,7 @@ export const AuthProvider = ({ children }) => {
         localStorage.getItem(userLocalStorageKey)
     );
     const [authUser, setAuthUser] = useState(null);
+    const [authFavs, setAuthFavs] = useState(null); // [1, 2, 3
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
@@ -46,6 +47,8 @@ export const AuthProvider = ({ children }) => {
 
                 // Establecemos el valor del usuario.
                 setAuthUser(body);
+                setAuthFavs(body.favs);
+                console.log('body', body);
             } catch (err) {
                 // Manejamos los errores con toast.
             } finally {
@@ -158,6 +161,8 @@ export const AuthProvider = ({ children }) => {
                 authToken,
                 setAuthToken,
                 authUpdateProfile,
+                authFavs,
+                setAuthFavs,
             }}
         >
             {children}
