@@ -66,7 +66,7 @@ export default function EditProfilePage() {
             // await editUserService(authToken, formData);
 
             // Llama a la función para actualizar el perfil de autenticación del usuario.
-            console.log('Esto entra');
+
             await authUpdateProfile(formData);
         } catch (error) {
             toast.error('Error al actualizar el perfil 1');

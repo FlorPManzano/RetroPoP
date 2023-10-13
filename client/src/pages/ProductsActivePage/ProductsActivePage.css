@@ -1,34 +1,32 @@
-.main_title {
-    font-size: 2rem;
-    font-weight: 600;
-    color: #f3ffe7;
-    margin: 2rem;
-}
-
-.booking-no-results {
-    color: white;
-    text-align: center;
-}
-
-.list-bookings {
+.list-products-active {
     display: flex;
+    flex-direction: column;
+    align-items: end;
     justify-content: end;
     padding: 0;
     margin: 0;
-
     width: 100%;
 }
 
-.bookings-container {
+.title-active {
+    font-size: 2rem;
+    font-weight: 600;
+    color: white;
+    margin: 2rem;
+    text-align: center;
+    width: 100%;
+}
+
+.list-products__container-active {
     display: flex;
-    justify-content: center;
+    justify-content: end;
     padding: 0;
     margin: 0;
     margin-right: 10rem;
     width: 70%;
 }
 
-.list-bookings__container {
+.list-products__list-active {
     gap: 1rem;
     list-style: none;
     display: grid;

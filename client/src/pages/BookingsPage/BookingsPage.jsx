@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { getBookingsService } from '../../services/fetchData';
 import BookingCard from '../../components/BookingCard/BookingCard';
 import useAuth from '../../hooks/useAuth';
+import LateralBar from '../../components/LateralBar/LateralBar';
 
 export default function BookingPage() {
     const [bookings, setBookings] = useState(null);
@@ -27,6 +28,7 @@ export default function BookingPage() {
 
     return (
         <>
+            <LateralBar />
             {/* {bookings ? (
                 <h2 className="main_title">Solicitudes de Reserva</h2>
             ) : (

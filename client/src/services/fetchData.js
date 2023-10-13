@@ -60,7 +60,6 @@ const getUserProfileService = async (token) => {
 
 // Editar un perfil privado de un usuario
 const editUserService = async (token, editUserForm) => {
-    console.log('fetch', token, editUserForm);
     const res = await fetch(`${APIUrl}/users/edit`, {
         method: 'PUT',
         headers: {
@@ -217,7 +216,6 @@ const deleteUserService = async (token) => {
 };
 
 const setFavoriteService = async (token, idProduct) => {
-    console.log('Intentando añadir favorito', token, idProduct);
     const res = await fetch(`${APIUrl}/favorites`, {
         method: 'PUT',
         headers: {

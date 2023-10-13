@@ -9,7 +9,7 @@ import {
 
 import { hashPassword } from '../helpers/encripters.js';
 
-const backupDb = async () => {
+export const backupDb = async () => {
     let connection;
 
     try {

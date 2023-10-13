@@ -7,6 +7,7 @@ import { APIUrl } from '../../config.js'; // Importa la URL de la API.
 import { useNavigate } from 'react-router-dom';
 import { Navigate } from 'react-router-dom';
 import { handleAddFilePreview } from '../../utils/handleAddFilePreview.js';
+import LateralBar from '../../components/LateralBar/LateralBar.jsx';
 
 export default function ProfilePage() {
     const fileInputRef = useRef(null);
@@ -60,10 +61,10 @@ export default function ProfilePage() {
 
         try {
             // Llama a la función para actualizar el perfil de autenticación del usuario.
-            console.log('Esto entra');
+
             await authUpdateProfile(formData);
         } catch (error) {
-            toast.error('Error al actualizar el perfil 1');
+            toast.error('Error al actualizar el perfil');
         }
     };
 
@@ -103,6 +104,7 @@ export default function ProfilePage() {
     return (
         authUser && (
             <div className="main-profile-container">
+                <LateralBar />
                 <form>
                     <article className="profile-container">
                         <section className="profile-header">

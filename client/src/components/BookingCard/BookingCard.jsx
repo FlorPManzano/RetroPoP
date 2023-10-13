@@ -2,7 +2,7 @@ import './BookingCard.css';
 import { APIUrl } from '../../config';
 import { bookingPropTypes } from '../../utils/customPropTypes';
 import { useState } from 'react';
-import BookingForm from '../../forms/BookingForm/BookingForm';
+// import BookingForm from '../../forms/BookingForm/BookingForm';
 import { useProducts } from '../../hooks/useProducts';
 import { useNavigate } from 'react-router-dom';
 import formatDate from '../../utils/formatDate';
@@ -21,8 +21,6 @@ export default function BookingCard({ booking }) {
 
     const dateNowFormatted = `${dateNow[1]} ${dateNow[0]} ${dateNow[2]}`;
 
-    const [date, setDate] = useState(dateNowFormatted);
-
     const navigate = useNavigate();
 
     const acceptBooking = (e) => {
@@ -39,7 +37,7 @@ export default function BookingCard({ booking }) {
         e.preventDefault();
         const deliveryTimeFormatted = formatDate(deliveryTime);
 
-        const result = await confirmBooking(
+        await confirmBooking(
             booking.resno,
             deliveryTimeFormatted,
             deliveryPlace
@@ -72,7 +70,7 @@ export default function BookingCard({ booking }) {
                 </main>
                 <footer className="booking-container-info-footer">
                     <p className="booking-container-info-buyer">
-                        Por {booking.userBuyer} el {date}
+                        Por {booking.userBuyer} el {dateNowFormatted}
                     </p>
                     <div className="booking-container-info-buttons">
                         <button className="btn-reject" onClick={rejectBooking}>

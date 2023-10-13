@@ -15,7 +15,7 @@ import {
 import getDb from './getDb.js';
 
 // Función que borrará las tablas de la base de datos (si existen) y las volverá a crear.
-const main = async () => {
+export const main = async () => {
     // Variable que almacenará una conexión libre con la base de datos.
     // Se crea fuera de bloque try/catch para poder gestionar los errores.
     let connection;

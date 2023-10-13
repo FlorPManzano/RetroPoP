@@ -26,7 +26,7 @@ export default function ValidateUserPage() {
                 const body = await validateUserService(regCodeParam);
                 setUserValidate(body);
                 const token = await body?.token;
-                console.log('!!!!!', await token);
+
                 if (body.status === 'ok') {
                     setColorText('green');
                 }

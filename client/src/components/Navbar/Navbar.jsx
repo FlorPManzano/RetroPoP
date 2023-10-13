@@ -45,18 +45,6 @@ const Navbar = () => {
         navigate('/profile');
     };
 
-    const handleClickBookings = (e) => {
-        e.stopPropagation();
-        toggleMenu();
-        navigate('/profile/bookings');
-    };
-
-    const handleClickReviews = (e) => {
-        e.stopPropagation();
-        toggleMenu();
-        navigate('/profile/reviews');
-    };
-
     return (
         <>
             <nav className="navbar">
@@ -71,6 +59,7 @@ const Navbar = () => {
                 <input
                     type="text"
                     className="search-form"
+                    placeholder="Busca tu producto aquí..."
                     onKeyDown={handleSubmitSearch}
                 />
 
@@ -120,12 +109,6 @@ const Navbar = () => {
                                             Ver perfil
                                         </li>
 
-                                        <li onClick={handleClickBookings}>
-                                            Solicitudes
-                                        </li>
-                                        <li onClick={handleClickReviews}>
-                                            Valoraciones
-                                        </li>
                                         <li onClick={authLogout}>
                                             Cerrar sesión
                                         </li>

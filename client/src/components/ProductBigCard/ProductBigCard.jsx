@@ -10,8 +10,8 @@ import { setFavoriteService } from '../../services/fetchData';
 
 export default function ProductBigCard({ product }) {
     const [fav, setFav] = useState(false);
-    const { authToken, authFavs, setAuthFavs } = useAuth();
-    const [loading, setLoading] = useState(false);
+    const { authToken, authFavs } = useAuth();
+    // const [loading, setLoading] = useState(false);
     const { addBooking } = useProducts();
     const [showPopUp, setShowPopUp] = useState(false);
 
@@ -22,13 +22,11 @@ export default function ProductBigCard({ product }) {
 
     const dateNowFormatted = `${dateNow[1]} ${dateNow[0]} ${dateNow[2]}`;
 
-    const [date, setDate] = useState(dateNowFormatted);
-
     const navigate = useNavigate();
 
     useEffect(() => {
-        authFavs?.includes(product.id) ? setFav(true) : setFav(false);
-    }, [authFavs]);
+        authFavs?.includes(product?.id) ? setFav(true) : setFav(false);
+    }, [authFavs, product?.id]);
 
     const handleBookingCreate = async (e) => {
         e.preventDefault();
@@ -42,7 +40,7 @@ export default function ProductBigCard({ product }) {
 
     const confirmBooking = (e) => {
         e.preventDefault();
-        setLoading(true);
+
         addBooking(product.id);
     };
 
@@ -57,14 +55,12 @@ export default function ProductBigCard({ product }) {
             toast.error('Debes estar logueado para añadir un favorito');
             return navigate('/login');
         }
-        setLoading(true);
 
         const setFavorite = await setFavoriteService(authToken, product?.id);
 
         toast.success(setFavorite.message);
 
         setFav(!fav);
-        // const result = await addFavService(product.id);
     };
 
     return (
@@ -90,7 +86,7 @@ export default function ProductBigCard({ product }) {
                         </div>
                         <div className="product-page__header__user__creation">
                             <p className="p-product-created">
-                                Fecha de creación: {date}
+                                Fecha de creación: {dateNowFormatted}
                             </p>
                         </div>
                     </div>

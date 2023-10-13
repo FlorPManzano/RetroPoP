@@ -3,6 +3,7 @@ import useAuth from '../../hooks/useAuth';
 import { useState, useEffect } from 'react';
 import { getReviewsService } from '../../services/fetchData';
 import './ReviewsPage.css';
+import LateralBar from '../../components/LateralBar/LateralBar';
 
 export default function ReviewsPage() {
     const { authToken } = useAuth();
@@ -14,7 +15,6 @@ export default function ReviewsPage() {
             try {
                 const reviewsRequest = await getReviewsService(authToken);
                 setReviews(reviewsRequest.reviews);
-                console.log(reviewsRequest);
             } catch (error) {
                 console.log(error.message);
             }
@@ -24,6 +24,7 @@ export default function ReviewsPage() {
 
     return (
         <section className="list-reviews">
+            <LateralBar />
             <div className="review-page-container">
                 <ul className="review-page-list">
                     {reviews &&

@@ -118,7 +118,6 @@ export const useProducts = () => {
     // Función que rechaza una reserva
     const cancelBooking = async (resno) => {
         setLoading(true);
-        console.log('paso 1', authToken, resno);
 
         try {
             const body = await cancelBookingService(authToken, resno);

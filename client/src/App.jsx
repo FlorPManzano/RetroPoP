@@ -21,6 +21,9 @@ import BookingsPage from './pages/BookingsPage/BookingsPage';
 import ProfilePage from './pages/ProfilePage/ProfilePage';
 import StarsReview from './components/StarsReview/StarsReview';
 import ReviewsPage from './pages/ReviewsPage/ReviewsPage';
+import ProductsActivePage from './pages/ProductsActivePage/ProductsActivePage';
+import ProductsSelledPage from './pages/ProductsSelledPage/ProductsSelledPage';
+import FavsPage from './pages/FavsPage/FavsPage';
 
 const App = () => {
     return (
@@ -55,14 +58,24 @@ const App = () => {
                 <Route path="*" element={<NotFoundPage />} />
 
                 <Route element={<PrivateRoutes />}>
-                    <Route path="/upload/" element={<ProductCreateForm />} />
+                    <Route path="/profile/reviews" element={<ReviewsPage />} />
+                    <Route
+                        path="/profile/sold"
+                        element={<ProductsSelledPage />}
+                    />
+
+                    <Route path="/profile/favs" element={<FavsPage />} />
+
                     <Route
                         path="/profile/bookings"
                         element={<BookingsPage />}
                     />
-
-                    <Route path="/profile" element={<ProfilePage />} />
-                    <Route path="/profile/reviews" element={<ReviewsPage />} />
+                    <Route
+                        path="/profile/products"
+                        element={<ProductsActivePage />}
+                    />
+                    <Route path="/profile/" element={<ProfilePage />} />
+                    <Route path="/upload/" element={<ProductCreateForm />} />
                 </Route>
             </Routes>
         </>

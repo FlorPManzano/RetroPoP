@@ -20,7 +20,6 @@ export default function BookingForm({ resno }) {
             deliveryTimeFormatted,
             deliveryPlace
         );
-        console.log(result);
         navigate(`/profile/bookings/`);
     };
     return (

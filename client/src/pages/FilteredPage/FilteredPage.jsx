@@ -21,7 +21,6 @@ export default function FilteredPage() {
 
     const navigate = useNavigate();
     const name = useLocation().search;
-    console.log(name);
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -30,9 +29,7 @@ export default function FilteredPage() {
                 const maxPrice = Math.ceil(
                     body.data.sort((a, b) => b.price - a.price)[0].price
                 );
-                console.log(maxPrice);
-                // setMaxPrice(maxPrice);
-                // setProducts(body.data);
+
                 setMaxPrice(maxPrice);
                 setValuePrice(maxPrice);
             } catch (err) {
@@ -46,8 +43,6 @@ export default function FilteredPage() {
         const fetchProducts = async () => {
             try {
                 const results = await getSearchProductsService(name);
-
-                console.log(results);
 
                 if (
                     results.status === 'ok' &&
@@ -70,27 +65,14 @@ export default function FilteredPage() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(e.target[1].value);
 
         const data = `?category=${e.target[0].value}&maxPrice=${e.target[1].value}&state=${e.target[2].value}&place=${e.target[3].value}`;
-        console.log(data);
+
         navigate(`/search/${data}`);
-        // const results = await getSearchProductsService(data);
-        // if (
-        //     results.status === 'ok' &&
-        //     results.data !== 'No hay ningún resultado con esos filtros'
-        // ) {
-        //     setProducts(results.data);
-        //     document.querySelector('.no-results').style.display = 'none';
-        // } else {
-        //     setProducts([]);
-        //     document.querySelector('.no-results').style.display = 'block';
-        // }
     };
 
     const handleCardClick = async (e, key) => {
         e.preventDefault();
-        console.log(key);
         navigate(`/product/${key}`);
     };
 

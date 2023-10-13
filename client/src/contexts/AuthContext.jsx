@@ -43,14 +43,15 @@ export const AuthProvider = ({ children }) => {
 
                 if (body.status === 'error') {
                     // Manejamos los errores con toast.
+                    toast.error(body.message);
                 }
 
                 // Establecemos el valor del usuario.
                 setAuthUser(body);
                 setAuthFavs(body.favs);
-                console.log('body', body);
             } catch (err) {
                 // Manejamos los errores con toast.
+                toast.error(err.message);
             } finally {
                 setLoading(false);
             }
@@ -67,7 +68,6 @@ export const AuthProvider = ({ children }) => {
         password,
         repeatedPass,
     }) => {
-        console.log('ey', username, email, password, repeatedPass);
         try {
             setLoading(true);
 
@@ -128,7 +128,6 @@ export const AuthProvider = ({ children }) => {
 
     // Función de actualización de perfil.
     const authUpdateProfile = async (updatedProfile, bio, avatar) => {
-        console.log('aaaaaaa');
         try {
             setLoading(true);
 
