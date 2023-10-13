@@ -79,45 +79,41 @@ const Navbar = () => {
                     </NavLink>
                 )}
 
-                <div>
-                    {!authUser ? (
+                {!authUser ? (
+                    <img
+                        className="user"
+                        src="/icons/login.png"
+                        onClick={handleClickLogin}
+                    ></img>
+                ) : (
+                    <div>
                         <img
+                            onClick={handleClickAvatar}
                             className="user"
-                            src="/icons/login.png"
-                            onClick={handleClickLogin}
-                        ></img>
-                    ) : (
-                        <div>
-                            <img
-                                onClick={handleClickAvatar}
-                                className="user"
-                                src={
-                                    authUser.avatar
-                                        ? `${APIUrl}/avatars/${authUser.avatar}`
-                                        : '/icons/acceso.png'
-                                }
-                                alt="Avatar"
-                            />
+                            src={
+                                authUser.avatar
+                                    ? `${APIUrl}/avatars/${authUser.avatar}`
+                                    : '/icons/acceso.png'
+                            }
+                            alt="Avatar"
+                        />
 
-                            {showMenu && (
-                                <div
-                                    className="dropdown-menu"
-                                    onClick={(e) => e.stopPropagation()}
-                                >
-                                    <ul>
-                                        <li onClick={handleClickProfile}>
-                                            Ver perfil
-                                        </li>
+                        {showMenu && (
+                            <div
+                                className="dropdown-menu"
+                                onClick={(e) => e.stopPropagation()}
+                            >
+                                <ul>
+                                    <li onClick={handleClickProfile}>
+                                        Ver perfil
+                                    </li>
 
-                                        <li onClick={authLogout}>
-                                            Cerrar sesión
-                                        </li>
-                                    </ul>
-                                </div>
-                            )}
-                        </div>
-                    )}
-                </div>
+                                    <li onClick={authLogout}>Cerrar sesión</li>
+                                </ul>
+                            </div>
+                        )}
+                    </div>
+                )}
             </nav>
         </>
     );

@@ -145,7 +145,7 @@ body {
 .product-page__footer__state {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
     width: 100%;
     height: 50%;
     box-sizing: border-box;
@@ -200,13 +200,14 @@ body {
     align-items: center;
     width: 200px;
     border-radius: 10px;
-    height: 40px;
+    height: 50px;
     border: 1px solid black;
     background: rgb(242, 61, 160);
     background: linear-gradient(to right, #11d9c5, #f23da0);
     color: white;
     cursor: pointer;
     border: 1px solid white;
+    font-size: 1.1rem;
 }
 
 .product-page__footer__buttons__fav {
@@ -215,7 +216,7 @@ body {
     align-items: center;
     width: 200px;
     border-radius: 10px;
-    height: 40px;
+    height: 50px;
     border: 1px solid black;
     background: rgb(242, 61, 160);
     background: linear-gradient(to right, #11d9c5, #f23da0);

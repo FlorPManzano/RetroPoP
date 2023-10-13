@@ -94,6 +94,15 @@
     text-align: center;
 }
 
+.div-container-navbar {
+    background-image: url(lente.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    width: 70px;
+    height: 70px;
+}
+
 /* Agrega estilos para el avatar */
 .user {
     position: relative;
