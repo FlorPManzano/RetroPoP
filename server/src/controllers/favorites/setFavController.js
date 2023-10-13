@@ -7,8 +7,6 @@ const setFavController = async (req, res) => {
 
         const fav = await setFavModel(userId, productId);
 
-        console.log(fav);
-
         res.send({
             status: 'ok',
             message: fav,

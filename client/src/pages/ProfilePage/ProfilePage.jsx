@@ -18,7 +18,7 @@ export default function ProfilePage() {
     const [email, setEmail] = useState('');
     const [bio, setBio] = useState(''); // Si no hay bio, establece una cadena vacía.
     const [avatar, setAvatar] = useState(null); // Inicializa el avatar como nulo.
-    const [img, setImg] = useState(''); // Inicializa el estado para la imagen como cadena vacía.
+    const [img, setImg] = useState(avatar); // Inicializa el estado para la imagen como cadena vacía.
     const [loading, setLoading] = useState(false); // Inicializa el estado para el loading como falso.
     const [showPopUp, setShowPopUp] = useState(false); // Inicializa el estado para mostrar el popup como falso.
     const [previewUrl, setPreviewUrl] = useState(''); // Almacena la url de la previsualiza
@@ -31,8 +31,8 @@ export default function ProfilePage() {
             setEmail(authUser.email);
             setBio(authUser.bio || '');
             authUser.avatar
-                ? setAvatar(`${APIUrl}/avatars/${authUser.avatar}`)
-                : setAvatar('/icons/user-profile.png');
+                ? setImg(`${APIUrl}/avatars/${authUser.avatar}`)
+                : setImg('/icons/user-profile.png');
         }
     }, [authUser]);
 
@@ -69,7 +69,7 @@ export default function ProfilePage() {
     };
 
     const onChangeImg = (e) => {
-        setImg(e.target.value);
+        // setImg(e.target.value);
         handleAddFilePreview(e, setAvatar, setPreviewUrl);
     };
 
@@ -115,7 +115,7 @@ export default function ProfilePage() {
                         <section className="profile-avatar-container">
                             <h4 className="profile-avatar-title">Avatar</h4>
                             <img
-                                src={previewUrl ? previewUrl : avatar}
+                                src={previewUrl ? previewUrl : img}
                                 alt="avatar"
                                 className="profile-avatar-img"
                             />

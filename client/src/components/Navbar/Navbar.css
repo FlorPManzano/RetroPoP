@@ -1,12 +1,13 @@
 .navbar {
     display: flex;
     position: sticky;
-    z-index: 1;
+    z-index: 10;
     /* position: fixed; */
     justify-content: space-around;
     align-items: center;
     width: 100vw;
     height: 100px;
+    top: 0;
     background-color: rgba(45, 29, 58, 0.87);
     box-shadow: 0 3px 10px rgba(241, 241, 241, 0.8);
 }

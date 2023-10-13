@@ -4,7 +4,7 @@
     /* align-items: center; */
     justify-content: center;
     width: 100vw;
-    height: calc(100vh - 60px);
+    height: calc(100vh - 100px);
 }
 
 .profile-container {
@@ -14,7 +14,7 @@
     align-items: center;
     justify-content: start;
     width: 40vw;
-    height: 700px;
+    height: 600px;
     background-color: #ffffffb7;
     border-radius: 10px;
 }

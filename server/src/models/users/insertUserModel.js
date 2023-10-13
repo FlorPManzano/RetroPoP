@@ -38,8 +38,6 @@ const insertUserModel = async (username, email, password, registrationCode) => {
             userAlreadyRegisteredError();
         }
 
-        console.log(username, email, password, registrationCode);
-
         await connection.query(
             'INSERT INTO users (email, username, password, registrationCode) VALUES(?, ?, ?, ?)',
             [email, username, await hashPassword(password), registrationCode]

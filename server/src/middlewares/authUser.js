@@ -12,6 +12,7 @@ import {
 
 // Función controladora intermedia que comprueba si el usuario está logueado y crea la propiedad user en el objeto request.
 const authUser = async (req, res, next) => {
+    console.log('entra en authUser aaaa', req.body);
     try {
         // Obtenemos el token de la cabecera de la petición.
         const { authorization } = req.headers;

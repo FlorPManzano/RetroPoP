@@ -9,7 +9,6 @@ import { generatePhotoName } from '../../helpers/encripters.js';
 
 // Función para crear un nuevo artículo
 const newProductController = async (req, res, next) => {
-    console.log('??????????', req.body);
     try {
         const { productName, description, category, state, place, price } =
             req.body;

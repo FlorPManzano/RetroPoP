@@ -7,14 +7,17 @@ import { useEffect, useState } from 'react';
 import { useProducts } from '../../hooks/useProducts.js';
 import { toast } from 'react-toastify';
 import { setFavoriteService } from '../../services/fetchData';
+import { deleteProductService } from '../../services/fetchData';
 
 export default function ProductBigCard({ product }) {
     const [fav, setFav] = useState(false);
-    const { authToken, authFavs } = useAuth();
+    const { authToken, authFavs, authUser } = useAuth();
     // const [loading, setLoading] = useState(false);
     const { addBooking } = useProducts();
     const [showPopUp, setShowPopUp] = useState(false);
 
+    console.log('produt', product);
+    console.log(authUser);
     const dateNow = new Date(product.createdAt)
         .toDateString()
         .split(' ')
@@ -63,6 +66,28 @@ export default function ProductBigCard({ product }) {
         setFav(!fav);
     };
 
+    const deleteHandleSubmit = async (e) => {
+        try {
+            e.preventDefault();
+            if (!authToken) {
+                toast.error('Debes estar logueado para borrar un producto');
+                return navigate('/login');
+            }
+            const deleteProduct = await deleteProductService(
+                authToken,
+                product.id
+            );
+
+            if (deleteProduct.status === 'ok') {
+                toast.success(deleteProduct.message);
+            } else {
+                toast.error(deleteProduct.message);
+            }
+        } catch (error) {
+            toast.error(error.message);
+        }
+    };
+
     return (
         <div className="product-big-card">
             <article className="product-page">
@@ -77,11 +102,24 @@ export default function ProductBigCard({ product }) {
                             <h3 className="h3-bigproduct">
                                 {product?.username}
                             </h3>
+                            {(product.userSellerId === authUser?.id) &
+                                (product.isSelled === 0) && (
+                                <button
+                                    className="product-delete__button"
+                                    onClick={deleteHandleSubmit}
+                                >
+                                    Borrar producto
+                                </button>
+                            )}
                         </div>
                         <div className="product-page__header__user__reviews">
                             <h3 className="h3-bigproduct">
-                                {product?.mediaStars?.toFixed(1)} estrellas (
-                                {product?.totalReviews} reviews)
+                                {product?.totalReviews > 0
+                                    ? `${product?.mediaStars?.toFixed(
+                                          1
+                                      )} estrellas (
+                                ${product?.totalReviews} reviews)`
+                                    : 'Este usuario no tiene reviews'}
                             </h3>
                         </div>
                         <div className="product-page__header__user__creation">

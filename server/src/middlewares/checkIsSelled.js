@@ -4,7 +4,7 @@ const checkIsSelled = async (req, res, next) => {
     try {
         const { idProduct } = req.body;
         const isSelled = await getProductModel(idProduct);
-        console.log('WTFFFFF', isSelled);
+
         if (isSelled[0].isSelled === 1) {
             res.send({
                 status: 'ok',

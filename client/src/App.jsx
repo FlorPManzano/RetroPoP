@@ -24,6 +24,7 @@ import ReviewsPage from './pages/ReviewsPage/ReviewsPage';
 import ProductsActivePage from './pages/ProductsActivePage/ProductsActivePage';
 import ProductsSelledPage from './pages/ProductsSelledPage/ProductsSelledPage';
 import FavsPage from './pages/FavsPage/FavsPage';
+import Footer from './components/Footer/Footer';
 
 const App = () => {
     return (
@@ -41,6 +42,7 @@ const App = () => {
                 theme="light"
             />
             <Navbar />
+            <Footer />
             <Routes>
                 <Route path="/" element={<HomePage />} />
                 <Route path="/login" element={<LoginPage />} />

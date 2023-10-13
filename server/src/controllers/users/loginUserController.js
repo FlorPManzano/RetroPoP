@@ -50,8 +50,6 @@ const loginUserController = async (req, res, next) => {
             username: user.username,
         };
 
-        console.log(tokenInfo);
-
         // Generamos el token.
         const token = jwt.sign(tokenInfo, SECRET, {
             expiresIn: '7d',

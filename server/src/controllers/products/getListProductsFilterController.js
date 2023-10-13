@@ -12,7 +12,6 @@ const getListProductsFilterController = async (req, res, next) => {
             state: req.query.state,
         };
 
-        console.log(params);
         const products = await getListProductsFilterModel(params);
 
         res.send({

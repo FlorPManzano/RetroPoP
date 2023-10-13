@@ -12,6 +12,8 @@ import newProductController from '../controllers/products/newProductController.j
 import getListProductsController from '../controllers/products/getListProductsController.js';
 import getProductController from '../controllers/products/getProductController.js';
 import getListProductsFilterController from '../controllers/products/getListProductsFilterController.js';
+import deleteProductController from '../controllers/products/deleteProductController.js';
+import checkProductIsOwner from '../middlewares/checkProductIsOwner.js';
 
 // Middlewares
 import authUser from '../middlewares/authUser.js';
@@ -20,6 +22,8 @@ import authUser from '../middlewares/authUser.js';
 const router = express.Router();
 
 // Routes
+
+router.delete('/', authUser, checkProductIsOwner, deleteProductController);
 
 // -   GET `/?param` - Devuelve la infomación de los productos filtrados.
 router.get('/filters/?', getListProductsFilterController);

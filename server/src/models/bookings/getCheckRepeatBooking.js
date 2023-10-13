@@ -2,7 +2,6 @@
 import getDb from '../../db/getDb.js';
 
 const getCheckRepeatBooking = async (idBuyer, idProduct) => {
-    console.log('que llega aqui', idBuyer, idProduct);
     let connection;
     try {
         connection = await getDb();

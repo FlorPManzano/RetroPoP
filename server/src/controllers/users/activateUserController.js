@@ -14,8 +14,6 @@ const activateUserController = async (req, res, next) => {
         // Llamamos a la función que se encarga de validar la cuenta.
         const userActivate = await activateUserModel(activateCodeParam);
 
-        console.log('QUE ES ESTOOOOOOOO', userActivate);
-
         if (userActivate === undefined) {
             throw new Error(
                 'El usuario ya está activado o el código es incorrecto'

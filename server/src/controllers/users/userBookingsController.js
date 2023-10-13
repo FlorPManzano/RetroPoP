@@ -3,7 +3,6 @@ import selectBookingsByIdUserModel from '../../models/users/selectBookingsByIdUs
 const userBookingsController = async (req, res, next) => {
     try {
         const userBookings = await selectBookingsByIdUserModel(req.user);
-        console.log(userBookings);
 
         res.send({
             status: 'ok',

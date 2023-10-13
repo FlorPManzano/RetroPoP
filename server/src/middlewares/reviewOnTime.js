@@ -4,13 +4,15 @@ import { dateBookingNotPassed } from '../errors/errorService.js';
 
 const reviewOnTime = async (req, res, next) => {
     try {
-        const booking = await getBookingByResModel(req.params.resno);
-        console.log(booking);
+        const [booking] = await getBookingByResModel(req.params.resno);
+
+        console.log('que es esto', booking);
+
         let { deliveryTime } = booking[0];
         deliveryTime = formatDate(deliveryTime);
-        console.log(deliveryTime);
+
         const now = formatDate(new Date());
-        console.log(now);
+
         if (deliveryTime > now) dateBookingNotPassed(deliveryTime);
         next();
     } catch (error) {

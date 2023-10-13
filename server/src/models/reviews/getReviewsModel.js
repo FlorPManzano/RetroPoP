@@ -9,7 +9,7 @@ const getReviewsModel = async (id) => {
         const [reviews] = await connection.query(
             // `SELECT id FROM reviews WHERE bookingId = (SELECT id FROM bookings WHERE resno = ?)`,
             // [id]
-            `SELECT P.id AS productId, P.image, P.productName, P.price, P.description, U.username AS userBuyer, U.id AS idBuyer, X.id AS userSeller,  X.id AS idSeller, B.id AS bookingId, B.resno, R.titleRw FROM bookings B
+            `SELECT P.id AS productId, P.image, P.productName, P.price, P.description, U.username AS userBuyer, U.id AS idBuyer, X.id AS userSeller,  X.id AS idSeller, B.id AS bookingId, B.resno, B.deliveryTime, R.titleRw FROM bookings B
             JOIN products P ON P.id = B.productId
             JOIN users X ON X.id = P.userId
             JOIN users U ON U.id = B.userBuyerId

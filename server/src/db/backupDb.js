@@ -219,6 +219,7 @@ export const backupDb = async () => {
       (18, '1cf4261d-8f3b-4042-bc1d-c524cdebab08', NULL, NULL, NOW(), 7, 16),
       (19, '35ff3175-6154-4fe1-b16f-92d09d9ee47f', NULL, NULL, NOW(), 2, 16),
       (20, '9c9dc2b0-6fc7-4c32-ab13-bc9370d3d6cd', 'Madrid', '2023-09-17 11:30:00', NOW(), 3, 22);
+
     `);
         console.log(
             FgLightMagenta,

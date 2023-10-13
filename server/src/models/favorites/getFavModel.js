@@ -1,7 +1,6 @@
 import getDb from '../../db/getDb.js';
 
 const getFavModel = async (userId) => {
-    console.log('holiii', userId);
     let connection;
 
     try {

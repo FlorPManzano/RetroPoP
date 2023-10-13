@@ -6,14 +6,29 @@ const editUserModel = async (userId, bio = null, photoName = null) => {
     let connection;
 
     try {
-        // Obtenemos la conexión a la base de datos.
-        connection = await getDb();
+        if (photoName === null) {
+            // Obtenemos la conexión a la base de datos.
+            connection = await getDb();
+
+            // Actualizamos el avatar del usaurio con su fecha de modificación.
+            await connection.query('UPDATE users SET bio = ? WHERE id = ?', [
+                bio,
+                userId,
+            ]);
+        }
+
+        if (photoName !== null) {
+            // Obtenemos la conexión a la base de datos.
+            connection = await getDb();
+
+            // Actualizamos el avatar del usaurio con su fecha de modificación.
+            await connection.query(
+                'UPDATE users SET bio = ?, avatar = ? WHERE id = ?',
+                [bio, photoName, userId]
+            );
+        }
 
         // Actualizamos el avatar del usaurio con su fecha de modificación.
-        await connection.query(
-            'UPDATE users SET bio = ?, avatar = ? WHERE id = ?',
-            [bio, photoName, userId]
-        );
     } catch (error) {
         console.log(error);
         return error;

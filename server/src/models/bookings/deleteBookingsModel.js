@@ -1,7 +1,6 @@
 import getDb from '../../db/getDb.js';
 
 const deleteBookingsModel = async (id) => {
-    console.log(id);
     let connection;
 
     try {

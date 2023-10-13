@@ -14,9 +14,16 @@ export default function ReviewsPage() {
         const getReviews = async () => {
             try {
                 const reviewsRequest = await getReviewsService(authToken);
-                setReviews(reviewsRequest.reviews);
+                setReviews(reviewsRequest?.reviews);
+                console.log(reviewsRequest.reviews);
+                console.log(new Date());
+                console.log(new Date(reviewsRequest.reviews[0].deliveryTime));
+                console.log(
+                    new Date() <
+                        new Date(reviewsRequest.reviews[0].deliveryTime)
+                );
             } catch (error) {
-                console.log(error.message);
+                console.log(error.message, error);
             }
         };
         getReviews();
@@ -29,7 +36,12 @@ export default function ReviewsPage() {
                 <ul className="review-page-list">
                     {reviews &&
                         reviews
-                            .filter((review) => review.titleRw === null)
+                            .filter(
+                                (review) =>
+                                    review.titleRw === null &&
+                                    new Date() > new Date(review.deliveryTime)
+                            )
+
                             .map((review) => (
                                 <li key={review.id}>
                                     <ReviewCard

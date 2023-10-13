@@ -6,7 +6,6 @@ import getReviewsModel from '../../models/reviews/getReviewsModel.js';
 const getReviewsController = async (req, res) => {
     try {
         const id = req.user;
-        console.log('id', id);
 
         const reviews = await getReviewsModel(id);
 

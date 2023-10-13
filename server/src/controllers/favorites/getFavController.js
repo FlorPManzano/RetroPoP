@@ -4,8 +4,6 @@ const getFavController = async (req, res) => {
     try {
         const userId = req.user;
 
-        console.log('tuputamadrelacoja', userId);
-
         const favs = await getFavModel(userId);
 
         const array = [...favs.map((fav) => fav.productIdFav)];

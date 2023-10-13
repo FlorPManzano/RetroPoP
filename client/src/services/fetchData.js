@@ -230,6 +230,21 @@ const setFavoriteService = async (token, idProduct) => {
     return body;
 };
 
+const deleteProductService = async (token, productId) => {
+    const res = await fetch(`${APIUrl}/products`, {
+        method: 'DELETE',
+        headers: {
+            Authorization: token,
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ productId }),
+    });
+
+    const body = await res.json();
+
+    return body;
+};
+
 export {
     registerUserService,
     validateUserService,
@@ -248,4 +263,5 @@ export {
     newReviewService,
     deleteUserService,
     setFavoriteService,
+    deleteProductService,
 };

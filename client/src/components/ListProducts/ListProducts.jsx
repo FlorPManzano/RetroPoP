@@ -27,7 +27,7 @@ export default function ListProducts() {
             }
         };
         fetchProducts();
-    }, [favs]);
+    }, [favs, authFavs]);
 
     const handleCardClick = async (e, key) => {
         e.preventDefault();

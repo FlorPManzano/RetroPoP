@@ -5,7 +5,6 @@ const reviewExist = async (req, res, next) => {
     try {
         // Variable que almacenará el resultado de la consulta a la base de datos
         const review = await selectReviewModel(req.params.resno);
-        console.log('review', review);
 
         if (review.length > 0) reviewExistsError();
         next();

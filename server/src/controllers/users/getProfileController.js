@@ -17,9 +17,6 @@ const getProfileController = async (req, res, next) => {
             isActive: user.isActive,
             favs: [...arrayFavs.sort()],
         };
-        console.log('iiiii', favs);
-
-        console.log('eeeeeee', obj);
 
         res.send({
             status: 'ok',

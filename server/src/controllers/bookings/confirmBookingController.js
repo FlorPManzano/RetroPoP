@@ -20,8 +20,6 @@ const confirmBookingController = async (req, res, next) => {
         // Variable que almacenará los datos de la reserva
         const dataBooking = await getDataBookingModel(resno);
 
-        console.log('DATAAAAAAAAAAAAA', dataBooking);
-
         // Si el usuario confirma la reserva, actualizamos el campo de deliveryTime y deliveryPlace en la tabla bookings
 
         if (confirm === true) {
@@ -37,8 +35,6 @@ const confirmBookingController = async (req, res, next) => {
             const deleteBookings = await deleteBookingsModel(
                 dataBooking[0].productId
             );
-
-            console.log('deleteBookings', deleteBookings);
 
             // Enviamos un email al comprador
             sendConfirmBookingMail(dataBooking);

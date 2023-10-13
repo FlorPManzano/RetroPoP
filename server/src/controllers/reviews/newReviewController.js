@@ -6,6 +6,8 @@ const newReviewController = async (req, res) => {
     try {
         await validateSchema(newReviewSchema, req.body);
 
+        console.log('ESTO ENTRA? UUUU', req.body, req.params.resno, req.user);
+
         const review = await newReviewModel(
             req.body,
             req.params.resno,

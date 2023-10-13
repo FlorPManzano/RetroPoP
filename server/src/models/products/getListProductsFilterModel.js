@@ -14,8 +14,6 @@ const getListProductsFilterModel = async (params) => {
     const state =
         params.state === undefined || params.state === '' ? '%' : params.state;
 
-    console.log(name, category, place, minPrice, maxPrice, state);
-
     let connection;
 
     try {
@@ -29,7 +27,6 @@ const getListProductsFilterModel = async (params) => {
             [name, category, place, minPrice, maxPrice, state]
         );
 
-        console.log(products[0]);
         return products[0];
     } finally {
         if (connection) connection.release();
