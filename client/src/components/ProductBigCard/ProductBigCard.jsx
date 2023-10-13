@@ -161,7 +161,7 @@ export default function ProductBigCard({ product }) {
                             <img
                                 className="product-page__footer__buttons__fav__img"
                                 src={
-                                    fav
+                                    authToken && fav
                                         ? '/icons/heart2.png'
                                         : '/icons/heart1.png'
                                 }
