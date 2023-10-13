@@ -11,6 +11,10 @@ Este ejercicio consiste en crear una web que simule el funcionamiento de un mark
 1. Instalar las dependencias mediante el comando `npm install` o `npm i`.
 2. Ejecutar `npm start` para iniciar el cliente.
 
+## Notas
+
+Para la fecha y la hora de una reserva se ha usado un input de tipo "datetime-local" que no es soportado por Firefox (pero se puede agregar manualmente). Recomendamos usar navegadores basados en Chromium.
+
 ## Rutas
 
 ### Rutas Públicas:
