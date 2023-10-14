@@ -44,7 +44,7 @@ Pueden acceder tanto los usuarios anónimos como los registrados.
 2. `/profile` - Cuando has iniciado sesión, el botón de login cambiará, y pasará a verse el avatar del usuario logueado. Haciendo click aparecerá un menú desplegable con dos opciones: ver perfil o cerrar sesión. Para acceder a esta ruta, se irá a la primera opción. Dentro del perfil se prodrán realizar diferentes acciones a través de la barra lateral:
 
 -   Editar perfil: es la página por defecto del perfil. Aquí se puede editar la biografia y el perfil(`/profile`).
--   Productos en venta: aparece un listado de los productos a la venta que tiene el usuario logueado (`/profile/products`)
+-   Productos en venta: aparece un listado de los productos a la venta que tiene el usuario logueado (`/profile/products`). Desde aquí, un usuario puede eliminar productos que tenga a la venta, a través del botón "Borrar producto".
 -   Productos vendidos: listado de productos que ya están vendidos del usuario (`/profile/sold`).
 -   Favoritos: todos los productos que el usuario tiene añadidos en su lista de favoritos (`/profile/favs`).
 -   Solicitudes: aquí aparecerán las reservas activas que tienen un vendedor (`/profile/bookings`).
