@@ -49,9 +49,7 @@ export default function BookingPage() {
                 </section>
             )}
             {!bookings && (
-                <h2 className="booking-no-results">
-                    No tienes reservas activas
-                </h2>
+                <p className="booking-no-results">No tienes reservas activas</p>
             )}
         </>
     );

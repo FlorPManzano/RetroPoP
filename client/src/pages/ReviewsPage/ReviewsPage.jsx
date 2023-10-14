@@ -32,6 +32,7 @@ export default function ReviewsPage() {
     return (
         <section className="list-reviews">
             <LateralBar />
+            <h2 className="title-review">Reseñas pendientes</h2>
             <div className="review-page-container">
                 <ul className="review-page-list">
                     {reviews &&
