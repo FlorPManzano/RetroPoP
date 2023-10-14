@@ -80,6 +80,7 @@ export default function ProductBigCard({ product }) {
 
             if (deleteProduct.status === 'ok') {
                 toast.success(deleteProduct.message);
+                navigate('/');
             } else {
                 toast.error(deleteProduct.message);
             }
