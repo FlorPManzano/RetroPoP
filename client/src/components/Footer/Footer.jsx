@@ -12,7 +12,7 @@ export default function Footer() {
                         <img
                             src="/icons/linkedin-icon.png"
                             alt="linkedin"
-                            width="64"
+                            width="34"
                         />
                     </a>
                     <a
@@ -22,28 +22,28 @@ export default function Footer() {
                         <img
                             src="/icons/github-icon.png"
                             alt="GitHub"
-                            width="64"
+                            width="34"
                         />
                     </a>
                     <a href="https://www.instagram.com/" target="_">
                         <img
                             src="/icons/instagram.png"
                             alt="instagram"
-                            width="64"
+                            width="34"
                         />
                     </a>
                     <a href="https://www.facebook.com/" target="_">
                         <img
                             src="/icons/facebook.png"
                             alt="facebook"
-                            width="64"
+                            width="34"
                         />
                     </a>
                     <a href="https://twitter.com/" target="_">
                         <img
                             src="/icons/twitter.png"
                             alt="twitter"
-                            width="64"
+                            width="34"
                         />
                     </a>
                 </div>
@@ -51,7 +51,7 @@ export default function Footer() {
 
             <div className="right_side">
                 <div className="footer__logo">
-                    <img src="/logo-retropop.png" alt="logo" width="50" />
+                    <img src="/logo-retropop.png" alt="logo" width="34" />
                 </div>
                 <p className="p-footer">
                     &copy; {`Retropop ${new Date().getFullYear()}`}

@@ -108,21 +108,25 @@ export default function ProductBigCard({ product }) {
                         <div className="product-page__header__user__name">
                             <img
                                 className="product_page_avatar"
-                                src={`${APIUrl}/avatars/${product?.avatar}`}
+                                src={
+                                    product.avatar
+                                        ? `${APIUrl}/avatars/${product?.avatar}`
+                                        : '/icons/acceso.png'
+                                }
                                 alt="user"
                             />
                             <h3 className="h3-bigproduct">
                                 {product?.username}
                             </h3>
-                            {(product.userSellerId === authUser?.id) &
-                                (product.isSelled === 0) && (
-                                <button
-                                    className="product-delete__button"
-                                    onClick={deleteHandleSubmit}
-                                >
-                                    Borrar producto
-                                </button>
-                            )}
+                            {product.userSellerId === authUser?.id &&
+                                product.isSelled === 0 && (
+                                    <button
+                                        className="product-delete__button"
+                                        onClick={deleteHandleSubmit}
+                                    >
+                                        Borrar producto
+                                    </button>
+                                )}
                             {showPopUpDelete && (
                                 <div className="popup">
                                     <p className="popup-p">
