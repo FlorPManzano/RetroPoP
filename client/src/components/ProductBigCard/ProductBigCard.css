@@ -208,6 +208,13 @@ body {
     cursor: pointer;
     border: 1px solid white;
     font-size: 1.1rem;
+    transition: 1s;
+}
+
+.product-page__footer__buttons__buy:hover {
+    background: #11d9c5;
+    background: linear-gradient(to right, #f23da0, #11d9c5);
+    transform: scale(1.1);
 }
 
 .product-page__footer__buttons__fav {
@@ -223,6 +230,13 @@ body {
     color: white;
     cursor: pointer;
     border: 1px solid white;
+    transition: 1s;
+}
+
+.product-page__footer__buttons__fav:hover {
+    background: #11d9c5;
+    background: linear-gradient(to right, #f23da0, #11d9c5);
+    transform: scale(1.1);
 }
 
 .popup {

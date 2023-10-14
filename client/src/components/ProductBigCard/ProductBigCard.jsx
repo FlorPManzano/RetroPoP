@@ -15,6 +15,7 @@ export default function ProductBigCard({ product }) {
     // const [loading, setLoading] = useState(false);
     const { addBooking } = useProducts();
     const [showPopUp, setShowPopUp] = useState(false);
+    const [showPopUpDelete, setShowPopUpDelete] = useState(false);
 
     console.log('produt', product);
     console.log(authUser);
@@ -67,6 +68,11 @@ export default function ProductBigCard({ product }) {
     };
 
     const deleteHandleSubmit = async (e) => {
+        e.preventDefault();
+        setShowPopUpDelete(true);
+    };
+
+    const confirmDelete = async (e) => {
         try {
             e.preventDefault();
             if (!authToken) {
@@ -87,6 +93,11 @@ export default function ProductBigCard({ product }) {
         } catch (error) {
             toast.error(error.message);
         }
+    };
+
+    const cancelDelete = (e) => {
+        e.preventDefault();
+        setShowPopUpDelete(false);
     };
 
     return (
@@ -111,6 +122,26 @@ export default function ProductBigCard({ product }) {
                                 >
                                     Borrar producto
                                 </button>
+                            )}
+                            {showPopUpDelete && (
+                                <div className="popup">
+                                    <p className="popup-p">
+                                        ¿Estás de que quieres eliminar este
+                                        producto?
+                                    </p>
+                                    <button
+                                        onClick={confirmDelete}
+                                        className="popup-button"
+                                    >
+                                        Confirmar
+                                    </button>
+                                    <button
+                                        onClick={cancelDelete}
+                                        className="popup-button"
+                                    >
+                                        Cancelar
+                                    </button>
+                                </div>
                             )}
                         </div>
                         <div className="product-page__header__user__reviews">

@@ -257,6 +257,13 @@ input[type='range']:focus::-ms-fill-upper {
     color: white;
     border: 1px solid white;
     font-size: 1.1rem;
+    transition: 1s;
+}
+
+.btn-filter:hover {
+    background: #11d9c5;
+    background: linear-gradient(to right, #f23da0, #11d9c5);
+    transform: scale(1.1);
 }
 
 .btn-reset {
@@ -272,7 +279,15 @@ input[type='range']:focus::-ms-fill-upper {
     color: white;
     border: 1px solid white;
     font-size: 1.1rem;
+    transition: 1s;
 }
+
+.btn-reset:hover {
+    background: #11d9c5;
+    background: linear-gradient(to right, #f23da0, #11d9c5);
+    transform: scale(1.1);
+}
+
 .range-price__text {
     color: white;
     font-size: 1.3rem;
