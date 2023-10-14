@@ -9,22 +9,42 @@ export default function Footer() {
                         href="https://www.linkedin.com/groups/9509612/"
                         target="_"
                     >
-                        <img src="/icons/linkedin-icon.png" alt="linkedin" />
+                        <img
+                            src="/icons/linkedin-icon.png"
+                            alt="linkedin"
+                            width="64"
+                        />
                     </a>
                     <a
                         href="https://github.com/FlorPManzano/RetroPoP"
                         target="_"
                     >
-                        <img src="/icons/github-icon.png" alt="GitHub" />
+                        <img
+                            src="/icons/github-icon.png"
+                            alt="GitHub"
+                            width="64"
+                        />
                     </a>
                     <a href="https://www.instagram.com/" target="_">
-                        <img src="/icons/instagram.png" alt="instagram" />
+                        <img
+                            src="/icons/instagram.png"
+                            alt="instagram"
+                            width="64"
+                        />
                     </a>
                     <a href="https://www.facebook.com/" target="_">
-                        <img src="/icons/facebook.png" alt="facebook" />
+                        <img
+                            src="/icons/facebook.png"
+                            alt="facebook"
+                            width="64"
+                        />
                     </a>
                     <a href="https://twitter.com/" target="_">
-                        <img src="/icons/twitter.png" alt="twitter" />
+                        <img
+                            src="/icons/twitter.png"
+                            alt="twitter"
+                            width="64"
+                        />
                     </a>
                 </div>
             </div>
