@@ -11,8 +11,17 @@
     background-color: rgba(45, 29, 58, 0.548);
 }
 
+.left_side {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    margin-left: 2rem;
+}
+
 .right_side {
     display: flex;
+    align-items: center;
     flex-direction: row;
 }
 
