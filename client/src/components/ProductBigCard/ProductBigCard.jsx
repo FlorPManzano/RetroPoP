@@ -198,12 +198,15 @@ export default function ProductBigCard({ product }) {
                         </NavLink>
                     </div>
                     <div className="product-page__footer__buttons">
-                        <button
-                            className="product-page__footer__buttons__buy"
-                            onClick={handleBookingCreate}
-                        >
-                            Reservar
-                        </button>
+                        {product.isSelled === 0 &&
+                            product.userSellerId !== authUser?.id && (
+                                <button
+                                    className="product-page__footer__buttons__buy"
+                                    onClick={handleBookingCreate}
+                                >
+                                    Reservar
+                                </button>
+                            )}
                         {showPopUp && (
                             <div className="popup">
                                 <p className="popup-p">
@@ -224,19 +227,22 @@ export default function ProductBigCard({ product }) {
                                 </button>
                             </div>
                         )}
-                        <button
-                            className="product-page__footer__buttons__fav"
-                            onClick={handleFavSubmit}
-                        >
-                            <img
-                                className="product-page__footer__buttons__fav__img"
-                                src={
-                                    authToken && fav
-                                        ? '/icons/heart2.png'
-                                        : '/icons/heart1.png'
-                                }
-                            />
-                        </button>
+                        {product.isSelled === 0 &&
+                            product.userSellerId !== authUser?.id && (
+                                <button
+                                    className="product-page__footer__buttons__fav"
+                                    onClick={handleFavSubmit}
+                                >
+                                    <img
+                                        className="product-page__footer__buttons__fav__img"
+                                        src={
+                                            authToken && fav
+                                                ? '/icons/heart2.png'
+                                                : '/icons/heart1.png'
+                                        }
+                                    />
+                                </button>
+                            )}
                     </div>
                 </footer>
             </article>

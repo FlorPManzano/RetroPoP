@@ -1,12 +1,12 @@
 import LateralBar from '../../components/LateralBar/LateralBar';
-import ProductCard from '../../components/ProductCard/ProductCard';
 import { useEffect, useState } from 'react';
 import { getAllProductsService } from '../../services/fetchData';
 import useAuth from '../../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
+import ProductCardProfile from '../../components/ProductCardProfile/ProductCardProfile';
 
 export default function ProductsSelledPage() {
-    const { authUser, authFavs } = useAuth();
+    const { authUser } = useAuth();
 
     const [products, setProducts] = useState([]);
 
@@ -52,15 +52,10 @@ export default function ProductsSelledPage() {
                                         handleCardClick(event, product.id)
                                     }
                                 >
-                                    <ProductCard
+                                    <ProductCardProfile
                                         productName={product.productName}
                                         price={product.price}
                                         image={product.image}
-                                        fav={
-                                            authFavs?.includes(product.id)
-                                                ? true
-                                                : false
-                                        }
                                     />
                                 </li>
                             ))}

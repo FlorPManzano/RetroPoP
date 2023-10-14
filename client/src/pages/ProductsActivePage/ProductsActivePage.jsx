@@ -5,9 +5,10 @@ import { getAllProductsService } from '../../services/fetchData';
 import useAuth from '../../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
 import './ProductsActivePage.css';
+import ProductCardProfile from '../../components/ProductCardProfile/ProductCardProfile';
 
 export default function ProductsActivePage() {
-    const { authUser, authFavs } = useAuth();
+    const { authUser } = useAuth();
 
     const [products, setProducts] = useState([]);
 
@@ -53,15 +54,10 @@ export default function ProductsActivePage() {
                                         handleCardClick(event, product.id)
                                     }
                                 >
-                                    <ProductCard
+                                    <ProductCardProfile
                                         productName={product.productName}
                                         price={product.price}
                                         image={product.image}
-                                        fav={
-                                            authFavs?.includes(product.id)
-                                                ? true
-                                                : false
-                                        }
                                     />
                                 </li>
                             ))}
