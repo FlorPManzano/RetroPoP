@@ -272,3 +272,25 @@ body {
     width: 30px;
     height: 30px;
 }
+
+.product-page__footer__buttons__edit {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    border-radius: 10px;
+    height: 50px;
+    border: 1px solid black;
+    background: rgb(242, 61, 160);
+    background: linear-gradient(to right, #11d9c5, #f23da0);
+    color: white;
+    cursor: pointer;
+    border: 1px solid white;
+    transition: 1s;
+}
+
+.product-page__footer__buttons__edit:hover {
+    background: #11d9c5;
+    background: linear-gradient(to right, #f23da0, #11d9c5);
+    transform: scale(1.1);
+}

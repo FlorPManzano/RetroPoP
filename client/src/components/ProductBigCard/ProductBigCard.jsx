@@ -100,6 +100,13 @@ export default function ProductBigCard({ product }) {
         setShowPopUpDelete(false);
     };
 
+    const handleEditSubmit = (e) => {
+        e.preventDefault();
+        navigate(`/product/edit/${product.id}`);
+    };
+
+    console.log('', product.id);
+
     return (
         <div className="product-big-card">
             <article className="product-page">
@@ -241,6 +248,15 @@ export default function ProductBigCard({ product }) {
                                                 : '/icons/heart1.png'
                                         }
                                     />
+                                </button>
+                            )}
+                        {product.isSelled === 0 &&
+                            product.userSellerId === authUser?.id && (
+                                <button
+                                    className="product-page__footer__buttons__edit"
+                                    onClick={handleEditSubmit}
+                                >
+                                    Editar
                                 </button>
                             )}
                     </div>

@@ -1,7 +1,7 @@
 .navbar {
     display: flex;
     position: sticky;
-    z-index: 10;
+    z-index: 1000;
     /* position: fixed; */
     justify-content: space-around;
     align-items: center;

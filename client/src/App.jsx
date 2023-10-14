@@ -25,6 +25,7 @@ import ProductsActivePage from './pages/ProductsActivePage/ProductsActivePage';
 import ProductsSelledPage from './pages/ProductsSelledPage/ProductsSelledPage';
 import FavsPage from './pages/FavsPage/FavsPage';
 import Footer from './components/Footer/Footer';
+import ProductEditPage from './pages/ProductEditPage/ProductEditPage';
 
 const App = () => {
     return (
@@ -75,6 +76,10 @@ const App = () => {
                     <Route
                         path="/profile/products"
                         element={<ProductsActivePage />}
+                    />
+                    <Route
+                        path="/product/edit/:id"
+                        element={<ProductEditPage />}
                     />
                     <Route path="/profile/" element={<ProfilePage />} />
                     <Route path="/upload/" element={<ProductCreateForm />} />

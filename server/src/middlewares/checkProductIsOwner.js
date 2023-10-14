@@ -2,8 +2,6 @@ import checkProductIsOwnerModel from '../models/products/checkOwnerProductModel.
 
 const checkProductIsOwner = async (req, res, next) => {
     try {
-        console.log('que ostias lelga aquí', req.user, req.body);
-
         const product = await checkProductIsOwnerModel(
             req.body.productId,
             req.user

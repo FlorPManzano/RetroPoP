@@ -245,6 +245,20 @@ const deleteProductService = async (token, productId) => {
     return body;
 };
 
+const editProductService = async (token, formData, productId) => {
+    const res = await fetch(`${APIUrl}/products/${productId}`, {
+        method: 'PUT',
+        headers: {
+            Authorization: token,
+        },
+        body: formData,
+    });
+
+    const body = await res.json();
+
+    return body;
+};
+
 export {
     registerUserService,
     validateUserService,
@@ -264,4 +278,5 @@ export {
     deleteUserService,
     setFavoriteService,
     deleteProductService,
+    editProductService,
 };

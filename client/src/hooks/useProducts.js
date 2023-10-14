@@ -7,6 +7,7 @@ import {
     getAllProductsService,
     confirmBookingService,
     cancelBookingService,
+    editProductService,
 } from '../services/fetchData';
 import { useNavigate } from 'react-router-dom';
 import useAuth from './useAuth';
@@ -138,6 +139,34 @@ export const useProducts = () => {
         }
     };
 
+    const editProduct = async (formData, id) => {
+        setLoading(true);
+        try {
+            const body = await editProductService(authToken, formData, id);
+            if (body.status === 'error') {
+                toastError(body.message);
+            }
+
+            navigate('/');
+            toastSuccess('Producto editado correctamente');
+        } catch (err) {
+            if (err.message === 'El valor de "price" debe ser un número') {
+                toast.error('Tienes que introducir un precio');
+            }
+            if (err.message === 'El campo "place" no debe estar vacío') {
+                toast.error('Debes introducir una localidad');
+            }
+            if (err.message === 'El campo "image" es requerido') {
+                toast.error('Tienes que adjuntar una imagen del producto');
+            }
+            err.message === 'Failed to fetch'
+                ? toastError('Error de conexión')
+                : toastError(err.message);
+        } finally {
+            setLoading(false);
+        }
+    };
+
     return {
         products,
         loading,
@@ -145,5 +174,6 @@ export const useProducts = () => {
         addBooking,
         confirmBooking,
         cancelBooking,
+        editProduct,
     };
 };
