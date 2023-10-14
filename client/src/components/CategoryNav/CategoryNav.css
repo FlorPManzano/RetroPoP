@@ -1,5 +1,6 @@
 .category-nav-container {
     margin: 3rem 0;
+    margin-top: -4rem;
     display: flex;
     justify-content: center;
     align-items: center;
