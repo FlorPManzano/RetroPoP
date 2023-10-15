@@ -56,38 +56,22 @@ const ProductCreateForm = () => {
         // try {
         setLoading(true);
 
-        if (!productName) return toast.error('Tienes que introducir un nombre');
-        if (!description)
-            return toast.error('Tienes que sellecionar una descripción');
-        if (!category)
-            return toast.error('Tienes que seleccionar una categoría');
-        if (!state)
-            return toast.error('Tienes que seleccionar un estado del producto');
-        if (!place) return toast.error('Tienes que introducir una localidad');
-        if (!price) return toast.error('Tienes que introducir un precio');
-        if (!file)
-            return toast.error('Tienes que adjuntar una imagen del producto');
-
         // Creamos un objeto FormData y establecemos sus propiedades. Adjuntamos los estados al formData
         // con append agregamos un nuevo campo y su valor al objeto fromData
 
-        if (productName && description && category && state && place && price) {
-            {
-                const formData = new FormData();
+        const formData = new FormData();
 
-                formData.append('productName', productName);
-                formData.append('description', description);
-                formData.append('category', category);
-                formData.append('state', state);
-                formData.append('place', place);
-                formData.append('price', price);
+        formData.append('productName', productName);
+        formData.append('description', description);
+        formData.append('category', category);
+        formData.append('state', state);
+        formData.append('place', place);
+        formData.append('price', price);
 
-                // Si existe una imagen la asignamos también.
-                if (file) formData.append('image', file);
+        // Si existe una imagen la asignamos también.
+        if (file) formData.append('image', file);
 
-                addProduct(formData);
-            }
-        }
+        addProduct(formData);
     };
     // Renderizado del formulario y elementos de la interfaz del usuario
     return (
@@ -181,6 +165,7 @@ const ProductCreateForm = () => {
                             maxLength="30"
                             onChange={(e) => setPlace(e.target.value)}
                             placeholder="Localidad"
+                            required
                         />
                         <input
                             type="number"
@@ -189,6 +174,7 @@ const ProductCreateForm = () => {
                             onChange={(e) => setPrice(e.target.value)}
                             min="0"
                             placeholder="Precio"
+                            required
                         />
                     </main>
                 </div>
