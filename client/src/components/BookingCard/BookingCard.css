@@ -17,6 +17,7 @@
     height: 200px;
     border-radius: 10px;
     margin-top: 1rem;
+    aspect-ratio: 1/1;
 }
 
 .booking-container-info {
