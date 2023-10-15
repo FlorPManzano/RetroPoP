@@ -190,6 +190,7 @@ const ProductEditForm = ({ id }) => {
                             maxLength="30"
                             onChange={(e) => setPlace(e.target.value)}
                             placeholder="Localidad"
+                            required
                         />
                         <input
                             type="number"
@@ -198,6 +199,7 @@ const ProductEditForm = ({ id }) => {
                             onChange={(e) => setPrice(e.target.value)}
                             min="0"
                             placeholder="Precio"
+                            required
                         />
                     </main>
                 </div>
