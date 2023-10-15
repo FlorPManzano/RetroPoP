@@ -15,19 +15,12 @@ export default function ReviewsPage() {
             try {
                 const reviewsRequest = await getReviewsService(authToken);
                 setReviews(reviewsRequest?.reviews);
-                console.log(reviewsRequest.reviews);
-                console.log(new Date());
-                console.log(new Date(reviewsRequest.reviews[0].deliveryTime));
-                console.log(
-                    new Date() <
-                        new Date(reviewsRequest.reviews[0].deliveryTime)
-                );
             } catch (error) {
                 console.log(error.message, error);
             }
         };
         getReviews();
-    }, []);
+    }, [authToken]);
 
     return (
         <section className="list-reviews">

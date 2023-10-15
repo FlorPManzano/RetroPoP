@@ -15,11 +15,7 @@ export default function BookingForm({ resno }) {
         e.preventDefault();
         const deliveryTimeFormatted = formatDate(deliveryTime);
 
-        const result = await confirmBooking(
-            resno,
-            deliveryTimeFormatted,
-            deliveryPlace
-        );
+        await confirmBooking(resno, deliveryTimeFormatted, deliveryPlace);
         navigate(`/profile/bookings/`);
     };
     return (

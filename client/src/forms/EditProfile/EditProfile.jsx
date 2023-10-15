@@ -1,10 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { toast } from 'react-toastify';
 import useAuth from '../../hooks/useAuth.js'; // Importa el hook personalizado de autenticación.
-import {
-    deleteUserService,
-    editUserService,
-} from '../../services/fetchData.js'; // Importa el servicio para editar datos de usuario.
+import { deleteUserService } from '../../services/fetchData.js'; // Importa el servicio para editar datos de usuario.
 import './EditProfile.css'; // Importa los estilos de la página.
 import { APIUrl } from '../../config.js'; // Importa la URL de la API.
 import { useNavigate } from 'react-router-dom';
@@ -20,8 +17,7 @@ export default function EditProfilePage() {
     const [email, setEmail] = useState('');
     const [bio, setBio] = useState(''); // Si no hay bio, establece una cadena vacía.
     const [avatar, setAvatar] = useState(null); // Inicializa el avatar como nulo.
-    const [img, setImg] = useState(''); // Inicializa el estado para la imagen como cadena vacía.
-    const [loading, setLoading] = useState(false); // Inicializa el estado para el loading como falso.
+
     const [showPopUp, setShowPopUp] = useState(false); // Inicializa el estado para mostrar el popup como falso.
     const [previewUrl, setPreviewUrl] = useState(''); // Almacena la url de la previsualiza
     const navigate = useNavigate();
@@ -74,13 +70,12 @@ export default function EditProfilePage() {
     };
 
     const onChangeImg = (e) => {
-        setImg(e.target.value);
         handleAddFilePreview(e, setAvatar, setPreviewUrl);
     };
 
     const confirmDelete = async (e) => {
         e.preventDefault();
-        setLoading(true);
+
         try {
             await deleteUserService(authToken);
             authLogout();

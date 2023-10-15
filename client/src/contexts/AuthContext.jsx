@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 // Importamos la función que crea un contexto y los hooks.
 import { createContext, useEffect, useState } from 'react';
-import { useHref, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 // Importamos el nombre con el que guardamos el token en el localStorage.
 import { userLocalStorageKey } from '../config';
@@ -127,7 +127,7 @@ export const AuthProvider = ({ children }) => {
     };
 
     // Función de actualización de perfil.
-    const authUpdateProfile = async (updatedProfile, bio, avatar) => {
+    const authUpdateProfile = async (updatedProfile) => {
         try {
             setLoading(true);
 
@@ -140,10 +140,10 @@ export const AuthProvider = ({ children }) => {
 
                 toastSuccess('Perfil actualizado con éxito');
             } else {
-                toastError('Error al actualizar el perfil 2');
+                toastError('Error al actualizar el perfil ');
             }
         } catch (error) {
-            toastError('Error al actualizar el perfil 3');
+            toastError('Error al actualizar el perfil ');
         } finally {
             setLoading(false);
         }

@@ -6,8 +6,6 @@ import { useProducts } from '../../hooks/useProducts';
 
 // importamos funciones utilitarias que permite previsualizar y eliminar una imagen.
 import { handleAddFilePreview } from '../../utils/handleAddFilePreview.js';
-//REmove para terminar si da tiempo (ver fichero en utils)
-import { handleRemoveFilePreview } from '../../utils/handleAddRemove.js';
 
 // Definición del componente ProductCreateForm.
 const ProductCreateForm = () => {
@@ -101,7 +99,7 @@ const ProductCreateForm = () => {
                             type="text"
                             value={productName}
                             onChange={(e) => setProductName(e.target.value)}
-                            maxLength="280"
+                            maxLength="150"
                             autoFocus
                             required
                             placeholder="Nombre del Producto"
@@ -160,12 +158,14 @@ const ProductCreateForm = () => {
                             className="input-place-upload"
                             type="text"
                             value={place}
+                            maxLength="30"
                             onChange={(e) => setPlace(e.target.value)}
                             placeholder="Localidad"
                         />
                         <input
                             type="number"
                             value={price}
+                            step="0.01"
                             onChange={(e) => setPrice(e.target.value)}
                             min="0"
                             placeholder="Precio"
@@ -178,7 +178,7 @@ const ProductCreateForm = () => {
                         className="product-create-form__description"
                         value={description}
                         onChange={(e) => setDescription(e.target.value)}
-                        maxLength="280"
+                        maxLength="200"
                         autoFocus
                         required
                         placeholder="Descripción"

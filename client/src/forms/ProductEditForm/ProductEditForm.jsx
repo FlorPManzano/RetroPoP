@@ -7,21 +7,17 @@ import { useProducts } from '../../hooks/useProducts';
 // importamos funciones utilitarias que permite previsualizar y eliminar una imagen.
 import { handleAddFilePreview } from '../../utils/handleAddFilePreview.js';
 //REmove para terminar si da tiempo (ver fichero en utils)
-import { handleRemoveFilePreview } from '../../utils/handleAddRemove.js';
 
-import {
-    editProductService,
-    getProductByIdService,
-} from '../../services/fetchData.js';
+import { getProductByIdService } from '../../services/fetchData.js';
 
 import { useNavigate } from 'react-router-dom';
 import { APIUrl } from '../../config';
-import { toast } from 'react-toastify';
-import useAuth from '../../hooks/useAuth.js';
+import { decimalsRegex } from '../../utils/regex.js';
+
+import PropTypes from 'prop-types';
 
 // Definición del componente ProductCreateForm.
 const ProductEditForm = ({ id }) => {
-    const { authToken } = useAuth();
     const fileInputRef = useRef(null);
 
     // Importa la función addProduct del hook useProducts
@@ -66,7 +62,7 @@ const ProductEditForm = ({ id }) => {
             }
         };
         fetchProduct();
-    }, []);
+    }, [id]);
 
     const onChangeImg = (e) => {
         setImg(e.target.value);
@@ -98,6 +94,7 @@ const ProductEditForm = ({ id }) => {
 
         // Si existe una imagen la asignamos también.
         if (file) formData.append('image', file);
+        navigate(`/`);
 
         editProduct(formData, id);
     };
@@ -131,7 +128,7 @@ const ProductEditForm = ({ id }) => {
                             type="text"
                             value={productName}
                             onChange={(e) => setProductName(e.target.value)}
-                            maxLength="280"
+                            maxLength="150"
                             autoFocus
                             required
                             placeholder="Nombre del Producto"
@@ -190,11 +187,13 @@ const ProductEditForm = ({ id }) => {
                             className="input-place-upload"
                             type="text"
                             value={place}
+                            maxLength="30"
                             onChange={(e) => setPlace(e.target.value)}
                             placeholder="Localidad"
                         />
                         <input
                             type="number"
+                            step="0.01"
                             value={price}
                             onChange={(e) => setPrice(e.target.value)}
                             min="0"
@@ -208,7 +207,7 @@ const ProductEditForm = ({ id }) => {
                         className="product-create-form__description"
                         value={description}
                         onChange={(e) => setDescription(e.target.value)}
-                        maxLength="280"
+                        maxLength="200"
                         autoFocus
                         required
                         placeholder="Descripción"
@@ -278,3 +277,9 @@ const ProductEditForm = ({ id }) => {
 
 // Exportación del componente ProductCreateForm
 export default ProductEditForm;
+
+// Props validation
+
+ProductEditForm.propTypes = {
+    id: PropTypes.number,
+};

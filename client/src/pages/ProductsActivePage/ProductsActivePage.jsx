@@ -1,5 +1,4 @@
 import LateralBar from '../../components/LateralBar/LateralBar';
-import ProductCard from '../../components/ProductCard/ProductCard';
 import { useEffect, useState } from 'react';
 import { getAllProductsService } from '../../services/fetchData';
 import useAuth from '../../hooks/useAuth';

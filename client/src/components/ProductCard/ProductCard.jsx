@@ -1,13 +1,11 @@
 import './ProductCard.css';
 import { productPropTypes } from '../../utils/customPropTypes.js';
 import { APIUrl } from '../../config';
-import { useState } from 'react';
 
 import useAuth from '../../hooks/useAuth';
 
 export default function ProductCard({ image, productName, price, fav }) {
     const { authUser } = useAuth();
-    const [favorite, setFavorite] = useState(fav);
 
     return (
         <div className="product-card-container">
@@ -29,9 +27,7 @@ export default function ProductCard({ image, productName, price, fav }) {
                             className="product-card__button"
                             alt="fav"
                             src={
-                                favorite
-                                    ? '/icons/heart2.png'
-                                    : '/icons/heart1.png'
+                                fav ? '/icons/heart2.png' : '/icons/heart1.png'
                             }
                         />
                     )}

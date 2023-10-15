@@ -1,7 +1,7 @@
 import { validateUserService } from '../../services/fetchData';
 
 import { useState, useEffect } from 'react';
-import { NavLink, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import './ValidateUserPage.css';
 import Loader from '../../components/Loader/Loader';
 import useAuth from '../../hooks/useAuth.js';
@@ -10,7 +10,7 @@ import { userLocalStorageKey } from '../../config';
 import { useNavigate } from 'react-router-dom';
 
 export default function ValidateUserPage() {
-    const { authToken, setAuthToken } = useAuth();
+    const { setAuthToken } = useAuth();
 
     const navigate = useNavigate();
 
@@ -53,7 +53,7 @@ export default function ValidateUserPage() {
             }
         };
         validateFunction();
-    }, []);
+    }, [navigate, regCodeParam, setAuthToken]);
 
     return (
         <div className="container-main">

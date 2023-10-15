@@ -147,7 +147,7 @@ export const useProducts = () => {
                 toastError(body.message);
             }
 
-            navigate('/');
+            navigate('/profile/products');
             toastSuccess('Producto editado correctamente');
         } catch (err) {
             if (err.message === 'El valor de "price" debe ser un número') {

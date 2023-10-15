@@ -19,7 +19,6 @@ export default function ProfilePage() {
     const [bio, setBio] = useState(''); // Si no hay bio, establece una cadena vacía.
     const [avatar, setAvatar] = useState(null); // Inicializa el avatar como nulo.
     const [img, setImg] = useState(avatar); // Inicializa el estado para la imagen como cadena vacía.
-    const [loading, setLoading] = useState(false); // Inicializa el estado para el loading como falso.
     const [showPopUp, setShowPopUp] = useState(false); // Inicializa el estado para mostrar el popup como falso.
     const [previewUrl, setPreviewUrl] = useState(''); // Almacena la url de la previsualiza
     const navigate = useNavigate();
@@ -75,7 +74,7 @@ export default function ProfilePage() {
 
     const confirmDelete = async (e) => {
         e.preventDefault();
-        setLoading(true);
+
         try {
             await deleteUserService(authToken);
             authLogout();

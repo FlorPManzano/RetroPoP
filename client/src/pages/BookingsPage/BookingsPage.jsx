@@ -24,7 +24,7 @@ export default function BookingPage() {
             }
         };
         getBookings();
-    }, []);
+    }, [authToken, authUser]);
 
     return (
         <>

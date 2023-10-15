@@ -1,7 +1,6 @@
 import getListProductsFilterModel from '../../models/products/getListProductsFilterModel.js';
 
 const getListProductsFilterController = async (req, res, next) => {
-    // console.log('entra en el controlador de filtros', req.query);
     try {
         const params = {
             name: req.query.name,

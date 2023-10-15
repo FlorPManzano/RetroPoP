@@ -6,7 +6,7 @@ import useAuth from '../../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
 
 export default function ProductsActivePage() {
-    const { authUser, authFavs } = useAuth();
+    const { authFavs } = useAuth();
 
     const [products, setProducts] = useState([]);
 
