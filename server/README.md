@@ -99,6 +99,7 @@ Este ejercicio consiste en crear una API que simule el funcionamiento de una apl
 -   GET `/products` - Lista todos los productos.
 -   GET `/products/:productId` - Devuelve la infomación del producto.
 -   GET `/products/filters/?` - Devuelve la infomación de los productos filtrados.
+-   PUT `/products/:productId` - Permite editar la información de un producto a la venta.
 -   DELETE `/products` - Elimina un producto solo si eres el propietario.
 
 ### Reservas:
