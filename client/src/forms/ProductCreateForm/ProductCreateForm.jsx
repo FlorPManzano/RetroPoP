@@ -184,7 +184,7 @@ const ProductCreateForm = () => {
                         placeholder="Descripción"
                     />
                 </section>
-                <div className="img-prev-container">
+                <div className="img-prev-container-create">
                     {previewUrl && (
                         <img
                             className="img-product"
@@ -208,6 +208,7 @@ const ProductCreateForm = () => {
                             >
                                 <span className="span-img">
                                     <img
+                                        className="img-upload"
                                         src="/icons/folder.png"
                                         alt="upload"
                                         width="150"

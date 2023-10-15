@@ -87,7 +87,7 @@
     /* border: 1px solid black; */
 }
 
-.img-prev-container {
+.img-prev-container-create {
     display: flex;
     flex-direction: column;
     justify-content: center;
