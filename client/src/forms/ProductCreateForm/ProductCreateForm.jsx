@@ -195,13 +195,6 @@ const ProductCreateForm = () => {
                         <img
                             className="img-product"
                             src={previewUrl}
-                            // onClick={() => {
-                            //     handleRemoveFilePreview(
-                            //         fileInputRef,
-                            //         setFile,
-                            //         setPreviewUrl
-                            //     );
-                            // }}
                             alt="Previsualización"
                             title="Eliminar imagen"
                         />
@@ -232,6 +225,7 @@ const ProductCreateForm = () => {
                                 accept="image/*"
                                 ref={fileInputRef}
                                 onChange={onChangeImg}
+                                required
                             />{' '}
                         </div>
                     ) : null}
