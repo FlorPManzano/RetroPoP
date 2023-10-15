@@ -100,7 +100,6 @@ export const main = async () => {
               modifiedAt DATETIME NULL ON UPDATE CURRENT_TIMESTAMP,
               bookingId INT UNSIGNED NOT NULL,
               FOREIGN KEY (bookingId) REFERENCES bookings (id)
-                ON DELETE CASCADE
                 ON UPDATE CASCADE
             )
         `);
