@@ -53,6 +53,8 @@ const ProductCreateForm = () => {
 
     const handleProductCreate = async (e) => {
         e.preventDefault();
+        if (!img)
+            return toast.error('Tienes que adjuntar una imagen del producto');
         // try {
         setLoading(true);
 
