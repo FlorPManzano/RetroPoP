@@ -227,7 +227,6 @@ const ProductCreateForm = () => {
                                 accept="image/*"
                                 ref={fileInputRef}
                                 onChange={onChangeImg}
-                                required
                             />{' '}
                         </div>
                     ) : null}
