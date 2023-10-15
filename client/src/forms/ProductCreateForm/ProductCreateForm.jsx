@@ -71,22 +71,23 @@ const ProductCreateForm = () => {
         // Creamos un objeto FormData y establecemos sus propiedades. Adjuntamos los estados al formData
         // con append agregamos un nuevo campo y su valor al objeto fromData
 
-        if (productName && description && category && state && place && price) { {
-            const formData = new FormData();
+        if (productName && description && category && state && place && price) {
+            {
+                const formData = new FormData();
 
-        formData.append('productName', productName);
-        formData.append('description', description);
-        formData.append('category', category);
-        formData.append('state', state);
-        formData.append('place', place);
-        formData.append('price', price);
+                formData.append('productName', productName);
+                formData.append('description', description);
+                formData.append('category', category);
+                formData.append('state', state);
+                formData.append('place', place);
+                formData.append('price', price);
 
-        // Si existe una imagen la asignamos también.
-        if (file) formData.append('image', file);
+                // Si existe una imagen la asignamos también.
+                if (file) formData.append('image', file);
 
-        addProduct(formData);
+                addProduct(formData);
+            }
         }
-
     };
     // Renderizado del formulario y elementos de la interfaz del usuario
     return (
