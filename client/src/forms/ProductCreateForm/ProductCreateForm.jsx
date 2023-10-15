@@ -7,6 +7,9 @@ import { useProducts } from '../../hooks/useProducts';
 // importamos funciones utilitarias que permite previsualizar y eliminar una imagen.
 import { handleAddFilePreview } from '../../utils/handleAddFilePreview.js';
 
+// importamos el componente toast de la librería react-toastify
+import { toast } from 'react-toastify';
+
 // Definición del componente ProductCreateForm.
 const ProductCreateForm = () => {
     const fileInputRef = useRef(null);
@@ -52,6 +55,18 @@ const ProductCreateForm = () => {
         e.preventDefault();
         // try {
         setLoading(true);
+
+        if (!productName) return toast.error('Tienes que introducir un nombre');
+        if (!description)
+            return toast.error('Tienes que sellecionar una descripción');
+        if (!category)
+            return toast.error('Tienes que seleccionar una categoría');
+        if (!state)
+            return toast.error('Tienes que seleccionar un estado del producto');
+        if (!place) return toast.error('Tienes que introducir una localidad');
+        if (!price) return toast.error('Tienes que introducir un precio');
+        if (!file)
+            return toast.error('Tienes que adjuntar una imagen del producto');
 
         // Creamos un objeto FormData y establecemos sus propiedades. Adjuntamos los estados al formData
         // con append agregamos un nuevo campo y su valor al objeto fromData
