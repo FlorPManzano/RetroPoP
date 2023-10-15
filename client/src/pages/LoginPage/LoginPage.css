@@ -12,7 +12,8 @@
     min-height: 1080px;
     display: flex;
     justify-content: center;
-    align-items: center;
+    margin-top: 15rem;
+    /* align-items: center; */
 }
 
 .logo-grande {
